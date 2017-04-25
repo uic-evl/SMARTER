@@ -5,8 +5,11 @@ var App = App || {};
 let PatientModel = function() {
 
     let self = {
-        patients: {}
+        patients: {},
+        patientAttributes: []
     };
+
+    self.patientAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
 
 
     // loadData();
@@ -31,7 +34,7 @@ let PatientModel = function() {
                 self.patients = probData;
 
                 kaplanMeierData.forEach(function(d, i) {
-                    self.patients[i].ID = i+1;
+                    self.patients[i].ID = i + 1;
                     self.patients[i].OS = d.OS;
                     self.patients[i].Censor = d.Censor;
                 });
@@ -47,20 +50,58 @@ let PatientModel = function() {
         return self.patients;
     }
 
-    function filterData(data, filters) {
-        // return _.filter(data, filters);
+    function filterData(filters) {
+        // return _.filter(self.patients, filters);
 
-        let filteredPatients = _.filter(data, filters);
+        let filteredPatients = _.filter(self.patients, filters);
+
+        // let filteredPairs = _.filter(
+        //   _.toPairs(self.patients),
+        //   (o) => _.isMatch(o[1], filters)
+        // );
+        //
+        // console.log(filteredPairs);
+        // console.log(_.fromPairs(filteredPairs));
 
         return _.keyBy(filteredPatients, function(o) {
           return (o.ID - 1);
         });
     }
 
-    function calculateKNN(subject, filters, k) {
-      for (let patient in self.patients) {
+    function calculateKNN(subjectID, filters, k) {
+      // let patientsScore = [];
+      let patientsInfo = [];
 
+      let knnFilters = _.difference(self.patientAttributes, filters);
+      console.log(knnFilters);
+
+      for (let patientID of Object.keys(self.patients)) {
+        if (patientID != subjectID) {
+          patientsInfo[patientID] = {};
+          patientsInfo[patientID].id = patientID;
+          patientsInfo[patientID].score = similarScore(patientID, subjectID, knnFilters);
+          // patientsScore[patientID] = similarScore(patientID, subjectID);
+        }
       }
+      console.log(patientsInfo);
+      // console.log(patientsScore);
+
+      console.log(_.sortBy(patientsInfo, ['score']));
+    }
+
+    function similarScore(patientID, subjectID, knnFilters) {
+      let score = 0;
+      let tieBreaker = -(Math.abs(self.patients[patientID].AgeAtTx - self.patients[subjectID].AgeAtTx)) / 150; // max age diff - 150
+
+      score += tieBreaker;
+
+      for (let f in knnFilters) {
+        if (self.patients[patientID][knnFilters[f]] === self.patients[subjectID][knnFilters[f]]) {
+          score += 1;
+        }
+      }
+
+      return score;
     }
 
 
@@ -69,6 +110,6 @@ let PatientModel = function() {
         loadPatients: loadData,
         getPatients: getData,
         filterPatients: filterData,
-        calculateKNN
+        getKnnTo: calculateKNN
     };
 }
