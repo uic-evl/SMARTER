@@ -46,13 +46,13 @@ let PatientModel = function() {
 
     }
 
+
     function getData() {
         return self.patients;
     }
 
-    function filterData(filters) {
-        // return _.filter(self.patients, filters);
 
+    function filterData(filters) {
         let filteredPatients = _.filter(self.patients, filters);
 
         // let filteredPairs = _.filter(
@@ -68,9 +68,11 @@ let PatientModel = function() {
         });
     }
 
+
     function calculateKNN(subjectID, filters, k) {
       let otherPatients = [];
 
+      // get the actual patient attributes used for calculating knn
       let knnFilters = _.difference(self.patientAttributes, filters);
       console.log(knnFilters);
 
@@ -94,6 +96,7 @@ let PatientModel = function() {
 
       return topKpatients;
     }
+
 
     function similarScore(patientID, subjectID, knnFilters) {
       let score = 0;

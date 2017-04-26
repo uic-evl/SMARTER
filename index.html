@@ -1,24 +1,81 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title> SMARTER </title>
+    <title> SMARTER </title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
 
-  <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-  <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/queue.v1.min.js" charset="utf-8"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
 
-  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js" charset="utf-8"></script>
 
 
-  <script src="src/js/model/patientModel.js" charset="utf-8"></script>
-  <script src="src/js/main.js" charset="utf-8"></script>
+    <script src="src/js/model/patientModel.js" charset="utf-8"></script>
+    <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
 
 <body>
+    <div class="container-fluid">
+        <div class="row" id="title">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">SMART UI</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row" id="allContent">
+            <div class="col-md-3 contentWrapper kiviatDiv">
+                <div class="contentDiv" id="kiviatDiagram">
+
+                </div>
+            </div>
+            <div class="col-md-2 contentWrapper controlDiv">
+                <div class="contentDiv" id="controller">
+
+                </div>
+            </div>
+            <div class="col-md-7" id="right">
+                <div class="row" id="top">
+                    <div class="col-md-12 contentWrapper nomogramDiv">
+                        <div class="contentDiv" id="nomogram">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row" id="bottom">
+                    <div class="col-md-6 contentWrapper kaplanDiv">
+                        <div class="contentDiv" id="kaplanMeier">
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 contentWrapper mosaicDiv">
+                        <div class="contentDiv" id="mosaicContext">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
+
 </html>
