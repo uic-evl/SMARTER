@@ -4,25 +4,28 @@ var App = App || {};
 
 let PatientModel = function() {
 
+    /* Private varaible */
     let self = {
         patients: {},
         patientAttributes: []
     };
 
+    // eight attributes for calculating knn and also eight asxes in the kiviat diagram
     self.patientAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
 
-
-    // loadData();
-
+    /* load data from two csv files */
     function loadData() {
+        let survivalProbabilityFile = "data/SurvivalProbability.csv ";
+        let kaplanMeierFile = "data/correctKaplanMeier.csv";
+
         // use promise to notify main when the data has been loaded
         return new Promise(function(resolve, reject) {
             // load data using d3 queue
             let dataLoadQueue = d3.queue();
 
             dataLoadQueue
-                .defer(d3.csv, "data/SurvivalProbability.csv")
-                .defer(d3.csv, "data/correctKaplanMeier.csv")
+                .defer(d3.csv, survivalProbabilityFile)
+                .defer(d3.csv, kaplanMeierFile)
                 .await(loadAllFiles);
 
             function loadAllFiles(error, probData, kaplanMeierData) {
@@ -46,71 +49,62 @@ let PatientModel = function() {
 
     }
 
-
+    /* get the combined full patient list */
     function getData() {
         return self.patients;
     }
 
-
+    /* get a subset of the full patient list based on the filters applied */
     function filterData(filters) {
         let filteredPatients = _.filter(self.patients, filters);
 
-        // let filteredPairs = _.filter(
-        //   _.toPairs(self.patients),
-        //   (o) => _.isMatch(o[1], filters)
-        // );
-        //
-        // console.log(filteredPairs);
-        // console.log(_.fromPairs(filteredPairs));
-
         return _.keyBy(filteredPatients, function(o) {
-          return (o.ID - 1);
+            return (o.ID - 1);
         });
     }
 
-
+    /* calculate the knn to the selected patient */
     function calculateKNN(subjectID, filters, k) {
-      let otherPatients = [];
+        let otherPatients = [];
 
-      // get the actual patient attributes used for calculating knn
-      let knnFilters = _.difference(self.patientAttributes, filters);
-      console.log(knnFilters);
+        // get the actual patient attributes used for calculating knn
+        let knnFilters = _.difference(self.patientAttributes, filters);
+        console.log(knnFilters);
 
-      for (let patientID of Object.keys(self.patients)) {
-        if (patientID != subjectID && patientID != 'columns') {
-          otherPatients[patientID] = {};
-          otherPatients[patientID].id = patientID;
-          otherPatients[patientID].score = similarScore(patientID, subjectID, knnFilters);
+        for (let patientID of Object.keys(self.patients)) {
+            // calculate the similarity scores between the selected patient and the rest patients in the list
+            if (patientID != subjectID && patientID != 'columns') {
+                otherPatients[patientID] = {};
+                otherPatients[patientID].id = patientID;
+                otherPatients[patientID].score = similarityScore(patientID, subjectID, knnFilters);
+            }
         }
-      }
-      // console.log(otherPatients);
 
-      let sortedPatients =_.reverse(_.sortBy(otherPatients, ['score']));
-      // console.log(sortedPatients);
+        let sortedPatients = _.reverse(_.sortBy(otherPatients, ['score']));
 
-      let topKpatients = [];
-      for (let i = 1; i <= k; i++) {
-        topKpatients.push(sortedPatients[i]);
-      }
-      // console.log(topKpatients);
+        // output the top k similar patients
+        let topKpatients = [];
+        for (let i = 1; i <= k; i++) {
+            topKpatients.push(sortedPatients[i]);
+        }
 
-      return topKpatients;
+        return topKpatients;
     }
 
+    /* calculate the similarity between two patients based on the hamming distance*/
+    function similarityScore(patientID, subjectID, knnFilters) {
+        let score = 0;
+        let tieBreaker = -(Math.abs(self.patients[patientID].AgeAtTx - self.patients[subjectID].AgeAtTx)) / 150; // max age diff - 150
 
-    function similarScore(patientID, subjectID, knnFilters) {
-      let score = 0;
-      let tieBreaker = -(Math.abs(self.patients[patientID].AgeAtTx - self.patients[subjectID].AgeAtTx)) / 150; // max age diff - 150
+        score += tieBreaker;
 
-      score += tieBreaker;
-
-      for (let f in knnFilters) {
-        if (self.patients[patientID][knnFilters[f]] === self.patients[subjectID][knnFilters[f]]) {
-          score += 1;
+        for (let attribute of knnFilters) {
+          if (self.patients[patientID][attribute] === self.patients[subjectID][attribute]) {
+            score +=1 ;
+          }
         }
-      }
 
-      return score;
+        return score;
     }
 
 
