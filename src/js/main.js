@@ -24,7 +24,7 @@ var App = App || {};
       let filteredPatients2 = App.models.patients.filterPatients(filters2);
       console.log(filteredPatients2);
 
-      let knnPatients = App.models.patients.getKnnTo(1, ['Ethnicity'], 5);
+      let knnPatients = App.models.patients.getKnnTo(1, ['Ethnicity', 'Gender'], 5);
       console.log(knnPatients);
     })
     .catch(function(err) {

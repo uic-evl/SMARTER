@@ -69,24 +69,30 @@ let PatientModel = function() {
     }
 
     function calculateKNN(subjectID, filters, k) {
-      // let patientsScore = [];
-      let patientsInfo = [];
+      let otherPatients = [];
 
       let knnFilters = _.difference(self.patientAttributes, filters);
       console.log(knnFilters);
 
       for (let patientID of Object.keys(self.patients)) {
-        if (patientID != subjectID) {
-          patientsInfo[patientID] = {};
-          patientsInfo[patientID].id = patientID;
-          patientsInfo[patientID].score = similarScore(patientID, subjectID, knnFilters);
-          // patientsScore[patientID] = similarScore(patientID, subjectID);
+        if (patientID != subjectID && patientID != 'columns') {
+          otherPatients[patientID] = {};
+          otherPatients[patientID].id = patientID;
+          otherPatients[patientID].score = similarScore(patientID, subjectID, knnFilters);
         }
       }
-      console.log(patientsInfo);
-      // console.log(patientsScore);
+      // console.log(otherPatients);
 
-      console.log(_.sortBy(patientsInfo, ['score']));
+      let sortedPatients =_.reverse(_.sortBy(otherPatients, ['score']));
+      // console.log(sortedPatients);
+
+      let topKpatients = [];
+      for (let i = 1; i <= k; i++) {
+        topKpatients.push(sortedPatients[i]);
+      }
+      // console.log(topKpatients);
+
+      return topKpatients;
     }
 
     function similarScore(patientID, subjectID, knnFilters) {
