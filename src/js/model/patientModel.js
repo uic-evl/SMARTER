@@ -7,11 +7,14 @@ let PatientModel = function() {
     /* Private varaible */
     let self = {
         patients: {},
-        patientAttributes: []
+        selectedPatientID: 0, // 0 as default
+        patientAttributes: [],
+        knnExcludedAttributes: [] // empty as default
     };
 
     // eight attributes for calculating knn and also eight axes in the kiviat diagram
     self.patientAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
+    // self.knnExcludedAttributes = ['Ethnicity', 'Gender'];
 
     /* load data from two csv files, returning a promise that resolves upon completion */
     function loadData() {
@@ -56,6 +59,16 @@ let PatientModel = function() {
         return self.patients;
     }
 
+    /* set the seleceted patient ID */
+    function setSelectedPatientID(subjectID) {
+      self.selectedPatientID = subjectID;
+    }
+
+    /* set the excluded attributes for calculating knn */
+    function setknnExcludedAttributes(attributes) {
+      self.knnExcludedAttributes = attributes;
+    }
+
     /* get a subset of the full patient list based on the filters applied where
        filters is an object with attribute-value pairs
         - e.g. {'Ethnicity': 'white', ... } */
@@ -67,20 +80,25 @@ let PatientModel = function() {
         });
     }
 
+    /*  */
+    function getKnnForPatient(subjectID) {
+      return calculateKNN(subjectID, self.knnExcludedAttributes, App.numberOfNeighbors);
+    }
+
     /* calculate the knn to the selected patient based on (patientAttributes - excludedAttributes) */
-    function calculateKNN(subjectID, excludedAttributes, k) {
+    function calculateKNN(/*subjectID, excludedAttributes, k*/) {
         let otherPatients = [];
 
         // get the actual patient attributes used for calculating knn
-        let knnAttributes = _.difference(self.patientAttributes, excludedAttributes);
+        let knnAttributes = _.difference(self.patientAttributes, self.knnExcludedAttributes);
         console.log(knnAttributes);
 
         for (let patientID of Object.keys(self.patients)) {
             // calculate the similarity scores between the selected patient and the rest patients in the list
-            if (patientID != subjectID && patientID != 'columns') {
+            if (patientID != self.selectedPatientID && patientID != 'columns') {
                 otherPatients[patientID] = {};
                 otherPatients[patientID].id = patientID;
-                otherPatients[patientID].score = similarityScore(patientID, subjectID, knnAttributes);
+                otherPatients[patientID].score = similarityScore(patientID, self.selectedPatientID, knnAttributes);
             }
         }
 
@@ -88,7 +106,7 @@ let PatientModel = function() {
 
         // output the top k similar patients
         let topKpatients = [];
-        for (let i = 1; i <= k; i++) {
+        for (let i = 1; i <= App.numberOfNeighbors; i++) {
             topKpatients.push(sortedPatients[i]);
         }
 
@@ -118,6 +136,8 @@ let PatientModel = function() {
         loadPatients: loadData,
         getPatients: getData,
         filterPatients: filterData,
-        getKnnTo: calculateKNN
+        getKnn: calculateKNN,
+        setSelectedPatientID,
+        setknnExcludedAttributes
     };
 }
