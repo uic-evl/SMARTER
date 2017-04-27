@@ -56,6 +56,11 @@ let PatientModel = function() {
         return self.patients;
     }
 
+    /* get the total number of patients in the list */
+    function getPatientNumber() {
+        return self.patients.length;
+    }
+
     /* get the patient Info by the ID */
     function getPatientByID(patientID) {
         return self.patients[patientID];
@@ -129,6 +134,7 @@ let PatientModel = function() {
     return {
         loadPatients,
         getPatients,
+        getPatientNumber,
         getPatientByID,
         filterPatients,
         getKnn: calculateKNN

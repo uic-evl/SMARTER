@@ -8,7 +8,7 @@ let ApplicationStateModel = function() {
     let self = {
         numberOfNeighbors: 5,
         selectedPatientID: 0, // 0 as defualt
-        knnExcludedAttributes: [], // empty as default
+        knnExcludedAttributes: [] // empty as default
     };
 
     function setNumberOfNeighbors(number) {
