@@ -4,36 +4,33 @@ var App = App || {};
 
 let PatientSelectorController = function() {
 
-  /* get the selected patients and the knn info from the PatientModel
-     and update views */
-  function updateSelectedPatients(subjectID) {
-    let updatedPatients = getUpdatedData(subjectID);
+    /* get the selected patients and the knn info from the PatientModel, and update views */
+    function updateSelectedPatients(subjectID) {
+        // update the application state
+        App.models.applicationState.setSelectedPatientID(subjectID);
 
-    updateViews(updatedPatients);
-  }
+        let updatedPatients = getUpdatedData(subjectID);
 
-  function getUpdatedData(subjectID) {
-    App.models.patients.setSelectedPatientID(subjectID);
-
-    let fullPatientList = App.models.patients.getPatients();
-    let neighbors = App.models.patients.getKnn();
-    let updatedPatients = {};
-
-    for (let i = 0; i < App.numberOfNeighbors; i++) {
-      updatedPatients["neighbors" + i] = fullPatientList[neighbors[i].id];
-      updatedPatients["neighbors" + i].score = neighbors[i].score;
+        updateViews(updatedPatients);
     }
-    updatedPatients["subject"] = fullPatientList[subjectID];
 
-    return updatedPatients;
-  }
+    /* get the updated selected patient and knn */
+    function getUpdatedData(subjectID) {
+        let updatedPatients = {};
+        updatedPatients.subject = App.models.patients.getPatientByID(subjectID);
+        updatedPatients.neighbors = App.models.patients.getKnn();
 
-  function updateViews(updatedPatients) {
-    console.log(updatedPatients);
-  }
+        return updatedPatients;
+    }
 
-  /* return the pubilicly accessible functions */
-  return {
-    updateSelectedPatients
-  }
+    /* update relative views */
+    function updateViews(updatedPatients) {
+        console.log(updatedPatients);
+    }
+
+
+    /* return the pubilicly accessible functions */
+    return {
+        updateSelectedPatients
+    };
 }
