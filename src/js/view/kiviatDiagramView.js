@@ -15,6 +15,10 @@ let KiviatDiagramView = function() {
         console.log(patients.neighbors);
     }
 
+    function drawKiviatDiagram(patient) {
+
+    }
+
 
     return {
         update

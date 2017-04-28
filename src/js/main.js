@@ -26,17 +26,15 @@ var App = App || {};
         console.log("Promise Finished"/*, data*/);
 
         App.numberOfPatients = App.models.patients.getPatientNumber();
-        console.log(App.numberOfPatients);
-
-        App.controllers.patientSelector.updateSelectedPatients(0);
 
         // test
         let filters = {'Ethnicity': 'white', 'Site': 'supraglottic'};
-        let filters2 = {'Ethnicity': 'white', 'Site': 'supraglottic', 'Gender': 'male', 'Tcategory': 'T3'};
+        let filters2 = {'Ethnicity': 'white', 'Site': 'supraglottic', 'Gender': 'male', 'Tcategory': 'T4'};
         App.models.applicationState.setAttributeFilters({});
 
         App.controllers.patientSelector.attachToSelect(".patient-dropdown");
-        App.controllers.patientSelector.populatePateintDropDown();
+        App.controllers.patientSelector.updatePateintDropDown();
+
       })
       .catch(function(err) {
         console.log("Promise Error", err);

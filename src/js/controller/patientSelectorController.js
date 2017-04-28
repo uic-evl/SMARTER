@@ -12,17 +12,33 @@ let PatientSelectorController = function() {
     function populatePateintDropDown() {
         let patients = App.models.patients.filterPatients();
 
+        let patientList = self.patientDropDown
+            .selectAll("option")
+            .data(Object.keys(patients));
+
+        // exit old elements not present in new pateint list
+        patientList.exit().remove();
+
+        // update old elements present in new patient list
         self.patientDropDown
             .selectAll("option")
-            .data(Object.keys(patients))
-            .enter()
+            .attr("value", (d) => d)
+            .text((d) => d);
+
+        // enter new elements in new pateint list
+        patientList.enter()
             .append("option")
-            .attr("value", (d) => {
-                return d;
-            })
-            .text((d) => {
-                return d;
-            });
+            .attr("value", (d) => d)
+            .text((d) => d);
+
+        /* if the selected patient exists in the new patient list, stays with the ID,
+           if not, rest to the first patient in the list */
+        if (patients[App.models.applicationState.getSelectedPatientID()]) {
+          self.patientDropDown.node().value = App.models.applicationState.getSelectedPatientID();
+        } else {
+          updateSelectedPatients(Object.keys(patients)[0]);
+          self.patientDropDown.node().selectedIndex = "0";
+        }
     }
 
     /* attach the event listener to the patient drop down list */
@@ -64,7 +80,6 @@ let PatientSelectorController = function() {
     /* return the pubilicly accessible functions */
     return {
         attachToSelect,
-        populatePateintDropDown,
-        updateSelectedPatients
+        updatePateintDropDown: populatePateintDropDown
     };
 }
