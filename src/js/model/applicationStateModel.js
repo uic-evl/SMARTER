@@ -6,9 +6,10 @@ let ApplicationStateModel = function() {
 
     /* Private variables */
     let self = {
-        numberOfNeighbors: 5,
+        numberOfNeighbors: 5, // 5 as default
         selectedPatientID: 0, // 0 as defualt
-        knnExcludedAttributes: [] // empty as default
+        knnExcludedAttributes: [], // empty as default
+        attributeFilters: {} // empty as default
     };
 
     function setNumberOfNeighbors(number) {
@@ -35,6 +36,13 @@ let ApplicationStateModel = function() {
         return self.knnExcludedAttributes;
     }
 
+    function setAttributeFilters(filters) {
+        self.attributeFilters = filters;
+    }
+
+    function getAttributeFilters() {
+        return self.attributeFilters;
+    }
 
     /* Return the publicly accessible functions */
     return {
@@ -43,6 +51,8 @@ let ApplicationStateModel = function() {
         setSelectedPatientID,
         getSelectedPatientID,
         setKnnExcludedAttributes,
-        getKnnExcludedAttributes
+        getKnnExcludedAttributes,
+        setAttributeFilters,
+        getAttributeFilters
     };
 }

@@ -71,3 +71,8 @@ div {
 .contentWrapper {
     padding: 5px;
 }
+
+.patient-dropdown-wrapper {
+  padding: 5px;
+  text-align: center;
+}

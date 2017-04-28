@@ -5,6 +5,10 @@
     <title> SMARTER </title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> -->
+
     <link rel="stylesheet" href="src/css/style.css">
 
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
@@ -12,6 +16,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" charset="utf-8"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js" charset="utf-8"></script>
 
@@ -24,7 +31,7 @@
 
 </head>
 
-<body>
+<body onload="App.init()">
     <div class="container-fluid">
         <div class="row" id="title">
             <nav class="navbar navbar-inverse">
@@ -45,14 +52,20 @@
         <div class="row" id="allContent">
             <div class="col-md-3 contentWrapper kiviatDiv">
                 <div class="contentDiv" id="kiviatDiagram">
+                    <div class="patient-dropdown-wrapper">
+                      <select class="patient-dropdown" name="">
 
+                      </select>
+                    </div>
                 </div>
             </div>
+
             <div class="col-md-2 contentWrapper controlDiv">
                 <div class="contentDiv" id="controller">
 
                 </div>
             </div>
+
             <div class="col-md-7" id="right">
                 <div class="row" id="top">
                     <div class="col-md-12 contentWrapper nomogramDiv">

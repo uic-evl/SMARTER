@@ -35,7 +35,10 @@ let PatientModel = function() {
                     reject(error);
                 }
 
-                self.patients = probData;
+                // convert array to object using IDs as the key
+                _.forEach(probData, (d, i) => {
+                  self.patients[i] = d;
+                });
 
                 // added properties to patients which are only present in the second file
                 kaplanMeierData.forEach(function(d, i) {
@@ -58,7 +61,7 @@ let PatientModel = function() {
 
     /* get the total number of patients in the list */
     function getPatientNumber() {
-        return self.patients.length;
+        return Object.keys(self.patients).length;
     }
 
     /* get the patient Info by the ID */
@@ -69,11 +72,12 @@ let PatientModel = function() {
     /* get a subset of the full patient list based on the filters applied where
        filters is an object with attribute-value pairs
         - e.g. {'Ethnicity': 'white', ... } */
-    function filterPatients(filters) {
+    function filterPatients() {
+        let filters = App.models.applicationState.getAttributeFilters();
         let filteredPatients = _.filter(self.patients, filters);
 
         return _.keyBy(filteredPatients, function(o) {
-            return o.ID;
+            return o.ID;  // object
         });
     }
 
