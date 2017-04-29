@@ -1,78 +1,76 @@
-body, html, .container-fluid {
+body,
+html,
+.container-fluid
+{
     height: 100%;
 }
 
-div {
+div
+{
     box-sizing: border-box;
 }
 
-#title {
+#title
+{
     box-sizing: border-box;
     width: 100%;
     height: 7.5%;
-    padding-left: 5px;
-    padding-right: 5px;
     padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
-#allContent {
+#allContent
+{
     box-sizing: border-box;
     width: 100%;
     height: 92.5%;
 }
 
-.kiviatDiv {
+#right
+{
     box-sizing: border-box;
     height: 100%;
 }
 
-.controlDiv {
+#top
+{
     box-sizing: border-box;
     height: 50%;
 }
 
-#right {
-    box-sizing: border-box;
-    height: 100%;
-}
-
-#top {
+#bottom
+{
     box-sizing: border-box;
     height: 50%;
 }
 
-.nomogramDiv {
+
+.contentDiv
+{
     box-sizing: border-box;
     height: 100%;
-}
 
-#bottom {
-    box-sizing: border-box;
-    height: 50%;
-}
-
-.kaplanDiv {
-    box-sizing: border-box;
-    height: 100%;
-}
-
-.mosaicDiv {
-    box-sizing: border-box;
-    height: 100%;
-}
-
-.contentDiv {
-    box-sizing: border-box;
-    height: 100%;
-    background-color: rgba(127, 82, 255, 0.75);
     border: 1px solid black;
+    background-color: rgba(127, 82, 255, .75);
 }
 
-.contentWrapper {
+.contentWrapper
+{
     padding: 5px;
 }
 
-.patient-dropdown-wrapper {
-  padding: 5px;
-  text-align: center;
+.viewTitleDiv
+{
+    font-size: 3.5vmin;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+.controlDiv
+{
+    box-sizing: border-box;
+    height: 50%;
 }

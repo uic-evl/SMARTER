@@ -1,0 +1,55 @@
+.kiviatDiv
+{
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.patient-dropdown-wrapper
+{
+    padding: 5px;
+
+    text-align: center;
+}
+
+#kiviatHeader
+{
+    height: 10%;
+
+    background-color: pink;
+}
+
+#kiviatDiagram
+{
+    height: 90%;
+}
+
+.kiviatLeft
+{
+    height: 100%;
+}
+
+#kiviatDiagram-subject
+{
+    height: 30%;
+
+    background-color: lightblue;
+}
+
+#kiviatDiagram-legend
+{
+    height: 70%;
+
+    background-color: lightgreen;
+}
+
+.kiviatRight
+{
+    height: 100%;
+}
+
+#kiviatDiagram-neighbors
+{
+    height: 100%;
+
+    background-color: orange;
+}

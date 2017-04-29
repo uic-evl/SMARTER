@@ -19,6 +19,7 @@ var App = App || {};
 
     // creat views
     App.views.kiviatDiagramView = new KiviatDiagramView();
+    App.views.kiviatDiagramView.init("kiviatDiagram");
 
     // load patients
     App.models.patients.loadPatients()

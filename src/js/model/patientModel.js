@@ -6,12 +6,8 @@ let PatientModel = function() {
 
     /* Private variables */
     let self = {
-        patients: {},
-        patientAttributes: []
+        patients: {}
     };
-
-    // eight attributes for calculating knn and also eight axes in the kiviat diagram
-    self.patientAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
 
     /* load data from two csv files, returning a promise that resolves upon completion */
     function loadPatients() {
@@ -88,10 +84,11 @@ let PatientModel = function() {
 
         let numberOfNeighbors = App.models.applicationState.getNumberOfNeighbors();
         let subjectID = App.models.applicationState.getSelectedPatientID();
+        let patientAttributes = App.models.applicationState.getPatientKnnAttributes();
         let knnExcludedAttributes = App.models.applicationState.getKnnExcludedAttributes();
 
         // get the actual patient attributes used for calculating knn
-        let knnAttributes = _.difference(self.patientAttributes, knnExcludedAttributes);
+        let knnAttributes = _.difference(patientAttributes, knnExcludedAttributes);
         console.log(knnAttributes);
 
         // calculate the similarity scores between the selected patient and the rest patients in the list
