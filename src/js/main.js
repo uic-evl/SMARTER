@@ -7,7 +7,8 @@ var App = App || {};
   App.controllers = {};
   App.views = {};
 
-  App.numberOfPatients = null;
+  // hard code eight attributes for calculating knn and also eight axes in the kiviat diagram
+  App.patientKnnAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
 
   App.init = function() {
     // creat models
@@ -15,18 +16,17 @@ var App = App || {};
     App.models.applicationState = new ApplicationStateModel();
 
     // create controllers
+    App.controllers.dataUpdate = new DataUpdateController();
     App.controllers.patientSelector = new PatientSelectorController();
 
     // creat views
-    App.views.kiviatDiagramView = new KiviatDiagramView();
-    App.views.kiviatDiagramView.init("kiviatDiagram");
+    App.views.kiviatDiagram = new KiviatDiagramView();
+    App.views.kiviatDiagram.init("kiviatDiagram");
 
     // load patients
     App.models.patients.loadPatients()
       .then(function(/*data*/){
         console.log("Promise Finished"/*, data*/);
-
-        App.numberOfPatients = App.models.patients.getPatientNumber();
 
         // test
         let filters = {'Ethnicity': 'white', 'Site': 'supraglottic'};
@@ -34,7 +34,9 @@ var App = App || {};
         App.models.applicationState.setAttributeFilters({});
 
         App.controllers.patientSelector.attachToSelect(".patient-dropdown");
-        App.controllers.patientSelector.updatePateintDropDown();
+        // App.controllers.patientSelector.updatePateintDropDown();
+
+        App.controllers.dataUpdate.updateApplication();
 
       })
       .catch(function(err) {

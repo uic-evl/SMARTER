@@ -8,13 +8,9 @@ let ApplicationStateModel = function() {
     let self = {
         numberOfNeighbors: 5, // 5 as default
         selectedPatientID: 0, // 0 as defualt
-        patientKnnAttributes: [],
         knnExcludedAttributes: [], // empty as default
         attributeFilters: {} // empty as default
     };
-
-    // eight attributes for calculating knn and also eight axes in the kiviat diagram
-    self.patientKnnAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
 
     function setNumberOfNeighbors(number) {
         self.numberOfNeighbors = numbers;
@@ -30,14 +26,6 @@ let ApplicationStateModel = function() {
 
     function getSelectedPatientID() {
         return self.selectedPatientID;
-    }
-
-    function setPatientKnnAttributes(attributes) {
-        self.patientKnnAttributes = attributes;
-    }
-
-    function getPatientKnnAttributes() {
-        return self.patientKnnAttributes;
     }
 
     function setKnnExcludedAttributes(attributes) {
@@ -62,8 +50,6 @@ let ApplicationStateModel = function() {
         getNumberOfNeighbors,
         setSelectedPatientID,
         getSelectedPatientID,
-        setPatientKnnAttributes,
-        getPatientKnnAttributes,
         setKnnExcludedAttributes,
         getKnnExcludedAttributes,
         setAttributeFilters,

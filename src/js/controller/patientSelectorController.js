@@ -73,7 +73,7 @@ let PatientSelectorController = function() {
     /* update relative views */
     function updateViews(updatedPatients) {
         // console.log(updatedPatients);
-        App.views.kiviatDiagramView.update(updatedPatients);
+        App.views.kiviatDiagram.update(updatedPatients);
     }
 
 

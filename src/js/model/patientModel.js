@@ -6,7 +6,8 @@ let PatientModel = function() {
 
     /* Private variables */
     let self = {
-        patients: {}
+        patients: {},
+        attributeDomains: {}
     };
 
     /* load data from two csv files, returning a promise that resolves upon completion */
@@ -65,6 +66,19 @@ let PatientModel = function() {
         return self.patients[patientID];
     }
 
+    /* get the patient attribute domains */
+    function getPatientAttirbuteDomains() {
+      let patientObjArray = Object.values(self.patients);
+
+      for (let attribute of App.patientKnnAttributes) {
+        let attribute_valueArray = patientObjArray.map(function(o) {return o[attribute];});
+        let uniqueVals = _.uniq(attribute_valueArray);
+        self.attributeDomains[attribute] = uniqueVals.sort();
+      }
+
+      return self.attributeDomains;
+    }
+
     /* get a subset of the full patient list based on the filters applied where
        filters is an object with attribute-value pairs
         - e.g. {'Ethnicity': 'white', ... } */
@@ -84,7 +98,7 @@ let PatientModel = function() {
 
         let numberOfNeighbors = App.models.applicationState.getNumberOfNeighbors();
         let subjectID = App.models.applicationState.getSelectedPatientID();
-        let patientAttributes = App.models.applicationState.getPatientKnnAttributes();
+        let patientAttributes = App.patientKnnAttributes;
         let knnExcludedAttributes = App.models.applicationState.getKnnExcludedAttributes();
 
         // get the actual patient attributes used for calculating knn
@@ -137,6 +151,7 @@ let PatientModel = function() {
         getPatients,
         getPatientNumber,
         getPatientByID,
+        getPatientAttirbuteDomains,
         filterPatients,
         getKnn: calculateKNN
     };

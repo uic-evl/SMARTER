@@ -5,28 +5,36 @@ var App = App || {};
 let KiviatDiagramView = function() {
 
     let self = {
-      subjectElement: null,
-      subjectSvg: null,
-      neighborsElement: null,
-      neighborsSvgs: null,
-      legendElement: null,
-      legendSvg: null
+        attributeScales: {},
+        subjectElement: null,
+        subjectSvg: null,
+        neighborsElement: null,
+        neighborsSvgs: null,
+        legendElement: null,
+        legendSvg: null
     }
 
     function init(targetID) {
-      self.subjectElement = d3.select("#" + targetID + "-subject");
-      self.neighborsElement = d3.select("#" + targetID + "-neighbors");
-      self.legendElement = d3.select("#" + targetID + "-legend");
+        self.subjectElement = d3.select("#" + targetID + "-subject");
+        self.neighborsElement = d3.select("#" + targetID + "-neighbors");
+        self.legendElement = d3.select("#" + targetID + "-legend");
 
-      self.subjectSvg = self.subjectElement.append("svg")
-        .attr("width", self.subjectElement.node().clientWidth)
-        .attr("height", self.subjectElement.node().clientHeight)
-        .attr("viewBox", "0 0 100 100")
-        .attr("preserveAspectRatio", "xMidYMid");
+        self.subjectSvg = self.subjectElement.append("svg")
+            .attr("width", self.subjectElement.node().clientWidth)
+            .attr("height", self.subjectElement.node().clientHeight)
+            .attr("viewBox", "0 0 100 100")
+            .attr("preserveAspectRatio", "xMidYMid")
+            .each(createKiviatDiagram);
 
-      self.neighborsSvgs = self.neighborsElement.selectAll(".patientNeighborSVG");
+        self.neighborsSvgs = self.neighborsElement.selectAll(".patientNeighborSVG");
 
-      self.legendSvg = self.legendElement.append("svg")
+        self.legendSvg = self.legendElement.append("svg");
+
+
+        for (let attribute of App.patientKnnAttributes) {
+          self.attributeScales[attribute] = d3.scaleOrdinal()
+            .range([0, 40]);
+        }
     }
 
 
@@ -34,75 +42,107 @@ let KiviatDiagramView = function() {
         console.log(patients.subject);
         console.log(patients.neighbors);
 
-        createKiviatDiagram(patients.subject);
+        // update the kiviat diagram of the subject
+        self.subjectSvg
+            .datum(patients.subject)
+            .each(updateKiviatPatient);
 
         let neighborBind = self.neighborsSvgs.data(patients.neighbors);
 
+        // exit old patients not present in new pateint list
         neighborBind.exit().remove();
 
+        // update kiviat diagrams of old patients present in new patient list
         d3.selectAll(".patientNeighborSVG")
-          .each(updateKiviatPatient);
+            .each(updateKiviatPatient);
 
+        // enter new patients in new pateint list, and create kiviat diagrams along with axes
         neighborBind.enter().append("svg")
-          .attr("width", self.neighborsElement.node().clientWidth)
-          .attr("height", self.neighborsElement.node().clientHeight / patients.neighbors.length)
-          .attr("viewBox", "0 0 100 100")
-          .attr("preserveAspectRatio", "xMidYMid")
-          .attr("class", "patientNeighborSVG")
-          .each(createKiviatDiagram)
-          .each(updateKiviatPatient);
+            .attr("width", self.neighborsElement.node().clientWidth)
+            .attr("height", self.neighborsElement.node().clientHeight / patients.neighbors.length)
+            .attr("viewBox", "0 0 100 100")
+            .attr("preserveAspectRatio", "xMidYMid")
+            .attr("class", "patientNeighborSVG")
+            .each(createKiviatDiagram)
+            .each(updateKiviatPatient);
 
         self.neighborsSvgs = d3.selectAll(".patientNeighborSVG");
     }
 
+    /* create the axes of kiviat diagram */
     function createKiviatDiagram(d, i) {
-      let SVG = null;
+        let SVG = d3.select(this);
 
-      if (this) {
-        SVG = d3.select(this);
-      } else {
-        self.subjectSvg.selectAll("*").remove();
-        SVG = self.subjectSvg;
-      }
+        let translateGroup = SVG.append("g")
+            .attr("transform", "translate(50, 50)")
+            .attr("class", "translateGroup");
 
-      // draw axes
-      let axesNum = App.models.applicationState.getPatientKnnAttributes().length;
-      let angle = Math.PI * 2 / axesNum;
+        let axesGroup = translateGroup.append("g")
+            .attr("class", "axesGroup");
 
-      for (let j = 0; j < axesNum; j++) {
-        let group = SVG.append("g")
-          .attr("transform", "translate(50, 50) rotate(" + (angle * j * 180 / Math.PI) + ")");
+        // draw axes
+        for (let j = 0; j < App.patientKnnAttributes.length; j++) {
+            let axisEndpoint = rotatePointOntoAxis(40, j);
+            let axis = axesGroup.append("line")
+                .attr("x1", 0)
+                .attr("y1", 0)
+                .attr("x2", axisEndpoint.x)
+                .attr("y2", axisEndpoint.y)
+                .style("stroke", "darkgray")
+                .style("stroke-width", "1px");
+        }
 
-        let axis = group.append("line")
-          .attr("x1", 0)
-          .attr("y1", 0)
-          .attr("x2", 0)
-          .attr("y2", -40)
-          .style("stroke", "darkgray")
-          .style("stroke-width", "1px");
-      }
-
-      SVG.append("text")
-        .text(d.ID)
-        .attr("y", 40);
+        SVG.append("text")
+            // .text(d.ID)
+            .attr("y", 40);
     }
 
+    // function getPlotAttributes() {
+    //     return App.models.applicationState.getPatientKnnAttributes();
+    // }
+
+    function rotatePointOntoAxis(pointX, axisIndex) {
+        let angle = Math.PI * 2 * axisIndex / App.patientKnnAttributes.length;
+        return rotatePoint(pointX, angle);
+    }
+
+    function rotatePoint(pointX, angle) {
+        return {
+            x: Math.cos(angle) * (pointX),
+            y: Math.sin(angle) * (pointX)
+        };
+    }
+
+
     function updateKiviatPatient(d, i) {
-      let SVG = d3.select(this);
+        let SVG = d3.select(this);
 
-      SVG.select("text")
-        .text(d.ID);
+        // let plotAttributes = getPlotAttributes();
 
-        // console.log(d);
+        // calculate the path
+        for (let j = 0; j < App.patientKnnAttributes.length; j++) {
+          let xPoint = d[App.patientKnnAttributes[j]];
+          let endpoint = rotatePointOntoAxis(xPoint, j);
+
+        }
+
+        SVG.select("text")
+            .text(d.ID);
     }
 
     function drawLegend() {
 
     }
 
+    function updateAttributeDomains(newDomains) {
+      // { name: domain, ... }
+      console.log(newDomains);
+    }
+
 
     return {
         init,
-        update
+        update,
+        updateAttributeDomains
     };
 }
