@@ -3,6 +3,7 @@ html,
 .container-fluid
 {
     height: 100%;
+    overflow: hidden;
 }
 
 div
@@ -62,7 +63,8 @@ div
 
 .viewTitleDiv
 {
-    font-size: 3.5vmin;
+    font-size: 2.5vmin;
+    font-weight: bold;
 
     box-sizing: border-box;
 
@@ -73,4 +75,8 @@ div
 {
     box-sizing: border-box;
     height: 50%;
+}
+
+#addPatient {
+  cursor: pointer;
 }

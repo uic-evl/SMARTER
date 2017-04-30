@@ -7,7 +7,7 @@ let ApplicationStateModel = function() {
     /* Private variables */
     let self = {
         numberOfNeighbors: 5, // 5 as default
-        selectedPatientID: 0, // 0 as defualt
+        selectedPatientID: null, // null as defualt
         knnExcludedAttributes: [], // empty as default
         attributeFilters: {} // empty as default
     };

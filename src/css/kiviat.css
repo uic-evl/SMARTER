@@ -15,7 +15,7 @@
 {
     height: 10%;
 
-    background-color: pink;
+    background-color: white;
 }
 
 #kiviatDiagram
@@ -32,14 +32,14 @@
 {
     height: 30%;
 
-    background-color: lightblue;
+    background-color: white;
 }
 
 #kiviatDiagram-legend
 {
     height: 70%;
 
-    background-color: lightgreen;
+    background-color: white;
 }
 
 .kiviatRight
@@ -50,6 +50,56 @@
 #kiviatDiagram-neighbors
 {
     height: 100%;
+    padding: 0;
 
-    background-color: orange;
+    background-color: white;
+}
+
+.patientNeighborSVG
+{
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
+
+svg > text
+{
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 10;
+}
+
+.similarityScore {
+  fill: #838383;
+  font-weight: bold;
+}
+
+.stop-bottom
+{
+    stop-color: #d18161;
+}
+
+.stop-top
+{
+    stop-color: #70a4c2;
+}
+
+.filled
+{
+    fill: url(#legendGradient);
+}
+
+.axisTooltipCircle,
+.centerTooltipCircle
+{
+    fill: lightgray;
+    stroke: lightgray;
+}
+
+.kiviatPath
+{
+    pointer-events: none;
+}
+
+.axisLine
+{
+    pointer-events: none;
 }
