@@ -306,7 +306,7 @@ let KiviatDiagramView = function() {
                 .domain(newDomains[attribute])
                 .range(
                     d3.range(0, attributeDomainLength)
-                    .map((d) => ((d / (attributeDomainLength - 1)) * 30 + 5))
+                    .map((d) => ((d / (attributeDomainLength - 1)) * 27 + 8))
                 );
         }
     }
