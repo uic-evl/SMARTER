@@ -46,7 +46,7 @@ let KiviatDiagramView = function() {
         self.colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)
             .domain([0, 1])
-            .range(["#d18161", "#70a4c2"]);
+            .range(["#d18161", "#70a4c2"]); // #ba89b9 middle color
         // .range(['#d73027','#fc8d59','#fee090','#ffffbf','#e0f3f8','#91bfdb','#4575b4']);
 
         drawLegend();
@@ -64,6 +64,11 @@ let KiviatDiagramView = function() {
         legendGradient.append('stop')
             .attr('class', 'stop-bottom')
             .attr('offset', '0');
+
+        legendGradient.append('stop')
+            .attr('class', 'stop-middle')
+            .attr('offset', '0.5');
+
 
         legendGradient.append('stop')
             .attr('class', 'stop-top')

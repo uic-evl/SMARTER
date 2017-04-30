@@ -77,6 +77,11 @@ svg > text
     stop-color: #d18161;
 }
 
+.stop-middle
+{
+  stop-color: #ba89b9;
+}
+
 .stop-top
 {
     stop-color: #70a4c2;
