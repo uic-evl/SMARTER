@@ -36,6 +36,7 @@ let DataUpdateController = function() {
 
     // update controllers
     App.controllers.patientSelector.updatePateintDropDown();
+    App.controllers.exploreForm.updateDropdownsWithNewDomains();
 
     // assign the new values to the priviate variables
     self.data = updatedData;
