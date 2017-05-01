@@ -204,12 +204,9 @@ let AddPatientController = function(formID) {
 
   /**
     * Updates the possible values of the dropdowns if the domain of the
-    * attributes has changed. This does not need a parameter as the controller
-    * can access the filters from the applicationStateModel
+    * attributes has changed
     */
   function updateDropdownsWithNewDomains(attributeDomains) {
-    // let attributeDomains = App.models.patients.getPatientAttirbuteDomains();
-
     // set the options of each attribute selector to be equal to that domain
     for (let attribute of Object.keys(attributeDomains)) {
       // data bind options within the dropdown
