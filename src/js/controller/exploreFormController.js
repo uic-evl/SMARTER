@@ -102,8 +102,8 @@ let ExploreFormController = function(formID) {
   /****************************************************************************/
 
   /**
-    * Attaches the event handler to the Cancel button for when the filters will
-    * be applied to the data
+    * Attaches the event handler to the Cancel button for when the selections will
+    * be discarded and the dropdowns will be reset
     */
   function setFormCancelButton(buttonID) {
     d3.select(buttonID)
@@ -172,7 +172,6 @@ let ExploreFormController = function(formID) {
   }
 
   return {
-    createFilterOptions,
     setFormApplyButton,
     setFormCancelButton,
     updateDropdownsWithNewDomains,

@@ -18,10 +18,14 @@ var App = App || {};
     // create controllers
     App.controllers.dataUpdate = new DataUpdateController();
     App.controllers.patientSelector = new PatientSelectorController();
-    
+
     App.controllers.exploreForm = new ExploreFormController("#exploreForm");
     App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
     App.controllers.exploreForm.setFormCancelButton("#exploreFormCancel");
+
+    App.controllers.addPatientForm = new AddPatientController("#addPatientForm");
+    App.controllers.addPatientForm.setFormAddButton("#addPatientFormAdd");
+    App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
 
     // creat views
     App.views.kiviatDiagram = new KiviatDiagramView();
