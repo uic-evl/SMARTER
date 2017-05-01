@@ -11,19 +11,18 @@ var App = App || {};
     App.patientKnnAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
     // hard code default nomogram axes ranges
     App.nomogramAxesRange = {
-        AgeAtTx: [0, 1],
-        Gender: [0, 0.1],
-        Ethnicity: [0, 0.4],
-        Tcategory: [0, 0.077],
-        Site: [0, 0.4],
-        Nodal_Disease: [0, 0.15],
-        ecog: [0, 0.2],
-        Chemotherapy: [0, 0.3],
-        Local_Therapy: [0, 0.15],
-        Survival_Pbty: [0, 1]
+        "AgeAtTx": [1, 0],
+        "Gender": [0.1, 0],
+        "Ethnicity": [0.4, 0],
+        "Tcategory": [0.077, 0],
+        "Site": [0.4, 0],
+        "Nodal_Disease": [0.15, 0],
+        "ecog": [0.2, 0],
+        "Chemotherapy": [0.3, 0],
+        "Local_Therapy": [0.15, 0],
+        "Probability of Survival": [0, 1]
     };
 
-    console.log(Object.keys(App.nomogramAxesRange));
 
     App.init = function() {
         // creat models

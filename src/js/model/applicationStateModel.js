@@ -44,6 +44,7 @@ let ApplicationStateModel = function() {
         return self.attributeFilters;
     }
 
+
     /* Return the publicly accessible functions */
     return {
         setNumberOfNeighbors,

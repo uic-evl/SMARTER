@@ -35,6 +35,8 @@ let PatientModel = function() {
                 // convert array to object using IDs as the key
                 _.forEach(probData, (d, i) => {
                   self.patients[i] = d;
+                  self.patients[i].AgeAtTx = +(self.patients[i].AgeAtTx);
+                  self.patients[i]["Probability of Survival"] = +(self.patients[i]["Probability of Survival"]);
                 });
 
                 // added properties to patients which are only present in the second file
@@ -75,6 +77,9 @@ let PatientModel = function() {
         let uniqueVals = _.uniq(attribute_valueArray);
         self.attributeDomains[attribute] = uniqueVals.sort();
       }
+
+      // self.attributeDomains["AgeAtTx"] = [90, 25];
+      // self.attributeDomains["Probability of Survival"] = [0, 1];
 
       return self.attributeDomains;
     }
