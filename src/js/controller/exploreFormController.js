@@ -10,6 +10,7 @@ let ExploreFormController = function(formID) {
     attributeSelectDropdowns: {}
   };
 
+  // init on creation
   init();
 
   function init() {
@@ -18,6 +19,11 @@ let ExploreFormController = function(formID) {
     createFilterOptions();
   }
 
+
+  /**
+    * Readies the form by adding the form-groups including the select elements
+    * as well as the default option of All
+    */
   function createFilterOptions() {
     let form = self.explorePatientForm;
 
