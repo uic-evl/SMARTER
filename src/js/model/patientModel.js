@@ -34,9 +34,9 @@ let PatientModel = function() {
 
                 // convert array to object using IDs as the key
                 _.forEach(probData, (d, i) => {
-                  self.patients[i] = d;
-                  self.patients[i].AgeAtTx = +(self.patients[i].AgeAtTx);
-                  self.patients[i]["Probability of Survival"] = +(self.patients[i]["Probability of Survival"]);
+                    self.patients[i] = d;
+                    self.patients[i].AgeAtTx = +(self.patients[i].AgeAtTx);
+                    self.patients[i]["Probability of Survival"] = +(self.patients[i]["Probability of Survival"]);
                 });
 
                 // added properties to patients which are only present in the second file
@@ -45,6 +45,9 @@ let PatientModel = function() {
                     self.patients[i].OS = d.OS;
                     self.patients[i].Censor = d.Censor;
                 });
+
+                // calculate the patient attribute domains including age and survival pbty
+                calculatePatientAttributeDomains();
 
                 // resolve within await callback after data finished processing
                 resolve( /*self.patients*/ );
@@ -68,20 +71,36 @@ let PatientModel = function() {
         return self.patients[patientID];
     }
 
+    /* calculate the patient attribute domains including age and pbty */
+    function calculatePatientAttributeDomains() {
+        let patientObjArray = Object.values(self.patients);
+
+        for (let attribute of App.patientKnnAttributes) {
+            let attribute_valueArray = patientObjArray.map(function(o) {
+                return o[attribute];
+            });
+            let uniqueVals = _.uniq(attribute_valueArray);
+            self.attributeDomains[attribute] = uniqueVals.sort();
+        }
+
+        self.attributeDomains["AgeAtTx"] = [25, 90];
+        self.attributeDomains["Probability of Survival"] = [0, 1];
+    }
+
     /* get the patient attribute domains */
     function getPatientAttirbuteDomains() {
-      let patientObjArray = Object.values(self.patients);
+        return self.attributeDomains;
+    }
 
-      for (let attribute of App.patientKnnAttributes) {
-        let attribute_valueArray = patientObjArray.map(function(o) {return o[attribute];});
-        let uniqueVals = _.uniq(attribute_valueArray);
-        self.attributeDomains[attribute] = uniqueVals.sort();
-      }
+    /* get the patient knn attribute domains */
+    function getPatientKnnAttributeDomains() {
+        let knnAttributeDomains = {};
 
-      // self.attributeDomains["AgeAtTx"] = [90, 25];
-      // self.attributeDomains["Probability of Survival"] = [0, 1];
+        for (let attribute of App.patientKnnAttributes) {
+            knnAttributeDomains[attribute] = self.attributeDomains[attribute];
+        }
 
-      return self.attributeDomains;
+        return knnAttributeDomains;
     }
 
     /* get a subset of the full patient list based on the filters applied where
@@ -92,7 +111,7 @@ let PatientModel = function() {
         let filteredPatients = _.filter(self.patients, filters);
 
         return _.keyBy(filteredPatients, function(o) {
-            return o.ID;  // object
+            return o.ID; // object
         });
     }
 
@@ -157,6 +176,7 @@ let PatientModel = function() {
         getPatientNumber,
         getPatientByID,
         getPatientAttirbuteDomains,
+        getPatientKnnAttributeDomains,
         filterPatients,
         getKnn: calculateKNN
     };

@@ -32,6 +32,7 @@ var App = App || {};
         // create controllers
         App.controllers.dataUpdate = new DataUpdateController();
         App.controllers.patientSelector = new PatientSelectorController();
+        App.controllers.nomogramKnn = new NomogramKnnController("#knnCheckBox");
 
         App.controllers.exploreForm = new ExploreFormController("#exploreForm");
         App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
@@ -42,32 +43,17 @@ var App = App || {};
         App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
 
         // creat views
-        App.views.kiviatDiagram = new KiviatDiagramView();
-        App.views.kiviatDiagram.init("kiviatDiagram");
-        App.views.nomogram = new NomogramView();
-        App.views.nomogram.init("nomogram");
+        App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
+        App.views.nomogram = new NomogramView("#nomogram");
+
 
         // load patients
         App.models.patients.loadPatients()
             .then(function( /*data*/ ) {
                 console.log("Promise Finished" /*, data*/ );
 
-                // test
-                let filters = {
-                    'Ethnicity': 'white',
-                    'Site': 'supraglottic'
-                };
-                let filters2 = {
-                    'Ethnicity': 'white',
-                    'Site': 'supraglottic',
-                    'Gender': 'male',
-                    'Tcategory': 'T4'
-                };
-                App.models.applicationState.setAttributeFilters({});
-
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
-                // App.controllers.patientSelector.updatePateintDropDown();
-
+                
                 App.controllers.dataUpdate.updateApplication();
 
             })

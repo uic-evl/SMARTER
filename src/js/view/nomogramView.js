@@ -2,7 +2,7 @@
 
 var App = App || {};
 
-let NomogramView = function() {
+let NomogramView = function(targetID) {
 
     let self = {
         targetID: null,
@@ -13,23 +13,23 @@ let NomogramView = function() {
         axesDomain: {},
         filteredAxes: null,
         filterData: [],
-        knnData: []
+        knnData: [],
+        mode: "knn"
     };
 
-    function init(targetID) {
-        self.targetID = "#" + targetID;
-        self.targetElement = d3.select("#" + targetID);
+    init();
+
+    function init() {
+        self.targetID = targetID;
+        self.targetElement = d3.select(targetID);
 
         Object.keys(App.nomogramAxesRange).forEach((el) => {
             self.axesLabel[el] = el;
         });
-        self.axesLabel["Probability of Survival"] = "5-year Survival Pbty";
+        // self.axesLabel["Probability of Survival"] = "5-year Survival Pbty";
 
         self.axesRange = App.nomogramAxesRange;
 
-        self.axesDomain["AgeAtTx"] = [25, 90];
-        self.axesDomain["Probability of Survival"] = [0, 1];
-  
         self.filteredAxes = Object.keys(App.nomogramAxesRange);
     }
 
@@ -37,7 +37,8 @@ let NomogramView = function() {
         self.targetElement.selectAll("*").remove();
 
         self.nomogram = new Nomogram()
-            .data(patients.neighbors)
+            // .data(patients.neighbors)
+            .data(patients)
             .target(self.targetID)
             .setAxes(self.filteredAxes.map(el => {
                 // console.log(el, self.axesDomain[el]);
@@ -69,12 +70,40 @@ let NomogramView = function() {
 
     }
 
+    function setMode(mode) {
+      self.mode = mode;
+    }
+
+    function updateView() {
+        let newData = [];
+        switch (self.mode) {
+            case "filter":
+                newData = self.filterData;
+                break;
+            case "knn":
+                newData = self.knnData;
+                break;
+        }
+        self.nomogram
+            .data(newData)
+            .draw();
+    }
+
     function updateFilterData(newData) {
         self.filterData = newData;
+        console.log(self.filterData);
+        // self.nomogram
+        //     .data(self.filterData)
+        //     .draw();
     }
 
     function updateKnnData(newData) {
         self.knnData = newData;
+        console.log(self.knnData);
+
+        // self.nomogram
+        //     .data(self.knnData.neighbors)
+        //     .draw();
     }
 
     /* update the nomogram with filtered axes */
@@ -94,7 +123,7 @@ let NomogramView = function() {
 
     /* get the updated attribute domians */
     function updateAttributeDomains(newDomains) {
-        for (let attribute of App.patientKnnAttributes) {
+        for (let attribute of Object.keys(App.nomogramAxesRange)) {
             self.axesDomain[attribute] = newDomains[attribute];
         }
     }
@@ -103,6 +132,10 @@ let NomogramView = function() {
     return {
         init,
         update,
+        setMode,
+        updateView,
+        updateFilterData,
+        updateKnnData,
         updateAttributeDomains
     };
 }

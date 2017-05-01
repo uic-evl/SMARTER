@@ -97,6 +97,15 @@ let ExploreFormController = function(formID) {
 
     // set filters to be the selected items
     App.models.applicationState.setAttributeFilters(filters);
+
+    // update controllers
+    App.controllers.patientSelector.updatePateintDropDown();
+
+    // get the filtered data
+    let filteredPatients = App.models.patients.filterPatients();
+    // update views with filtered data
+    App.views.nomogram.updateFilterData(Object.values(filteredPatients));
+    App.views.nomogram.updateView();
   }
 
   /****************************************************************************/
@@ -125,11 +134,10 @@ let ExploreFormController = function(formID) {
 
   /**
     * Updates the possible values of the dropdowns if the domain of the
-    * attributes has changed. This does not need a parameter as the controller
-    * can access the filters from the applicationStateModel
+    * attributes has changed.
     */
-  function updateDropdownsWithNewDomains() {
-    let attributeDomains = App.models.patients.getPatientAttirbuteDomains();
+  function updateDropdownsWithNewDomains(attributeDomains) {
+    // let attributeDomains = App.models.patients.getPatientAttirbuteDomains();
 
     // set the options of each attribute selector to be equal to that domain
     for (let attribute of Object.keys(attributeDomains)) {

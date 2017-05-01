@@ -2,7 +2,7 @@
 
 var App = App || {};
 
-let KiviatDiagramView = function() {
+let KiviatDiagramView = function(targetID) {
 
     let self = {
         attributeScales: {},
@@ -17,10 +17,12 @@ let KiviatDiagramView = function() {
         centerTip: null
     }
 
-    function init(targetID) {
-        self.subjectElement = d3.select("#" + targetID + "-subject");
-        self.neighborsElement = d3.select("#" + targetID + "-neighbors");
-        self.legendElement = d3.select("#" + targetID + "-legend");
+    init();
+
+    function init() {
+        self.subjectElement = d3.select(targetID + "-subject");
+        self.neighborsElement = d3.select(targetID + "-neighbors");
+        self.legendElement = d3.select(targetID + "-legend");
 
         self.subjectSvg = self.subjectElement.append("svg")
             .attr("width", self.subjectElement.node().clientWidth)

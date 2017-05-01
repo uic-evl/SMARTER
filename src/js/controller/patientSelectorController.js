@@ -74,7 +74,10 @@ let PatientSelectorController = function() {
     function updateViews(updatedPatients) {
         // console.log(updatedPatients);
         App.views.kiviatDiagram.update(updatedPatients);
-        App.views.nomogram.update(updatedPatients);
+
+        App.views.nomogram.update(updatedPatients.neighbors);
+        App.views.nomogram.updateKnnData(updatedPatients.neighbors);
+        App.views.nomogram.updateView();
     }
 
 
