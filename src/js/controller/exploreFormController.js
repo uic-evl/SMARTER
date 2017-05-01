@@ -79,11 +79,10 @@ let ExploreFormController = function(formID) {
     * To be sent into the filterController
     */
   function applyClickHandler() {
-    console.log("Apply Clicked");
-
-    // get values for each attribute
+    // construct object for filters
     let filters = {};
 
+    // get values for each attribute
     for (let attribute of Object.keys(self.attributeSelectDropdowns)) {
       let dropdownValue = self.attributeSelectDropdowns[attribute].node().value;
 
@@ -93,19 +92,8 @@ let ExploreFormController = function(formID) {
       }
     }
 
-    console.log("New Filters from Form", filters);
-
-    // set filters to be the selected items
-    App.models.applicationState.setAttributeFilters(filters);
-
-    // update controllers
-    App.controllers.patientSelector.updatePateintDropDown();
-
-    // get the filtered data
-    let filteredPatients = App.models.patients.filterPatients();
-    // update views with filtered data
-    App.views.nomogram.updateFilterData(Object.values(filteredPatients));
-    App.views.nomogram.updateView();
+    // send these new filters to the filter controller
+    App.controllers.filters.updateDataFilters(filters);
   }
 
   /****************************************************************************/
@@ -125,11 +113,9 @@ let ExploreFormController = function(formID) {
     * currently within the applicationState
     */
   function cancelClickHandler() {
-    console.log("Cancel Clicked");
-
+    // reset the dropdowns to be consistent with the current filters in the
+    // application state
     updateDropdownsWithCurrentFilters();
-
-    console.log("Reset Form to current filters");
   }
 
   /**
@@ -137,8 +123,6 @@ let ExploreFormController = function(formID) {
     * attributes has changed.
     */
   function updateDropdownsWithNewDomains(attributeDomains) {
-    // let attributeDomains = App.models.patients.getPatientAttirbuteDomains();
-
     // set the options of each attribute selector to be equal to that domain
     for (let attribute of Object.keys(attributeDomains)) {
       // data bind options within the dropdown

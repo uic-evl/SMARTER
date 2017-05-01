@@ -33,6 +33,7 @@ var App = App || {};
         App.controllers.dataUpdate = new DataUpdateController();
         App.controllers.patientSelector = new PatientSelectorController();
         App.controllers.nomogramKnn = new NomogramKnnController("#knnCheckBox");
+        App.controllers.filters = new FilterController();
 
         App.controllers.exploreForm = new ExploreFormController("#exploreForm");
         App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
