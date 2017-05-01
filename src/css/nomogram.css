@@ -1,4 +1,26 @@
-.nomogramDiv {
+.nomogramDiv
+{
     box-sizing: border-box;
     height: 100%;
+}
+
+#nomogramHeader
+{
+    height: 20%;
+
+    background-color: pink;
+}
+
+.knnCheckBox
+{
+    font-size: 2vmin;
+
+    text-align: center;
+}
+
+#nomogram
+{
+    height: 80%;
+
+    background-color: lightblue;
 }

@@ -23,6 +23,8 @@
 
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js" charset="utf-8"></script>
 
+    <script src="https://andrewtburks.github.io/d3.nomogram/d3.nomogram.js"></script>
+
     <script src="lib/js/d3-tip.js" charset="utf-8"></script>
 
     <script src="src/js/model/patientModel.js" charset="utf-8"></script>
@@ -30,6 +32,7 @@
     <script src="src/js/controller/dataUpdateController.js" charset="utf-8"></script>
     <script src="src/js/controller/patientSelectorController.js" charset="utf-8"></script>
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
+    <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
@@ -62,6 +65,7 @@
         </div>
 
         <div class="row" id="allContent">
+
             <div class="col-md-3 contentWrapper kiviatDiv">
                 <div class="contentDiv">
                     <div id="kiviatHeader">
@@ -94,14 +98,25 @@
             </div>
 
             <div class="col-md-7" id="right">
+
                 <div class="row" id="top">
                     <div class="col-md-12 contentWrapper nomogramDiv">
-                        <div class="contentDiv" id="nomogram">
-
+                        <div class="contentDiv">
+                            <div id="nomogramHeader">
+                                <div class="row viewTitleDiv">
+                                    Nomogram Risk Prediction
+                                </div>
+                                <div class="row knnCheckBox">
+                                    <input type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
+                                </div>
+                            </div>
+                            <div id="nomogram">
+                            </div>
                         </div>
 
                     </div>
                 </div>
+
                 <div class="row" id="bottom">
                     <div class="col-md-6 contentWrapper kaplanDiv">
                         <div class="contentDiv" id="kaplanMeier">

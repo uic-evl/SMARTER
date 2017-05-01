@@ -32,6 +32,7 @@ let DataUpdateController = function() {
     if (!_.isEqual(self.attributeDomains, updatedAttributeDomains)) {
       // update views with new domains
       App.views.kiviatDiagram.updateAttributeDomains(updatedAttributeDomains);
+      App.views.nomogram.updateAttributeDomains(updatedAttributeDomains);
     }
 
     // update controllers
