@@ -37,6 +37,10 @@ var App = App || {};
         App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
         App.controllers.exploreForm.setFormCancelButton("#exploreFormCancel");
 
+        App.controllers.addPatientForm = new AddPatientController("#addPatientForm");
+        App.controllers.addPatientForm.setFormAddButton("#addPatientFormAdd");
+        App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
+
         // creat views
         App.views.kiviatDiagram = new KiviatDiagramView();
         App.views.kiviatDiagram.init("kiviatDiagram");

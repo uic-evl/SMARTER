@@ -10,6 +10,7 @@ let ExploreFormController = function(formID) {
     attributeSelectDropdowns: {}
   };
 
+  // init on creation
   init();
 
   function init() {
@@ -18,6 +19,11 @@ let ExploreFormController = function(formID) {
     createFilterOptions();
   }
 
+
+  /**
+    * Readies the form by adding the form-groups including the select elements
+    * as well as the default option of All
+    */
   function createFilterOptions() {
     let form = self.explorePatientForm;
 
@@ -96,8 +102,8 @@ let ExploreFormController = function(formID) {
   /****************************************************************************/
 
   /**
-    * Attaches the event handler to the Cancel button for when the filters will
-    * be applied to the data
+    * Attaches the event handler to the Cancel button for when the selections will
+    * be discarded and the dropdowns will be reset
     */
   function setFormCancelButton(buttonID) {
     d3.select(buttonID)
@@ -166,7 +172,6 @@ let ExploreFormController = function(formID) {
   }
 
   return {
-    createFilterOptions,
     setFormApplyButton,
     setFormCancelButton,
     updateDropdownsWithNewDomains,
