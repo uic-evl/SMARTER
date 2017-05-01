@@ -46,12 +46,11 @@ let DataUpdateController = function() {
 
         // update controllers
         App.controllers.patientSelector.updatePateintDropDown();
-        // App.controllers.nomogramKnn.selectKnn();
 
         // update views
-        App.views.nomogram.update(Object.values(updatedData));
+        // App.views.nomogram.createView(/*Object.values(updatedData)*/);
         App.views.nomogram.updateFilterData(Object.values(updatedData));
-        App.views.nomogram.updateView();
+        // App.views.nomogram.updateView();
 
         // assign the new values to the priviate variables
         self.data = updatedData;

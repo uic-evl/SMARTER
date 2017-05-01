@@ -12,9 +12,11 @@ let NomogramView = function(targetID) {
         axesRange: {},
         axesDomain: {},
         filteredAxes: null,
-        filterData: [],
-        knnData: [],
-        mode: "knn"
+        data: {
+            "knn": [],
+            "filter": []
+        },
+        mode: null
     };
 
     init();
@@ -31,17 +33,21 @@ let NomogramView = function(targetID) {
         self.axesRange = App.nomogramAxesRange;
 
         self.filteredAxes = Object.keys(App.nomogramAxesRange);
+
+        createNomogram();
     }
 
-    function update(patients) {
+    function setMode(mode) {
+        self.mode = mode;
+        updateView();
+    }
+
+    function createNomogram( /*patients*/ ) {
         self.targetElement.selectAll("*").remove();
 
         self.nomogram = new Nomogram()
-            // .data(patients.neighbors)
-            .data(patients)
             .target(self.targetID)
             .setAxes(self.filteredAxes.map(el => {
-                // console.log(el, self.axesDomain[el]);
                 return {
                     name: el,
                     label: self.axesLabel[el],
@@ -65,45 +71,34 @@ let NomogramView = function(targetID) {
             .strokeWidth(2)
             .brushable(true)
             .onMouseOver("hide-other")
-            .onMouseOut("reset-paths")
-            .draw();
-
-    }
-
-    function setMode(mode) {
-      self.mode = mode;
+            .onMouseOut("reset-paths");
     }
 
     function updateView() {
-        let newData = [];
-        switch (self.mode) {
-            case "filter":
-                newData = self.filterData;
-                break;
-            case "knn":
-                newData = self.knnData;
-                break;
+        if (self.data[self.mode].length > 0) {
+            // only draw if there already exists data
+            self.nomogram
+                .data(self.data[self.mode])
+                .draw();
         }
-        self.nomogram
-            .data(newData)
-            .draw();
+
     }
 
     function updateFilterData(newData) {
-        self.filterData = newData;
-        console.log(self.filterData);
-        // self.nomogram
-        //     .data(self.filterData)
-        //     .draw();
+        self.data.filter = newData;
+
+        if (self.mode === "filter") {
+            updateView();
+        }
     }
 
     function updateKnnData(newData) {
-        self.knnData = newData;
-        console.log(self.knnData);
+        self.data.knn = newData;
 
-        // self.nomogram
-        //     .data(self.knnData.neighbors)
-        //     .draw();
+        if (self.mode === "knn") {
+            updateView();
+        }
+
     }
 
     /* update the nomogram with filtered axes */
@@ -118,7 +113,7 @@ let NomogramView = function(targetID) {
                     rangeShrink: self.axesRange[el]
                 };
             }), "reduce")
-            .draw();
+        // .draw();
     }
 
     /* get the updated attribute domians */
@@ -126,14 +121,14 @@ let NomogramView = function(targetID) {
         for (let attribute of Object.keys(App.nomogramAxesRange)) {
             self.axesDomain[attribute] = newDomains[attribute];
         }
+
+        updateAxes();
     }
 
 
     return {
-        init,
-        update,
         setMode,
-        updateView,
+        // updateView,
         updateFilterData,
         updateKnnData,
         updateAttributeDomains

@@ -12,25 +12,19 @@ let NomogramKnnController = function(targetID) {
 
     function init() {
         self.targetElement = d3.select(targetID);
-        self.targetElement.on("change", selectKnn);
+        self.targetElement.on("change", checkKnnSelection);
     }
 
-    function selectKnn() {
+    function checkKnnSelection() {
         let selected = self.targetElement.property('checked');
-        console.log("knnCheckBox: " + selected);
 
         if (selected) {
             // update nomogram with the knn mode
             App.views.nomogram.setMode("knn");
-
-        } else { 
+        } else {
             // update nomogram with the normal mode
             App.views.nomogram.setMode("filter");
         }
-        App.views.nomogram.updateView();
     }
 
-    return {
-      selectKnn
-    };
 }
