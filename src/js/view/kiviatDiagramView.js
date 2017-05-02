@@ -315,7 +315,6 @@ let KiviatDiagramView = function(targetID) {
 
 
     return {
-        init,
         update,
         updateAttributeDomains
     };

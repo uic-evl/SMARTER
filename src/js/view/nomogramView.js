@@ -140,7 +140,6 @@ let NomogramView = function(targetID) {
 
     return {
         setMode,
-        // updateView,
         updateFilterData,
         updateKnnData,
         updateAttributeDomains
