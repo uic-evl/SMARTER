@@ -1,4 +1,19 @@
-.kaplanDiv {
+.kaplanDiv
+{
     box-sizing: border-box;
     height: 100%;
+}
+
+#kaplanMeierHeader
+{
+    height: 20%;
+
+    background-color: white;
+}
+
+#kaplanMeier
+{
+    height: 80%;
+
+    background-color: lightblue;
 }

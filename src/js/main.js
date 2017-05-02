@@ -32,6 +32,7 @@ var App = App || {};
         // create controllers
         App.controllers.dataUpdate = new DataUpdateController();
         App.controllers.patientSelector = new PatientSelectorController();
+        App.controllers.attributeSelector = new AttributeSelectorController();
         App.controllers.nomogramKnn = new NomogramKnnController("#knnCheckBox");
         App.controllers.filters = new FilterController();
 
@@ -47,6 +48,7 @@ var App = App || {};
         App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
         App.views.nomogram = new NomogramView("#nomogram");
         App.views.nomogram.setMode("knn");
+        App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
 
 
         // load patients

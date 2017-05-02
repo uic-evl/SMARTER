@@ -32,6 +32,7 @@
 
     <script src="src/js/controller/dataUpdateController.js" charset="utf-8"></script>
     <script src="src/js/controller/patientSelectorController.js" charset="utf-8"></script>
+    <script src="src/js/controller/attributeSelectorController.js" charset="utf-8"></script>
     <script src="src/js/controller/nomogramKnnController.js" charset="utf-8"></script>
     <script src="src/js/controller/filterController.js" charset="utf-8"></script>
     <script src="src/js/controller/exploreFormController.js" charset="utf-8"></script>
@@ -39,6 +40,7 @@
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
+    <script src="src/js/view/kaplanMeierView.js" charset="utf-8"></script>
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
@@ -183,8 +185,23 @@
 
                 <div class="row" id="bottom">
                     <div class="col-md-6 contentWrapper kaplanDiv">
-                        <div class="contentDiv" id="kaplanMeier">
-
+                        <div class="contentDiv">
+                            <div id="kaplanMeierHeader">
+                                <div class="row viewTitleDiv">
+                                    Survival Over Time
+                                </div>
+                                <div class="row patient-dropdown-wrapper">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <!-- <label for="patientSel">Attribute:</label> -->
+                                            <select class="attribute-dropdown form-control input-sm" id="attributeSel">
+                                    </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="kaplanMeier">
+                            </div>
                         </div>
 
                     </div>
