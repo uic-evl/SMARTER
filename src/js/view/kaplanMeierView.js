@@ -5,7 +5,8 @@ var App = App || {};
 let KaplanMeierView = function(targetID) {
 
     let self = {
-        targetElement: null
+        targetElement: null,
+        selectedAttribute: null
     };
 
     init();
@@ -19,6 +20,15 @@ let KaplanMeierView = function(targetID) {
         let colorFun = function(d) {
             return App.attributeColors(d[attr]);
         }
+
+        self.selectedAttribute = attr;
+
+        updateView();
+    }
+
+    /* update the kaplan-meier plot based on the selected attribute*/
+    function updateView() {
+
     }
 
 

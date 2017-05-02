@@ -20,6 +20,7 @@ let NomogramView = function(targetID) {
             "knn": [],
             "filter": []
         },
+        selectedPatientID: -1,
         mode: null
     };
 
@@ -52,8 +53,8 @@ let NomogramView = function(targetID) {
         let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
         let titlefontSize = 0.045 * minSize;
         let tickfontSize = titlefontSize * 0.9;
-        self.strokewidth.filter = 0.005 * minSize;
-        self.strokewidth.knn = 0.01 * minSize;
+        self.strokewidth.filter = 0.006 * minSize;
+        self.strokewidth.knn = 0.008 * minSize;
 
         self.nomogram = new Nomogram()
             .target(self.targetID)
@@ -66,9 +67,9 @@ let NomogramView = function(targetID) {
                 };
             }), "reduce")
             .margins({
-                top: 10,
+                top: 5,
                 left: 40,
-                bottom: 50,
+                bottom: 60,
                 right: 60
             })
             .titlePosition("bottom")
@@ -90,7 +91,13 @@ let NomogramView = function(targetID) {
             // only draw if there already exists data
             self.nomogram
                 .data(self.data[self.mode])
-                .strokeWidth(self.strokewidth[self.mode])
+                .strokeWidth(function(d) {
+                    if (d.ID === self.selectedPatientID) {
+                        return self.strokewidth[self.mode] * 2;
+                    } else {
+                        return self.strokewidth[self.mode];
+                    }
+                })
                 .draw();
         }
     }
@@ -106,7 +113,10 @@ let NomogramView = function(targetID) {
 
     /* update the knn data and update the nomogram if the mode is knn */
     function updateKnnData(newData) {
-        self.data.knn = newData;
+        self.selectedPatientID = newData.subject.ID;
+
+        self.data.knn = _.cloneDeep(newData.neighbors);
+        self.data.knn.push(newData.subject);
 
         if (self.mode === "knn") {
             updateView();
@@ -116,7 +126,11 @@ let NomogramView = function(targetID) {
     /* update the attribute for coloring the polylines */
     function updateAttributeColor(attr) {
         let colorFun = function(d) {
-            return App.attributeColors(d[attr]);
+            if (d.ID === self.selectedPatientID) {
+                return "black";
+            } else {
+                return App.attributeColors(d[attr]);
+            }
         }
 
         self.nomogram

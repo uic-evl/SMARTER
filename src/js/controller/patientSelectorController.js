@@ -73,10 +73,7 @@ let PatientSelectorController = function() {
     /* update relative views */
     function updateViews(updatedPatients) {
         App.views.kiviatDiagram.update(updatedPatients);
-
-        let updatedPatientsForKnnNomogram = updatedPatients.neighbors;
-        updatedPatientsForKnnNomogram.push(updatedPatients.subject);
-        App.views.nomogram.updateKnnData(updatedPatientsForKnnNomogram);
+        App.views.nomogram.updateKnnData(updatedPatients);
     }
 
 

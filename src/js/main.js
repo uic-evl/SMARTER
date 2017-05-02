@@ -36,6 +36,7 @@ var App = App || {};
         // creat models
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
+        App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
 
         // create controllers
         App.controllers.dataUpdate = new DataUpdateController();
