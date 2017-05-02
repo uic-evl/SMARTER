@@ -57,6 +57,7 @@ var App = App || {};
                 console.log("Promise Finished" /*, data*/ );
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
+                App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
 
                 App.controllers.dataUpdate.updateApplication();
 
