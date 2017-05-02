@@ -12,6 +12,10 @@ let NomogramView = function(targetID) {
         axesRange: {},
         axesDomain: {},
         filteredAxes: null,
+        strokewidth: {
+            "knn": null,
+            "filter": null
+        },
         data: {
             "knn": [],
             "filter": []
@@ -42,8 +46,14 @@ let NomogramView = function(targetID) {
         updateView();
     }
 
-    function createNomogram( /*patients*/ ) {
-        self.targetElement.selectAll("*").remove();
+    /* initialize the nomoggram */
+    function createNomogram() {
+        // self.targetElement.selectAll("*").remove();
+        let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
+        let titlefontSize = 0.045 * minSize;
+        let tickfontSize = titlefontSize * 0.9;
+        self.strokewidth.filter = 0.005 * minSize;
+        self.strokewidth.knn = 0.01 * minSize;
 
         self.nomogram = new Nomogram()
             .target(self.targetID)
@@ -63,27 +73,29 @@ let NomogramView = function(targetID) {
             })
             .titlePosition("bottom")
             .titleRotation(-10)
-            .titleFontSize(12)
-            .tickFontSize(10)
+            .titleFontSize(titlefontSize)
+            .tickFontSize(tickfontSize)
             .color("black")
             .opacity(0.7)
             .filteredOpacity(0)
-            .strokeWidth(2)
+            .strokeWidth(self.strokewidth)
             .brushable(true)
             .onMouseOver("hide-other")
             .onMouseOut("reset-paths");
     }
 
+    /* update the nomogram based on the mode: knn or filter */
     function updateView() {
         if (self.data[self.mode].length > 0) {
             // only draw if there already exists data
             self.nomogram
                 .data(self.data[self.mode])
+                .strokeWidth(self.strokewidth[self.mode])
                 .draw();
         }
-
     }
 
+    /* update the filer date and update the nomogram if the mode is filter */
     function updateFilterData(newData) {
         self.data.filter = newData;
 
@@ -92,13 +104,13 @@ let NomogramView = function(targetID) {
         }
     }
 
+    /* update the knn data and update the nomogram if the mode is knn */
     function updateKnnData(newData) {
         self.data.knn = newData;
 
         if (self.mode === "knn") {
             updateView();
         }
-
     }
 
     /* update the nomogram with filtered axes */
