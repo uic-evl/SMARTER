@@ -113,6 +113,18 @@ let NomogramView = function(targetID) {
         }
     }
 
+    /* update the attribute for coloring the polylines */
+    function updateAttributeColor(attr) {
+        let colorFun = function(d) {
+            return App.attributeColors(d[attr]);
+        }
+
+        self.nomogram
+            .color(colorFun);
+
+        updateView();
+    }
+
     /* update the nomogram with filtered axes */
     function updateAxes() {
         // update self.filteredAxes, then
@@ -142,6 +154,7 @@ let NomogramView = function(targetID) {
         setMode,
         updateFilterData,
         updateKnnData,
+        updateAttributeColor,
         updateAttributeDomains
     };
 }

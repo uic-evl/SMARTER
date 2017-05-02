@@ -32,9 +32,10 @@ let AttributeSelectorController = function() {
         updateSelectedAttribute(App.patientKnnAttributes[0]);
     }
 
-
+    /* get the selected attribute and update views */
     function updateSelectedAttribute(selectedAttribute) {
-        console.log(selectedAttribute);
+        App.views.nomogram.updateAttributeColor(selectedAttribute);
+        App.views.kaplanMeier.updateAttributeColor(selectedAttribute);
     }
 
 

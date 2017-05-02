@@ -14,4 +14,15 @@ let KaplanMeierView = function(targetID) {
         self.targetElement = d3.select(targetID);
     }
 
+    /* update the attribute for coloring the kaplan-meier plot */
+    function updateAttributeColor(attr) {
+        let colorFun = function(d) {
+            return App.attributeColors(d[attr]);
+        }
+    }
+
+
+    return {
+      updateAttributeColor
+    };
 }

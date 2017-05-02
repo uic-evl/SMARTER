@@ -8,7 +8,9 @@ var App = App || {};
     App.views = {};
 
     // hard code eight attributes for calculating knn and also eight axes in the kiviat diagram
-    App.patientKnnAttributes = ["Gender", "Ethnicity", "Tcategory", "Site", "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"];
+    App.patientKnnAttributes = ["Gender", "Ethnicity", "Tcategory", "Site",
+        "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"
+    ];
     // hard code default nomogram axes ranges
     App.nomogramAxesRange = {
         "AgeAtTx": [1, 0],
@@ -22,6 +24,12 @@ var App = App || {};
         "Local_Therapy": [0.15, 0],
         "Probability of Survival": [0, 1]
     };
+
+    // need to find better colors
+    App.category10colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+        "#393b79", "#637939", "#7f7f7f", "#bcbd22", "#843c39"
+    ];
+    App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
 
     App.init = function() {
