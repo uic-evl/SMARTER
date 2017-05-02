@@ -49,7 +49,6 @@ let FilterController = function() {
         let filteredPatients = App.models.patients.filterPatients();
         // update views with filtered data
         App.views.nomogram.updateFilterData(Object.values(filteredPatients));
-        App.views.nomogram.updateView();
     }
 
     return {

@@ -34,10 +34,10 @@ let PatientSelectorController = function() {
         /* if the selected patient exists in the new patient list, stays with the ID,
            if not, rest to the first patient in the list */
         if (patients[App.models.applicationState.getSelectedPatientID()]) {
-          self.patientDropDown.node().value = App.models.applicationState.getSelectedPatientID();
+            self.patientDropDown.node().value = App.models.applicationState.getSelectedPatientID();
         } else {
-          updateSelectedPatients(Object.keys(patients)[0]);
-          self.patientDropDown.node().selectedIndex = "0";
+            updateSelectedPatients(Object.keys(patients)[0]);
+            self.patientDropDown.node().selectedIndex = "0";
         }
     }
 
@@ -72,12 +72,11 @@ let PatientSelectorController = function() {
 
     /* update relative views */
     function updateViews(updatedPatients) {
-        // console.log(updatedPatients);
         App.views.kiviatDiagram.update(updatedPatients);
 
-        App.views.nomogram.update(updatedPatients.neighbors);
-        App.views.nomogram.updateKnnData(updatedPatients.neighbors);
-        App.views.nomogram.updateView();
+        let updatedPatientsForKnnNomogram = updatedPatients.neighbors;
+        updatedPatientsForKnnNomogram.push(updatedPatients.subject);
+        App.views.nomogram.updateKnnData(updatedPatientsForKnnNomogram);
     }
 
 

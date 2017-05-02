@@ -46,6 +46,7 @@ var App = App || {};
         // creat views
         App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
         App.views.nomogram = new NomogramView("#nomogram");
+        App.views.nomogram.setMode("knn");
 
 
         // load patients
