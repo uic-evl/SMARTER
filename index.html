@@ -108,8 +108,55 @@
             </div>
 
             <div class="col-md-2 contentWrapper controlDiv">
-                <div class="contentDiv" id="controller">
+                <div class="contentDiv" id="nomogramControls">
+                    <div class="col-md-10">
+                        <div class="row dropdown-row">
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                                KNN Attributes Used
+                            <span class="caret"></span>
+                          </button>
+                                <ul class="dropdown-menu col-sm-12">
+                                    <li class="checkbox-li">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="1">Option 1</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
+                        <div class="row dropdown-row">
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                            Nomogram Axis Visibility
+                            <span class="caret"></span>
+                          </button>
+                                <ul class="dropdown-menu col-sm-12">
+                                    <li class="checkbox-li">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" value="1">Option 1</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row axisSelect-row">
+                            <div class="form-group">
+                                <label for="axisSelect">Selected Axis:</label>
+                                <select id="axisSelect" class="form-control">
+                                  <option value="x">Option 1</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2 axisSliderWrapper">
+                        <div id="axisHeightSlider">
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
