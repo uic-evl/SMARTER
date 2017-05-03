@@ -33,7 +33,7 @@ var App = App || {};
 
 
     App.init = function() {
-        // create models
+        // creat models
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
@@ -53,13 +53,11 @@ var App = App || {};
         App.controllers.addPatientForm.setFormAddButton("#addPatientFormAdd");
         App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
 
-        // create views
+        // creat views
         App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
         App.views.nomogram = new NomogramView("#nomogram");
         App.views.nomogram.setMode("knn");
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
-
-        // App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
 
 
         // load patients
@@ -69,7 +67,6 @@ var App = App || {};
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
-
 
                 App.controllers.dataUpdate.updateApplication();
 
