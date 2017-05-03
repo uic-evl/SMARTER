@@ -44,6 +44,40 @@ let ApplicationStateModel = function() {
         return self.attributeFilters;
     }
 
+    /**************************************************************************
+                    Saving/Loading State with Browser Cookies
+    **************************************************************************/
+
+    window.onunload = saveStateIntoCookie;
+
+    function saveStateIntoCookie() {
+      document.cookie = ("SMARTUI_state=" + JSON.stringify(self) + "; path=/");
+      console.log("Saving state into cookie:", self);
+    }
+
+    function loadStateFromCookie() {
+      // get state variable from Cookies
+      let cookies = document.cookie.split("; ").map(c => c.split("="));
+
+      let stateCookie = _.find(cookies, function(o) { return o[0] === "SMARTUI_state"; });
+
+      if (stateCookie) {
+        let stateToLoad = JSON.parse(stateCookie[1]);
+
+        // load attributes into the state
+        for (let stateAttribute of Object.keys(self)) {
+          if (stateToLoad[stateAttribute]) {
+            self[stateAttribute] = stateToLoad[stateAttribute];
+          }
+        }
+
+        console.log("Loaded State", self);
+
+      } else {
+        console.log("No state cookie found!");
+      }
+
+    }
 
     /* Return the publicly accessible functions */
     return {
@@ -54,6 +88,8 @@ let ApplicationStateModel = function() {
         setKnnExcludedAttributes,
         getKnnExcludedAttributes,
         setAttributeFilters,
-        getAttributeFilters
+        getAttributeFilters,
+
+        loadStateFromCookie
     };
 }
