@@ -69,7 +69,18 @@ let AttributeSelectorController = function() {
             .attr("disabled", (d) => filters[d]);
 
         // check if the selected attibute is disabled
-        
+        let attributeIntersection = _.indexOf(Object.keys(filters), self.currentAttribute);
+
+        // if it is, then find the first enabled attribute and set it to the new current attribute
+        if (attributeIntersection != -1) {
+
+          let attributeEnabled = _.difference(App.patientKnnAttributes, Object.keys(filters));
+
+          // get the first enable attribute
+          self.currentAttribute = attributeEnabled[0];
+          self.attributeDropDown.node().value = self.currentAttribute;
+          updateSelectedAttribute(self.currentAttribute);
+        }
     }
 
 
