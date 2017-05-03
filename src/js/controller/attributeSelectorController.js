@@ -38,9 +38,18 @@ let AttributeSelectorController = function() {
         App.views.kaplanMeier.updateAttributeColor(selectedAttribute);
     }
 
+    function disableFilteredAttributes() {
+      let filters = App.models.applicationState.getAttributeFilters();
+
+      self.attributeDropDown
+      .selectAll("option")
+        .attr("disabled", (d) => filters[d]);
+    }
+
 
     /* return the pubilicly accessible functions */
     return {
-        attachToSelect
+        attachToSelect,
+        disableFilteredAttributes
     };
 }

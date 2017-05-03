@@ -59,7 +59,6 @@ var App = App || {};
         App.views.nomogram.setMode("knn");
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
 
-        // App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
 
 
         // load patients
@@ -73,6 +72,8 @@ var App = App || {};
 
                 App.controllers.dataUpdate.updateApplication();
 
+
+                App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
             })
             .catch(function(err) {
                 console.log("Promise Error", err);

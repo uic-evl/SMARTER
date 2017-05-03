@@ -9,7 +9,8 @@ let ApplicationStateModel = function() {
         numberOfNeighbors: 5, // 5 as default
         selectedPatientID: null, // null as defualt
         knnExcludedAttributes: [], // empty as default
-        attributeFilters: {} // empty as default
+        attributeFilters: {}, // empty as default
+        selectedAttribute: null
     };
 
     function setNumberOfNeighbors(number) {
@@ -44,6 +45,14 @@ let ApplicationStateModel = function() {
         return self.attributeFilters;
     }
 
+    function setSelectedAttribute(attribute) {
+        self.selectedAttribute = attribute;
+    }
+
+    function getSelectedAttribute() {
+        return self.selectedAttribute;
+    }
+
     /**************************************************************************
                     Saving/Loading State with Browser Cookies
     **************************************************************************/
@@ -72,6 +81,9 @@ let ApplicationStateModel = function() {
         }
 
         console.log("Loaded State", self);
+
+        App.controllers.patientSelector.updatePateintDropDown();
+        App.controllers.filters.updateDataFilters(self.attributeFilters);
 
       } else {
         console.log("No state cookie found!");
