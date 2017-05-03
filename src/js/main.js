@@ -60,6 +60,7 @@ var App = App || {};
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
 
 
+
         // load patients
         App.models.patients.loadPatients()
             .then(function( /*data*/ ) {
@@ -70,6 +71,8 @@ var App = App || {};
 
                 App.controllers.dataUpdate.updateApplication();
 
+
+                App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
             })
             .catch(function(err) {
                 console.log("Promise Error", err);

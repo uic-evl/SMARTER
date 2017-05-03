@@ -5,7 +5,8 @@ var App = App || {};
 let PatientSelectorController = function() {
 
     let self = {
-        patientDropDown: null
+        patientDropDown: null,
+        currentPatient: null
     };
 
     /* display the patient drop down list */
@@ -33,11 +34,18 @@ let PatientSelectorController = function() {
 
         /* if the selected patient exists in the new patient list, stays with the ID,
            if not, rest to the first patient in the list */
-        if (patients[App.models.applicationState.getSelectedPatientID()]) {
-            self.patientDropDown.node().value = App.models.applicationState.getSelectedPatientID();
+        let stateSelectedPatient = App.models.applicationState.getSelectedPatientID();
+
+        if (patients[stateSelectedPatient]) {
+          self.patientDropDown.node().value = stateSelectedPatient;
+            if (self.currentPatient !== stateSelectedPatient) {
+              self.currentPatient = stateSelectedPatient;
+              updateSelectedPatients(self.currentPatient);
+            }
         } else {
-            updateSelectedPatients(Object.keys(patients)[0]);
             self.patientDropDown.node().selectedIndex = "0";
+            self.currentPatient = "0";
+            updateSelectedPatients(Object.keys(patients)[0]);
         }
     }
 
@@ -46,6 +54,7 @@ let PatientSelectorController = function() {
         self.patientDropDown = d3.select(element)
             .on("change", function(d) {
                 let selectedID = d3.select(this).node().value;
+                self.currentPatient = selectedID;
                 console.log(selectedID);
                 updateSelectedPatients(selectedID);
             })

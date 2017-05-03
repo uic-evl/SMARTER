@@ -39,6 +39,9 @@ let FilterController = function() {
 
         // update explore patient form with new data filters
         App.controllers.exploreForm.updateDropdownsWithCurrentFilters();
+
+        // disable the attributes based on new data filters
+        App.controllers.attributeSelector.disableFilteredAttributes();
     }
 
     /**
@@ -47,7 +50,7 @@ let FilterController = function() {
     function updateViewsWithNewFilters(filters) {
         // get the filtered data
         let filteredPatients = App.models.patients.filterPatients();
-        console.log(filteredPatients);
+
         // update views with filtered data
         App.views.nomogram.updateFilterData(Object.values(filteredPatients));
     }

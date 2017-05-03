@@ -56,7 +56,14 @@ let DataUpdateController = function() {
         self.attributeDomains = updatedAttributeDomains;
     }
 
+    function updateApplicationFromState(state) {
+        App.controllers.patientSelector.updatePateintDropDown();
+        App.controllers.filters.updateDataFilters(state.attributeFilters);
+        App.controllers.attributeSelector.updateAttributeDropDown();
+    }
+
     return {
-        updateApplication
+        updateApplication,
+        updateApplicationFromState
     };
 }
