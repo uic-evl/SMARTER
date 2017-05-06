@@ -50,7 +50,7 @@ let NomogramAxisController = function(listID) {
       });
   }
 
-  function attachToSelector(selectID) {
+  function attachToSelect(selectID) {
     let attributes = App.patientKnnAttributes;
 
     self.select = d3.select(selectID)
@@ -99,7 +99,7 @@ let NomogramAxisController = function(listID) {
 
   return {
     attachToList,
-    attachToSelector,
+    attachToSelect,
     attachToDomainRangeToggle
   };
 };

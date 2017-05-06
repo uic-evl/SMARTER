@@ -57,7 +57,7 @@ var App = App || {};
 
         App.controllers.nomogramAxis = new NomogramAxisController();
         App.controllers.nomogramAxis.attachToList("#nomogramVisibilityControl");
-        App.controllers.nomogramAxis.attachToSelector("#nomogramAxisSelect");
+        App.controllers.nomogramAxis.attachToSelect("#nomogramAxisSelect");
         App.controllers.nomogramAxis.attachToDomainRangeToggle("#nomogramAxisButton");
 
         // creat views
