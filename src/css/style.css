@@ -59,6 +59,16 @@ div {
     font-weight: bold;
 }
 
+.modal-right-buttons {
+  float: right;
+}
+
+.modal-left-buttons {
+  float: left;
+}
+
+
+
 .controlDiv {
     box-sizing: border-box;
     height: 50%;

@@ -46,6 +46,7 @@ var App = App || {};
         App.controllers.filters = new FilterController();
 
         App.controllers.exploreForm = new ExploreFormController("#exploreForm");
+        App.controllers.exploreForm.setFilterResetButton("#exploreFormReset")
         App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
         App.controllers.exploreForm.setFormCancelButton("#exploreFormCancel");
 

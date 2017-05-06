@@ -64,6 +64,28 @@ let ExploreFormController = function(formID) {
 
   /****************************************************************************/
 
+  function setFilterResetButton(buttonID) {
+    d3.select(buttonID)
+      .on("click", resetClickHandler);
+  }
+
+  /**
+    * Reset handler attached to the apply button
+    * Sets the value of all dropdowns to "All" and sends an empty set of filters
+    * to the filter controller
+    */
+  function resetClickHandler() {
+    // get values for each attribute
+    for (let attribute of Object.keys(self.attributeSelectDropdowns)) {
+      self.attributeSelectDropdowns[attribute].node().value = "All";
+    }
+
+    // send these new filters to the filter controller
+    App.controllers.filters.updateDataFilters({});
+  }
+
+  /****************************************************************************/
+
   /**
     * Attaches the event handler to the Apply button for when the filters will
     * be applied to the data
@@ -164,6 +186,7 @@ let ExploreFormController = function(formID) {
   }
 
   return {
+    setFilterResetButton,
     setFormApplyButton,
     setFormCancelButton,
     updateDropdownsWithNewDomains,
