@@ -53,6 +53,13 @@ var App = App || {};
         App.controllers.addPatientForm.setFormAddButton("#addPatientFormAdd");
         App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
 
+        App.controllers.knnAttrSelector = new KNNAttributeSelectionController("#knnAttributesControl");
+
+        App.controllers.nomogramAxis = new NomogramAxisController();
+        App.controllers.nomogramAxis.attachToList("#nomogramVisibilityControl");
+        App.controllers.nomogramAxis.attachToSelector("#nomogramAxisSelect");
+        App.controllers.nomogramAxis.attachToDomainRangeToggle("#nomogramAxisButton");
+
         // creat views
         App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
         App.views.nomogram = new NomogramView("#nomogram");

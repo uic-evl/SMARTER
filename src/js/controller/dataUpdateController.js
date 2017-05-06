@@ -60,6 +60,7 @@ let DataUpdateController = function() {
         App.controllers.patientSelector.updatePateintDropDown();
         App.controllers.filters.updateDataFilters(state.attributeFilters);
         App.controllers.attributeSelector.updateAttributeDropDown();
+        App.controllers.knnAttrSelector.updateSelectedCheckboxes();
     }
 
     return {

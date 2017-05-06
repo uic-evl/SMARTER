@@ -37,6 +37,9 @@
     <script src="src/js/controller/filterController.js" charset="utf-8"></script>
     <script src="src/js/controller/exploreFormController.js" charset="utf-8"></script>
     <script src="src/js/controller/addPatientController.js" charset="utf-8"></script>
+    <script src="src/js/controller/knnAttributeSelectionController.js" charset="utf-8"></script>
+    <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
+
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
@@ -111,55 +114,59 @@
 
             <div class="col-md-2 contentWrapper controlDiv">
                 <div class="contentDiv" id="nomogramControls">
-                    <div class="col-md-10">
-                        <div class="row dropdown-row">
-                            <div class="dropdown">
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
-                                KNN Attributes Used
+                  <div class="row dropdown-control-row">
+                    <div class="col-md-12">
+                      <div class="row dropdown-row">
+                        <div class="dropdown">
+                          <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                            KNN Attributes Used
                             <span class="caret"></span>
                           </button>
-                                <ul class="dropdown-menu col-sm-12">
-                                    <li class="checkbox-li">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="1">Option 1</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                          <ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">
+                            <!-- populating list in controller -->
+                          </ul>
                         </div>
+                      </div>
 
-                        <div class="row dropdown-row">
-                            <div class="dropdown">
-                                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
-                                  <span class="glyphicon glyphicon-eye-open"></span>
+                      <div class="row dropdown-row">
+                        <div class="dropdown">
+                          <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-eye-open"></span>
                             Nomogram Axis
                             <span class="caret"></span>
                           </button>
-                                <ul class="dropdown-menu col-sm-12">
-                                    <li class="checkbox-li">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="1">Option 1</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                          <ul class="dropdown-menu col-sm-12" id="nomogramVisibilityControl">
+                            <!-- populating list in controller -->
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="row axis-control-row">
+                    <div class="col-md-10">
+                      <div class="row axisSelect-row">
+                        <h4>Edit Axes:</h4>
+                        <div class="form-group">
+                          <label for="nomogramAxisSelect">Selected Axis:</label>
+                          <select id="nomogramAxisSelect" class="form-control">
+
+                            <!-- <option value="x">Option 1</option> -->
+                          </select>
                         </div>
 
-                        <div class="row axisSelect-row">
-                            <div class="form-group">
-                                <label for="axisSelect">Selected Axis:</label>
-                                <select id="axisSelect" class="form-control">
-                                  <option value="x">Option 1</option>
-                                </select>
-                            </div>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-primary active" id="nomogramAxisButton" value="domain">Domain</button>
+                          <button type="button" class="btn btn-primary" id="nomogramAxisButton" value="range">Range</button>
                         </div>
-
+                      </div>
                     </div>
                     <div class="col-md-2 axisSliderWrapper">
-                        <div id="axisHeightSlider">
+                      <div id="axisHeightSlider">
 
-                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
 
