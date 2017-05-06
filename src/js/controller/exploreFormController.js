@@ -64,6 +64,10 @@ let ExploreFormController = function(formID) {
 
   /****************************************************************************/
 
+  /**
+    * Attaches the event handler to the Reset button for when the filters will
+    * be reset to default
+    */
   function setFilterResetButton(buttonID) {
     d3.select(buttonID)
       .on("click", resetClickHandler);

@@ -72,24 +72,38 @@ let ApplicationStateModel = function() {
             return o[0] === "SMARTUI_state";
         });
 
-        if (stateCookie) {
-            let stateToLoad = JSON.parse(stateCookie[1]);
+        let useState = _.find(cookies, function(o) {
+          return o[0] === "SMARTUI_useSavedState";
+        });
 
-            // load attributes into the state
-            for (let stateAttribute of Object.keys(self)) {
-                if (stateToLoad[stateAttribute]) {
-                    self[stateAttribute] = stateToLoad[stateAttribute];
-                }
-            }
+        if (useState && useState[1] === 'true') {
+          if (stateCookie) {
+              let stateToLoad = JSON.parse(stateCookie[1]);
 
-            console.log("Loaded State", self);
+              // load attributes into the state
+              for (let stateAttribute of Object.keys(self)) {
+                  if (stateToLoad[stateAttribute]) {
+                      self[stateAttribute] = stateToLoad[stateAttribute];
+                  }
+              }
 
-            // update controllers/views from the current saved state
-            App.controllers.dataUpdate.updateApplicationFromState(self);
+              console.log("Loaded State", self);
+
+              // update controllers/views from the current saved state
+              App.controllers.dataUpdate.updateApplicationFromState(self);
+          } else {
+              console.log("No state cookie found!");
+          }
         } else {
-            console.log("No state cookie found!");
+          // dont use state, update that checkbox accordingly
+          App.controllers.settings.setCookiesCheckboxStatus(false);
         }
 
+
+    }
+
+    function setIsUsingCookies(willUse) {
+      document.cookie = ("SMARTUI_useSavedState=" + willUse + "; path=/");
     }
 
 
@@ -106,6 +120,7 @@ let ApplicationStateModel = function() {
         setSelectedAttribute,
         getSelectedAttribute,
 
-        loadStateFromCookie
+        loadStateFromCookie,
+        setIsUsingCookies
     };
 }

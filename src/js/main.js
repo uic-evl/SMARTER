@@ -39,6 +39,9 @@ var App = App || {};
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
 
         // create controllers
+        App.controllers.settings = new SettingsController();
+        App.controllers.settings.attachCookiesCheckbox("#cookieCheckbox");
+
         App.controllers.dataUpdate = new DataUpdateController();
         App.controllers.patientSelector = new PatientSelectorController();
         App.controllers.attributeSelector = new AttributeSelectorController();

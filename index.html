@@ -39,6 +39,7 @@
     <script src="src/js/controller/addPatientController.js" charset="utf-8"></script>
     <script src="src/js/controller/knnAttributeSelectionController.js" charset="utf-8"></script>
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
+    <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
 
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
@@ -54,11 +55,11 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">SMARTer UI</a>
+                        <a class="navbar-brand" href="#">SMARTer Therapy Explorer</a>
                     </div>
-                    <ul class="nav navbar-nav">
+                    <!-- <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                    </ul>
+                    </ul> -->
                     <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#exploreModal">
                       <span class="glyphicon glyphicon-search"></span>
                       Explore
@@ -67,6 +68,7 @@
                       <span class="glyphicon glyphicon-plus"></span>
                       Add Patient
                     </button>
+
                     <ul class="nav navbar-nav navbar-right">
                         <button class="btn btn-link navbar-btn" data-toggle="modal" data-target="#aboutModal">
                           <span class="glyphicon glyphicon-info-sign"></span>
@@ -76,6 +78,21 @@
                           <span class="glyphicon glyphicon-question-sign"></span>
                           Help
                         </button>
+
+                        <!-- <div class="dropdown"> -->
+                            <button class="btn btn-basic navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                              <span class="glyphicon glyphicon-wrench"></span>
+                              <!-- Options -->
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="checkbox-li">
+                                  <input type="checkbox" id="cookieCheckbox" checked>
+                                  <label for="cookieCheckbox">Save Options Between Sessions</label>
+                                </li>
+                            </ul>
+                        <!-- </div> -->
+
+
                     </ul>
                 </div>
             </nav>
@@ -114,63 +131,63 @@
 
             <div class="col-md-2 contentWrapper controlDiv">
                 <div class="contentDiv" id="nomogramControls">
-                  <div class="row dropdown-control-row">
-                    <div class="col-md-12">
-                      <div class="row dropdown-row">
-                        <div class="dropdown">
-                          <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                    <div class="row dropdown-control-row">
+                        <div class="col-md-12">
+                            <div class="row dropdown-row">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
                             KNN Attributes Used
                             <span class="caret"></span>
                           </button>
-                          <ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">
-                            <!-- populating list in controller -->
-                          </ul>
-                        </div>
-                      </div>
+                                    <ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">
+                                        <!-- populating list in controller -->
+                                    </ul>
+                                </div>
+                            </div>
 
-                      <div class="row dropdown-row">
-                        <div class="dropdown">
-                          <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                            <div class="row dropdown-row">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-eye-open"></span>
                             Nomogram Axis
                             <span class="caret"></span>
                           </button>
-                          <ul class="dropdown-menu col-sm-12" id="nomogramVisibilityControl">
-                            <!-- populating list in controller -->
-                          </ul>
+                                    <ul class="dropdown-menu col-sm-12" id="nomogramVisibilityControl">
+                                        <!-- populating list in controller -->
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
-                      </div>
-
                     </div>
-                  </div>
-                  <div class="row axis-control-row">
-                    <div class="col-md-10">
-                      <div class="row">
-                        <h4>Edit Axes:</h4>
-                        <div class="form-group">
-                          <label for="nomogramAxisSelect">Selected Axis:</label>
-                          <select id="nomogramAxisSelect" class="form-control">
+                    <div class="row axis-control-row">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <h4>Edit Axes:</h4>
+                                <div class="form-group">
+                                    <label for="nomogramAxisSelect">Selected Axis:</label>
+                                    <select id="nomogramAxisSelect" class="form-control">
 
-                            <!-- <option value="x">Option 1</option> -->
-                          </select>
+                                      <!-- <option value="x">Option 1</option> -->
+                                    </select>
+                                </div>
+
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary active" id="nomogramAxisButton" value="domain">Domain</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary" id="nomogramAxisButton" value="range">Range</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-2 axisSliderWrapper">
+                            <div id="axisHeightSlider">
 
-                        <div class="btn-group btn-group-justified">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-primary active" id="nomogramAxisButton" value="domain">Domain</button>
-                          </div>
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-primary" id="nomogramAxisButton" value="range">Range</button>
-                          </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                    <div class="col-md-2 axisSliderWrapper">
-                      <div id="axisHeightSlider">
-
-                      </div>
-                    </div>
-                  </div>
                 </div>
             </div>
 
@@ -244,17 +261,17 @@
                 </div>
                 <div class="modal-footer">
                     <div class="modal-left-buttons">
-                      <button type="button" class="btn btn-warning" data-dismiss="modal" id="exploreFormReset">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" id="exploreFormReset">
                         <span class="glyphicon glyphicon-refresh"></span>
                         Reset Filters
                       </button>
                     </div>
                     <div class="modal-right-buttons">
-                      <button type="button" class="btn btn-success" data-dismiss="modal" id="exploreFormApply">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="exploreFormApply">
                         <span class="glyphicon glyphicon-ok"></span>
                         Apply
                       </button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" id="exploreFormCancel">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="exploreFormCancel">
                         <span class="glyphicon glyphicon-remove"></span>
                         Cancel
                       </button>
@@ -306,15 +323,15 @@
                     <h3 class="modal-title">About</h3>
                 </div>
                 <div class="modal-body">
-                  <p>
-                    The SMART Therapy Explorer is developed by a group of researchers at the Electronic Visualization Laboratory, University of Illinois at Chicago under the direction of G.Elisabeta Marai.
-                  </p>
-                  <p>
-                    Team members include: Filippo Pellolio, Chihua Ma and Andrew Burks
-                  </p>
-                  <p>
-                    Please send all feedback and questions to marai@uic.edu
-                  </p>
+                    <p>
+                        The SMART Therapy Explorer is developed by a group of researchers at the Electronic Visualization Laboratory, University of Illinois at Chicago under the direction of G.Elisabeta Marai.
+                    </p>
+                    <p>
+                        Team members include: Filippo Pellolio, Chihua Ma and Andrew Burks
+                    </p>
+                    <p>
+                        Please send all feedback and questions to marai@uic.edu
+                    </p>
 
                 </div>
                 <div class="modal-footer">
