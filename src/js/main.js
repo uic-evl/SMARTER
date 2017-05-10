@@ -39,6 +39,9 @@ var App = App || {};
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
 
         // create controllers
+        App.controllers.settings = new SettingsController();
+        App.controllers.settings.attachCookiesCheckbox("#cookieCheckbox");
+
         App.controllers.dataUpdate = new DataUpdateController();
         App.controllers.patientSelector = new PatientSelectorController();
         App.controllers.attributeSelector = new AttributeSelectorController();
@@ -46,12 +49,20 @@ var App = App || {};
         App.controllers.filters = new FilterController();
 
         App.controllers.exploreForm = new ExploreFormController("#exploreForm");
+        App.controllers.exploreForm.setFilterResetButton("#exploreFormReset")
         App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
         App.controllers.exploreForm.setFormCancelButton("#exploreFormCancel");
 
         App.controllers.addPatientForm = new AddPatientController("#addPatientForm");
         App.controllers.addPatientForm.setFormAddButton("#addPatientFormAdd");
         App.controllers.addPatientForm.setFormCancelButton("#addPatientFormCancel");
+
+        App.controllers.knnAttrSelector = new KNNAttributeSelectionController("#knnAttributesControl");
+
+        App.controllers.nomogramAxis = new NomogramAxisController();
+        App.controllers.nomogramAxis.attachToList("#nomogramVisibilityControl");
+        App.controllers.nomogramAxis.attachToSelect("#nomogramAxisSelect");
+        App.controllers.nomogramAxis.attachToDomainRangeToggle("#nomogramAxisButton");
 
         // creat views
         App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");

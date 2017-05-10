@@ -163,12 +163,16 @@ let NomogramView = function(targetID) {
         updateAxes();
     }
 
+    function updateAxisVisibility(axisStates) {
+      console.log(axisStates);
+    }
 
     return {
         setMode,
         updateFilterData,
         updateKnnData,
         updateAttributeColor,
-        updateAttributeDomains
+        updateAttributeDomains,
+        updateAxisVisibility
     };
 }
