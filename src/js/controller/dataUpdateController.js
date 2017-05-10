@@ -58,8 +58,8 @@ let DataUpdateController = function() {
 
     function updateApplicationFromState(state) {
         App.controllers.patientSelector.updatePateintDropDown();
-        App.controllers.filters.updateDataFilters(state.attributeFilters);
         App.controllers.attributeSelector.updateAttributeDropDown();
+        App.controllers.filters.updateDataFilters(state.attributeFilters);
     }
 
     return {

@@ -28,6 +28,10 @@ let FilterController = function() {
     function updateModelsWithNewFilters(filters) {
         // set filters to be the selected items
         App.models.applicationState.setAttributeFilters(filters);
+
+        // update the patients in the kaplan-meier model to recalculate the output
+        let filteredPatients = App.models.patients.filterPatients();
+        App.models.kaplanMeierPatient.updatePatients(filteredPatients);
     }
 
     /**
@@ -53,6 +57,10 @@ let FilterController = function() {
 
         // update views with filtered data
         App.views.nomogram.updateFilterData(Object.values(filteredPatients));
+
+        // get the updated kaplan-meier patients and update the view
+        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
+        App.views.kaplanMeier.update(updatedKaplanMeierData);
     }
 
     return {

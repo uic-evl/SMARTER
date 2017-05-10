@@ -42,12 +42,15 @@ let PatientModel = function() {
                 // added properties to patients which are only present in the second file
                 kaplanMeierData.forEach(function(d, i) {
                     self.patients[i].ID = i;
-                    self.patients[i].OS = d.OS;
-                    self.patients[i].Censor = d.Censor;
+                    self.patients[i].OS = +d.OS;
+                    self.patients[i].Censor = +d.Censor;
                 });
 
                 // calculate the patient attribute domains including age and survival pbty
                 calculatePatientAttributeDomains();
+
+                // initialize the patients in the kaplan-meier model when no filers applied
+                App.models.kaplanMeierPatient.initPatients(self.patients);
 
                 // resolve within await callback after data finished processing
                 resolve( /*self.patients*/ );

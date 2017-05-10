@@ -55,9 +55,15 @@ let AttributeSelectorController = function() {
         // update the application state
         App.models.applicationState.setSelectedAttribute(selectedAttribute);
 
+        // update the kaplan-meier patient model to recalculate the output
+        App.models.kaplanMeierPatient.updateSelectedAttribute(selectedAttribute);
+
+        // get the updated kaplan-meier patients
+        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
+
         // update views
         App.views.nomogram.updateAttributeColor(selectedAttribute);
-        App.views.kaplanMeier.updateAttributeColor(selectedAttribute);
+        App.views.kaplanMeier.updateAttributeColor(updatedKaplanMeierData, selectedAttribute);
     }
 
     /* disable the attributes that are currently applied in the application */
