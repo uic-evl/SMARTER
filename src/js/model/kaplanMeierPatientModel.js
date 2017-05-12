@@ -37,7 +37,9 @@ let KaplanMeierPatientModel = function() {
         let attributeDomains = App.models.patients.getPatientKnnAttributeDomains();
         let groups = attributeDomains[self.selectedAttribute];
 
-        self.patientGroups = {}; // reset to empty
+        // reset to empty
+        self.patientGroups = {};
+        self.kaplanMeierPatientGroups = {};
 
         for (let i = 0; i < groups.length; i++) {
             let filter = {};
@@ -50,7 +52,8 @@ let KaplanMeierPatientModel = function() {
             // calculate the data for kaplan-meier plots
             calculateKaplanMeierData(self.patientGroups[groups[i]], groups[i]);
         }
-        console.log(self.patientGroups);
+        // console.log(self.patientGroups);
+        console.log(self.kaplanMeierPatientGroups);
     }
 
     /* calculate the data used for kaplan-meier plots */
@@ -58,23 +61,18 @@ let KaplanMeierPatientModel = function() {
         // {group: [{OS: , Prob: }, {}. ...]}
         let patientNum = currentPatientGroup.length;
 
-        let osVals = currentPatientGroup.map(function(o) {
-            return o.OS;
-        });
-
-        let osUniqVals = _.uniq(osVals);
-
-        console.log(osUniqVals);
-
-        // ToDo !!!!
         let CensorsAtOS = {}; // {OS: [censor], OS: [censor, censor, censor], OS: [], ...}
-        for (let osInd in osUniqVals) {
-            // find all the patients in the currentPatientGroup who have the same OS value as osUniqVals[osInd]
-            // get the corresponding censor info
-            // CensorsAtOS[osUniqVals[osInd]].push();
-            // self.kaplanMeierPatientGroups[selectedAttributeValue].push();
 
+        for (let patientInd in currentPatientGroup) {
+            CensorsAtOS[currentPatientGroup[patientInd].OS] = [];
         }
+
+        for (let patientInd in currentPatientGroup) {
+            CensorsAtOS[currentPatientGroup[patientInd].OS].push(currentPatientGroup[patientInd].Censor);
+        }
+        // console.log(CensorsAtOS);
+
+        self.kaplanMeierPatientGroups[selectedAttributeValue] = CensorsAtOS;
     }
 
     /* get the data for kaplan-meier plots */
