@@ -7,7 +7,8 @@ let KaplanMeierView = function(targetID) {
     let self = {
         targetElement: null,
         targetSvg: null,
-        selectedAttribute: null
+        selectedAttribute: null,
+        maxOS: null
     };
 
     init();
@@ -60,12 +61,17 @@ let KaplanMeierView = function(targetID) {
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
-      console.log(KMData);
+        console.log(KMData);
+    }
+
+    /* set the maximum value on X-axis */
+    function setMaxOS(os) {
+        self.maxOS = os;
     }
 
 
     return {
-        update,
+        setMaxOS,
         updateAttributeColor
     };
 }

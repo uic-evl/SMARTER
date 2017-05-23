@@ -6,7 +6,7 @@ let AttributeSelectorController = function() {
 
     let self = {
         attributeDropDown: null,
-        currentAttribute: null
+        currentAttribute: App.patientKnnAttributes[0]
     };
 
     /* display the attribute drop down list */
@@ -64,6 +64,8 @@ let AttributeSelectorController = function() {
         // Todo: update the kaplan-meier view
         // get the updated kaplan-meier patients
         let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
+        let maxOS = App.models.kaplanMeierPatient.getMaxOS();
+        App.views.kaplanMeier.setMaxOS(maxOS);
         App.views.kaplanMeier.updateAttributeColor(updatedKaplanMeierData, selectedAttribute);
     }
 

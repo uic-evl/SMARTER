@@ -8,7 +8,8 @@ let KaplanMeierPatientModel = function() {
         patients: {},
         selectedAttribute: null,
         patientGroups: {},
-        kaplanMeierPatientGroups: {}
+        kaplanMeierPatientGroups: {},
+        maxOS: 0
     };
 
     /* initialize the patient list when first launching the application, and
@@ -40,9 +41,10 @@ let KaplanMeierPatientModel = function() {
         let attributeDomains = App.models.patients.getPatientKnnAttributeDomains();
         let groups = attributeDomains[self.selectedAttribute];
 
-        // reset to empty
+        // reset
         self.patientGroups = {};
         self.kaplanMeierPatientGroups = {};
+        self.maxOS = 0;
 
         for (let i = 0; i < groups.length; i++) {
             let filter = {};
@@ -57,6 +59,9 @@ let KaplanMeierPatientModel = function() {
         }
         // console.log(self.patientGroups);
         // console.log(self.kaplanMeierPatientGroups);
+
+        self.maxOS = Math.ceil(self.maxOS);
+        // console.log(self.maxOS);
     }
 
     /* calculate the data used for kaplan-meier plots */
@@ -70,14 +75,14 @@ let KaplanMeierPatientModel = function() {
         for (let patientInd in currentPatientGroup) {
             CensorsAtOS[currentPatientGroup[patientInd].OS].push(currentPatientGroup[patientInd].Censor);
         }
-        // console.log(CensorsAtOS);
+        console.log(Object.keys(CensorsAtOS).sort((a,b) => parseFloat(a) - parseFloat(b)));
 
         let probAtOS = {}; // {OS: {prob, variance}, OS: ...}
         let previousProb = 1;
         let sumForVar = 0;
         let pateintAtRisk = currentPatientGroup.length;
 
-        for (let keyOS in CensorsAtOS) {
+        for (let keyOS of Object.keys(CensorsAtOS).sort()) {
             probAtOS[keyOS] = {};
 
             // compute the number of patients died at the current OS
@@ -95,9 +100,11 @@ let KaplanMeierPatientModel = function() {
             // assign the prob and number of patients at risk at the current OS as the previous ones for next step
             previousProb = probAtOS[keyOS].prob;
             pateintAtRisk -= CensorsAtOS[keyOS].length;
+
+            self.maxOS = Math.max(self.maxOS, keyOS);
         }
 
-        // return {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
+        // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
         self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
     }
 
@@ -106,11 +113,17 @@ let KaplanMeierPatientModel = function() {
         return self.kaplanMeierPatientGroups;
     }
 
+    /* get the maximum value of OS */
+    function getMaxOS() {
+        return self.maxOS;
+    }
+
 
     return {
         initPatients,
         updatePatients,
         updateSelectedAttribute,
-        getKaplanMeierPatients
+        getKaplanMeierPatients,
+        getMaxOS
     };
 }

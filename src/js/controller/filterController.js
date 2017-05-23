@@ -58,10 +58,10 @@ let FilterController = function() {
         // update views with filtered data
         App.views.nomogram.updateFilterData(Object.values(filteredPatients));
 
-        // get the updated kaplan-meier patients and update the view
-        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
-        // Todo: update the kaplan-meier view!!!
-        App.views.kaplanMeier.update(updatedKaplanMeierData);
+        // // get the updated kaplan-meier patients and update the view
+        // let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
+        // // Todo: update the kaplan-meier view!!!
+        // App.views.kaplanMeier.update(updatedKaplanMeierData);
     }
 
     return {
