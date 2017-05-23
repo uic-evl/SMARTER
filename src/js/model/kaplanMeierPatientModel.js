@@ -58,9 +58,6 @@ let KaplanMeierPatientModel = function() {
 
     /* calculate the data used for kaplan-meier plots */
     function calculateKaplanMeierData(currentPatientGroup, selectedAttributeValue) {
-        // {group: [{OS: , Prob: }, {}. ...]}
-        let patientNum = currentPatientGroup.length;
-
         let CensorsAtOS = {}; // {OS: [censor], OS: [censor, censor, censor], OS: [], ...}
 
         for (let patientInd in currentPatientGroup) {
@@ -72,7 +69,33 @@ let KaplanMeierPatientModel = function() {
         }
         // console.log(CensorsAtOS);
 
-        self.kaplanMeierPatientGroups[selectedAttributeValue] = CensorsAtOS;
+        let probAtOS = {}; // {OS: {prob, variance}, OS: ...}
+        let previousProb = 1;
+        let sumForVar = 0;
+        let pateintAtRisk = currentPatientGroup.length;
+
+        for (let keyOS in CensorsAtOS) {
+            probAtOS[keyOS] = {};
+
+            // compute the number of patients died at the current OS
+            let patientDied = CensorsAtOS[keyOS].length;
+            for (let i = 0; i < CensorsAtOS[keyOS].length; i++) {
+                patientDied -= CensorsAtOS[keyOS][i];
+            }
+
+            // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
+            probAtOS[keyOS].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
+            // compute its variance using the Greenwood's formula
+            sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
+            probAtOS[keyOS].var = probAtOS[keyOS].prob * probAtOS[keyOS].prob * sumForVar;
+
+            // assign the prob and number of patients at risk at the current OS as the previous ones for next step
+            previousProb = probAtOS[keyOS].prob;
+            pateintAtRisk -= CensorsAtOS[keyOS].length;
+        }
+
+        // return {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
+        self.kaplanMeierPatientGroups[selectedAttributeValue] = probAtOS;
     }
 
     /* get the data for kaplan-meier plots */
