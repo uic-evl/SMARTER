@@ -44,6 +44,9 @@ let DataUpdateController = function() {
             App.controllers.addPatientForm.updateDropdownsWithNewDomains(updatedKnnAttributeDomains);
         }
 
+        // update models - initialize the kaplan-meier model
+        App.models.kaplanMeierPatient.initPatients(updatedData, App.patientKnnAttributes[0]);
+
         // update controllers
         App.controllers.patientSelector.updatePateintDropDown();
 

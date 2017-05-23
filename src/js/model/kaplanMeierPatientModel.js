@@ -13,8 +13,11 @@ let KaplanMeierPatientModel = function() {
 
     /* initialize the patient list when first launching the application, and
        only be called once - when load the patient data */
-    function initPatients(patients) {
+    function initPatients(patients, attribute) {
         self.patients = patients;
+        self.selectedAttribute = attribute;
+
+        updateData();
     }
 
     /* update the patient list when applying new filters */
@@ -53,7 +56,7 @@ let KaplanMeierPatientModel = function() {
             calculateKaplanMeierData(self.patientGroups[groups[i]], groups[i]);
         }
         // console.log(self.patientGroups);
-        console.log(self.kaplanMeierPatientGroups);
+        // console.log(self.kaplanMeierPatientGroups);
     }
 
     /* calculate the data used for kaplan-meier plots */

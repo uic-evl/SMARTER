@@ -60,6 +60,7 @@ let FilterController = function() {
 
         // get the updated kaplan-meier patients and update the view
         let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
+        // Todo: update the kaplan-meier view!!!
         App.views.kaplanMeier.update(updatedKaplanMeierData);
     }
 

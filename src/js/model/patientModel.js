@@ -49,9 +49,6 @@ let PatientModel = function() {
                 // calculate the patient attribute domains including age and survival pbty
                 calculatePatientAttributeDomains();
 
-                // initialize the patients in the kaplan-meier model when no filers applied
-                App.models.kaplanMeierPatient.initPatients(self.patients);
-
                 // resolve within await callback after data finished processing
                 resolve( /*self.patients*/ );
             }

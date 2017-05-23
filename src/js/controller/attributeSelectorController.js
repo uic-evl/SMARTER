@@ -58,11 +58,12 @@ let AttributeSelectorController = function() {
         // update the kaplan-meier patient model to recalculate the output
         App.models.kaplanMeierPatient.updateSelectedAttribute(selectedAttribute);
 
-        // get the updated kaplan-meier patients
-        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
-
         // update views
         App.views.nomogram.updateAttributeColor(selectedAttribute);
+
+        // Todo: update the kaplan-meier view
+        // get the updated kaplan-meier patients
+        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
         App.views.kaplanMeier.updateAttributeColor(updatedKaplanMeierData, selectedAttribute);
     }
 
@@ -80,12 +81,12 @@ let AttributeSelectorController = function() {
         // if it is, then find the first enabled attribute and set it to the new current attribute
         if (attributeIntersection != -1) {
 
-          let attributeEnabled = _.difference(App.patientKnnAttributes, Object.keys(filters));
+            let attributeEnabled = _.difference(App.patientKnnAttributes, Object.keys(filters));
 
-          // get the first enable attribute
-          self.currentAttribute = attributeEnabled[0];
-          self.attributeDropDown.node().value = self.currentAttribute;
-          updateSelectedAttribute(self.currentAttribute);
+            // get the first enable attribute
+            self.currentAttribute = attributeEnabled[0];
+            self.attributeDropDown.node().value = self.currentAttribute;
+            updateSelectedAttribute(self.currentAttribute);
         }
     }
 

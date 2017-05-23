@@ -115,8 +115,8 @@ let KiviatDiagramView = function(targetID) {
 
 
     function update(patients) {
-        console.log(patients.subject);
-        console.log(patients.neighbors);
+        // console.log(patients.subject);
+        // console.log(patients.neighbors);
 
         if (patients.subject.score) {
             delete patients.subject.score;

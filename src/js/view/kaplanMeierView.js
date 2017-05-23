@@ -60,7 +60,7 @@ let KaplanMeierView = function(targetID) {
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
-
+      console.log(KMData);
     }
 
 
