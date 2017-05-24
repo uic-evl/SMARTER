@@ -32,7 +32,7 @@ let KaplanMeierView = function(targetID) {
             .attr("x2", 110)
             .attr("y2", 90)
             .style("stroke", "black")
-            .style("stroke-width", "1px");
+            .style("stroke-width", "0.6px");
     }
 
     function drawYAxis() {
@@ -42,14 +42,14 @@ let KaplanMeierView = function(targetID) {
             .attr("x2", 10)
             .attr("y2", 90)
             .style("stroke", "black")
-            .style("stroke-width", "1");
+            .style("stroke-width", "0.6px");
 
     }
 
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
-        console.log(KMData);
+        // console.log(KMData);
         d3.selectAll(".kmPlots").remove();
 
         let x = d3.scaleLinear()
@@ -100,7 +100,7 @@ let KaplanMeierView = function(targetID) {
             .attr("class", "kmPlots")
             .attr("d", lineFunc(lineData))
             .style("stroke", color)
-            .style("stroke-width", 1)
+            .style("stroke-width", "0.8px")
             .style("fill", "none");
     }
 
