@@ -56,11 +56,30 @@ let KaplanMeierView = function(targetID) {
         }
     }
 
+    function drawLegend(attrVal, attrValNum, color) {
+        self.targetSvg.append("rect")
+            .attr("class", "legend")
+            .attr("x", 80)
+            .attr("y", attrValNum * 5)
+            .attr("width", 4)
+            .attr("height", 4)
+            .style("fill", color)
+            .style("opacity", 0.5);
+
+        self.targetSvg.append("text")
+            .attr("class", "legend")
+            .attr("x", 85)
+            .attr("y", 4 + attrValNum * 5)
+            .style("font-size", 4)
+            .text(attrVal);
+    }
+
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
         d3.selectAll(".kmVar").remove();
         d3.selectAll(".kmPlots").remove();
+        d3.selectAll(".legend").remove();
         d3.selectAll(".yAxisLabels").remove();
 
         let x = d3.scaleLinear()
@@ -72,16 +91,19 @@ let KaplanMeierView = function(targetID) {
             .range([90, 10]);
 
         // draw kaplan-meier plots
+        let attrValNum = 0;
         for (let attrKey of Object.keys(KMData)) {
-            if (KMData[attrKey].length > 0) {
+            if (KMData[attrKey].length > 0) {  // have patients in the group
                 drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey));
+                drawLegend(attrKey, attrValNum, App.attributeColors(attrKey));
+                attrValNum++;
             }
         }
 
         // draw y-axis labels
         let interval = Math.round(self.maxOS / 100) * 10;
 
-        for (let i = 0; i < self.maxOS; i+=interval) {
+        for (let i = 0; i < self.maxOS; i += interval) {
             self.targetSvg.append("text")
                 .attr("class", "yAxisLabels")
                 .attr("x", x(i))
