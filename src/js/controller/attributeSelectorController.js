@@ -61,12 +61,11 @@ let AttributeSelectorController = function() {
         // update views
         App.views.nomogram.updateAttributeColor(selectedAttribute);
 
-        // Todo: update the kaplan-meier view
         // get the updated kaplan-meier patients
-        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
         let maxOS = App.models.kaplanMeierPatient.getMaxOS();
         App.views.kaplanMeier.setMaxOS(maxOS);
-        App.views.kaplanMeier.updateAttributeColor(updatedKaplanMeierData, selectedAttribute);
+        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();      
+        App.views.kaplanMeier.update(updatedKaplanMeierData);
     }
 
     /* disable the attributes that are currently applied in the application */

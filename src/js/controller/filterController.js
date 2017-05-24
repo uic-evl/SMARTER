@@ -52,16 +52,15 @@ let FilterController = function() {
      * Update the views based on the current filters
      */
     function updateViewsWithNewFilters(filters) {
-        // get the filtered data
+        // get the filtered data and update the nomogram view
         let filteredPatients = App.models.patients.filterPatients();
-
-        // update views with filtered data
         App.views.nomogram.updateFilterData(Object.values(filteredPatients));
 
-        // // get the updated kaplan-meier patients and update the view
-        // let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
-        // // Todo: update the kaplan-meier view!!!
-        // App.views.kaplanMeier.update(updatedKaplanMeierData);
+        // get the updated kaplan-meier patients and update the view
+        let maxOS = App.models.kaplanMeierPatient.getMaxOS();
+        App.views.kaplanMeier.setMaxOS(maxOS);
+        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
+        App.views.kaplanMeier.update(updatedKaplanMeierData);
     }
 
     return {

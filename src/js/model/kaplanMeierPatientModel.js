@@ -61,7 +61,7 @@ let KaplanMeierPatientModel = function() {
         // console.log(self.kaplanMeierPatientGroups);
 
         self.maxOS = Math.ceil(self.maxOS);
-        console.log(self.maxOS);
+        // console.log(self.maxOS);
     }
 
     /* calculate the data used for kaplan-meier plots */

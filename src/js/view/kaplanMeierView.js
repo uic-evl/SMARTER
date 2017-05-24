@@ -7,7 +7,6 @@ let KaplanMeierView = function(targetID) {
     let self = {
         targetElement: null,
         targetSvg: null,
-        selectedAttribute: null,
         maxOS: null
     };
 
@@ -20,8 +19,7 @@ let KaplanMeierView = function(targetID) {
             .attr("width", self.targetElement.node().clientWidth)
             .attr("height", self.targetElement.node().clientHeight)
             .attr("viewBox", "0 0 120 100")
-            .attr("preserveAspectRatio", "xMidYMin")
-            .style("background-color", "pink");
+            .attr("preserveAspectRatio", "xMidYMin");
 
         drawXAxis();
         drawYAxis();
@@ -44,24 +42,66 @@ let KaplanMeierView = function(targetID) {
             .attr("x2", 10)
             .attr("y2", 90)
             .style("stroke", "black")
-            .style("stroke-width", "1px");
+            .style("stroke-width", "1");
 
     }
 
-    /* update the attribute for coloring the kaplan-meier plot */
-    function updateAttributeColor(KMData, attr) {
-        let colorFun = function(d) {
-            return App.attributeColors(d[attr]);
-        }
-
-        self.selectedAttribute = attr;
-
-        update(KMData);
-    }
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
         console.log(KMData);
+        d3.selectAll(".kmPlots").remove();
+
+        let x = d3.scaleLinear()
+            .domain([0, self.maxOS])
+            .range([10, 110]);
+
+        let y = d3.scaleLinear()
+            .domain([0, 1])
+            .range([90, 10]);
+
+        for (let attrKey of Object.keys(KMData)) {
+            if (KMData[attrKey].length > 0) {
+                drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey));
+            }
+        }
+    }
+
+    /* draw the kaplan-meier plot */
+    function drawKMPlot(data, xScale, yScale, color) {
+        let lineData = [{
+            x: xScale(data[0].OS),
+            y: yScale(1)
+        }, {
+            x: xScale(data[0].OS),
+            y: yScale(data[0].prob)
+        }];
+
+        for (let i = 1; i < data.length; i++) {
+            lineData.push({
+                x: xScale(data[i].OS),
+                y: yScale(data[i - 1].prob)
+            });
+            lineData.push({
+                x: xScale(data[i].OS),
+                y: yScale(data[i].prob)
+            });
+        }
+
+        let lineFunc = d3.line()
+            .x(function(d) {
+                return d.x;
+            })
+            .y(function(d) {
+                return d.y;
+            });
+
+        let plot = self.targetSvg.append("path")
+            .attr("class", "kmPlots")
+            .attr("d", lineFunc(lineData))
+            .style("stroke", color)
+            .style("stroke-width", 1)
+            .style("fill", "none");
     }
 
     /* set the maximum value on X-axis */
@@ -71,7 +111,7 @@ let KaplanMeierView = function(targetID) {
 
 
     return {
-        setMaxOS,
-        updateAttributeColor
+        update,
+        setMaxOS
     };
 }
