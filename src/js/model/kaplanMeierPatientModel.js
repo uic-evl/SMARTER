@@ -61,7 +61,7 @@ let KaplanMeierPatientModel = function() {
         // console.log(self.kaplanMeierPatientGroups);
 
         self.maxOS = Math.ceil(self.maxOS);
-        // console.log(self.maxOS);
+        console.log(self.maxOS);
     }
 
     /* calculate the data used for kaplan-meier plots */
@@ -75,33 +75,38 @@ let KaplanMeierPatientModel = function() {
         for (let patientInd in currentPatientGroup) {
             CensorsAtOS[currentPatientGroup[patientInd].OS].push(currentPatientGroup[patientInd].Censor);
         }
-        console.log(Object.keys(CensorsAtOS).sort((a,b) => parseFloat(a) - parseFloat(b)));
 
-        let probAtOS = {}; // {OS: {prob, variance}, OS: ...}
+        let sortedOSKeys = Object.keys(CensorsAtOS).sort((a, b) => parseFloat(a) - parseFloat(b));
+
+        let probAtOS = []; // [{OS, prob, variance}, {OS, ...}, ...]
         let previousProb = 1;
         let sumForVar = 0;
         let pateintAtRisk = currentPatientGroup.length;
 
-        for (let keyOS of Object.keys(CensorsAtOS).sort()) {
-            probAtOS[keyOS] = {};
+        for (let keyID in sortedOSKeys) {
+            probAtOS[keyID] = {};
+
+            probAtOS[keyID].OS = sortedOSKeys[keyID];
 
             // compute the number of patients died at the current OS
-            let patientDied = CensorsAtOS[keyOS].length;
-            for (let i = 0; i < CensorsAtOS[keyOS].length; i++) {
-                patientDied -= CensorsAtOS[keyOS][i];
+            let patientDied = CensorsAtOS[sortedOSKeys[keyID]].length;
+            for (let i = 0; i < CensorsAtOS[sortedOSKeys[keyID]].length; i++) {
+                patientDied -= CensorsAtOS[sortedOSKeys[keyID]][i];
             }
 
             // compute the maximum likelihood estimate using Kaplan-Meier estimator formula
-            probAtOS[keyOS].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
+            probAtOS[keyID].prob = previousProb * (pateintAtRisk - patientDied) / pateintAtRisk;
             // compute its variance using the Greenwood's formula
             sumForVar += patientDied / (pateintAtRisk * (pateintAtRisk - patientDied));
-            probAtOS[keyOS].var = probAtOS[keyOS].prob * probAtOS[keyOS].prob * sumForVar;
+            probAtOS[keyID].var = probAtOS[keyID].prob * probAtOS[keyID].prob * sumForVar;
 
             // assign the prob and number of patients at risk at the current OS as the previous ones for next step
-            previousProb = probAtOS[keyOS].prob;
-            pateintAtRisk -= CensorsAtOS[keyOS].length;
+            previousProb = probAtOS[keyID].prob;
+            pateintAtRisk -= CensorsAtOS[sortedOSKeys[keyID]].length;
+        }
 
-            self.maxOS = Math.max(self.maxOS, keyOS);
+        if (sortedOSKeys.length > 0) {
+          self.maxOS = Math.max(self.maxOS, +(sortedOSKeys[sortedOSKeys.length-1]));
         }
 
         // {current group: {OS: {prob, variance}, OS: {prob, variance} ...}}
