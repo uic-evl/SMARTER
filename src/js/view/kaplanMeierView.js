@@ -23,6 +23,7 @@ let KaplanMeierView = function(targetID) {
 
         drawXAxis();
         drawYAxis();
+        drawXAxisLabels();
     }
 
     function drawXAxis() {
@@ -43,15 +44,24 @@ let KaplanMeierView = function(targetID) {
             .attr("y2", 90)
             .style("stroke", "black")
             .style("stroke-width", "0.6px");
+    }
 
+    function drawXAxisLabels() {
+        for (let i = 0; i <= 10; i++) {
+            self.targetSvg.append("text")
+                .attr("x", 2)
+                .attr("y", 91 - 8 * i)
+                .style("font-size", 4)
+                .text((0.1 * i).toFixed(1));
+        }
     }
 
 
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
-        // console.log(KMData);
         d3.selectAll(".kmVar").remove();
         d3.selectAll(".kmPlots").remove();
+        d3.selectAll(".yAxisLabels").remove();
 
         let x = d3.scaleLinear()
             .domain([0, self.maxOS])
@@ -61,21 +71,40 @@ let KaplanMeierView = function(targetID) {
             .domain([0, 1])
             .range([90, 10]);
 
+        // draw kaplan-meier plots
         for (let attrKey of Object.keys(KMData)) {
             if (KMData[attrKey].length > 0) {
                 drawKMPlot(KMData[attrKey], x, y, App.attributeColors(attrKey));
             }
         }
+
+        // draw y-axis labels
+        let interval = Math.round(self.maxOS / 100) * 10;
+
+        for (let i = 0; i < self.maxOS; i+=interval) {
+            self.targetSvg.append("text")
+                .attr("class", "yAxisLabels")
+                .attr("x", x(i))
+                .attr("y", 95)
+                .style("font-size", 4)
+                .style("text-anchor", "middle")
+                .text(i);
+        }
     }
 
     /* draw the kaplan-meier plot */
     function drawKMPlot(data, xScale, yScale, color) {
+
+        // 1.96 is the approximation for the 97.5 percentile for a normal distribution
+        //  => 95% of the area lies between -1.96 and 1.96
+        let areaPercent95 = 1.96;
+
         // draw rect for showing variances
         for (let j = 0; j < data.length - 1; j++) {
             let x1 = xScale(data[j].OS);
             let x2 = xScale(data[j + 1].OS);
-            let y1 = yScale(Math.max(0, data[j].prob - 1.96 * Math.sqrt(data[j].var)));
-            let y2 = yScale(Math.min(1, data[j].prob + 1.96 * Math.sqrt(data[j].var)));
+            let y1 = yScale(Math.max(0, data[j].prob - areaPercent95 * Math.sqrt(data[j].var)));
+            let y2 = yScale(Math.min(1, data[j].prob + areaPercent95 * Math.sqrt(data[j].var)));
 
             self.targetSvg.append("rect")
                 .attr("class", "kmVar")
