@@ -50,6 +50,7 @@ let KaplanMeierView = function(targetID) {
     /* update the kaplan-meier plot based on the selected attribute*/
     function update(KMData) {
         // console.log(KMData);
+        d3.selectAll(".kmVar").remove();
         d3.selectAll(".kmPlots").remove();
 
         let x = d3.scaleLinear()
@@ -69,6 +70,25 @@ let KaplanMeierView = function(targetID) {
 
     /* draw the kaplan-meier plot */
     function drawKMPlot(data, xScale, yScale, color) {
+        // draw rect for showing variances
+        for (let j = 0; j < data.length - 1; j++) {
+            let x1 = xScale(data[j].OS);
+            let x2 = xScale(data[j + 1].OS);
+            let y1 = yScale(Math.max(0, data[j].prob - 1.96 * Math.sqrt(data[j].var)));
+            let y2 = yScale(Math.min(1, data[j].prob + 1.96 * Math.sqrt(data[j].var)));
+
+            self.targetSvg.append("rect")
+                .attr("class", "kmVar")
+                .attr("x", x1)
+                .attr("y", y2)
+                .attr("width", x2 - x1)
+                .attr("height", y1 - y2)
+                .style("stroke", "none")
+                .style("fill", color)
+                .style("opacity", 0.5);
+        }
+
+        // draw line
         let lineData = [{
             x: xScale(data[0].OS),
             y: yScale(1)
@@ -96,7 +116,7 @@ let KaplanMeierView = function(targetID) {
                 return d.y;
             });
 
-        let plot = self.targetSvg.append("path")
+        self.targetSvg.append("path")
             .attr("class", "kmPlots")
             .attr("d", lineFunc(lineData))
             .style("stroke", color)
