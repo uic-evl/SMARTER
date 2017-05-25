@@ -11,6 +11,7 @@ var App = App || {};
     App.patientKnnAttributes = ["Gender", "Ethnicity", "Tcategory", "Site",
         "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"
     ];
+
     // hard code default nomogram axes ranges
     App.nomogramAxesRange = {
         "AgeAtTx": [1, 0],
@@ -25,6 +26,11 @@ var App = App || {};
         "Probability of Survival": [0, 1]
     };
 
+    // hard code the order of attributes for drawing the mosaic viewBox
+    App.mosaicAttributeOrder = ["Ethnicity", "Site", "Tcategory", "Gender",
+        "Nodal_Disease", "ecog", "Chemotherapy", "Local_Therapy"
+    ];
+
     // need to find better colors
     App.category10colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
         "#393b79", "#637939", "#7f7f7f", "#bcbd22", "#843c39"
@@ -37,6 +43,7 @@ var App = App || {};
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
+        App.models.mosaicPatient = new MosaicPatientModel();
 
         // create controllers
         App.controllers.settings = new SettingsController();
@@ -64,12 +71,14 @@ var App = App || {};
         App.controllers.nomogramAxis.attachToSelect("#nomogramAxisSelect");
         App.controllers.nomogramAxis.attachToDomainRangeToggle("#nomogramAxisButton");
 
+        App.controllers.mosaicFilter = new MosaicFilterController();
+
         // creat views
         App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
         App.views.nomogram = new NomogramView("#nomogram");
         App.views.nomogram.setMode("knn");
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
-
+        App.views.mosaic = new MosaicView("#mosaic");
 
 
         // load patients
