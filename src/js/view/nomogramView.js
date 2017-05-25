@@ -12,7 +12,7 @@ let NomogramView = function(targetID) {
         axesLabel: {},
         axesRange: {},
         axesDomain: {},
-        filteredAxes: null,
+        filteredAxes: [],
         strokewidth: {
             "knn": null,
             "filter": null
@@ -45,6 +45,7 @@ let NomogramView = function(targetID) {
         self.axesRange = App.nomogramAxesRange;
 
         self.filteredAxes = Object.keys(App.nomogramAxesRange);
+        console.log(self.filteredAxes);
 
         createNomogram();
     }
@@ -174,7 +175,6 @@ let NomogramView = function(targetID) {
 
     /* update the nomogram with filtered axes */
     function updateAxes() {
-        // update self.filteredAxes, then
         self.nomogram
             .setAxes(self.filteredAxes.map(el => {
                 return {
@@ -183,8 +183,7 @@ let NomogramView = function(targetID) {
                     domain: self.axesDomain[el].map(d => d),
                     rangeShrink: self.axesRange[el]
                 };
-            }), "reduce")
-        // .draw();
+            }), "reduce");
     }
 
     /* get the updated attribute domians */
@@ -197,7 +196,20 @@ let NomogramView = function(targetID) {
     }
 
     function updateAxisVisibility(axisStates) {
-        console.log(axisStates);
+        // console.log(axisStates);
+        // update self.filteredAxes
+        self.filteredAxes = [];
+        self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[0]);
+        Object.keys(App.nomogramAxesRange).forEach((el) => {
+            if (axisStates[el]) {
+              self.filteredAxes.push(el);
+            }
+        });
+        self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[App.patientKnnAttributes.length + 1]);
+
+        // then updateAxes
+        updateAxes();
+        updateView();
     }
 
     return {
