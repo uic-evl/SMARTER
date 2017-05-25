@@ -7,6 +7,7 @@ let NomogramView = function(targetID) {
     let self = {
         targetID: null,
         targetElement: null,
+        legendSVG: null,
         nomogram: null,
         axesLabel: {},
         axesRange: {},
@@ -29,6 +30,12 @@ let NomogramView = function(targetID) {
     function init() {
         self.targetID = targetID;
         self.targetElement = d3.select(targetID);
+
+        self.legendSVG = d3.select(self.targetID + "Header").append("svg")
+            .attr("width", self.targetElement.node().clientWidth)
+            .attr("height", self.targetElement.node().clientHeight)
+            .attr("viewBox", "0 0 200 100")
+            .attr("preserveAspectRatio", "xMidYMid");
 
         Object.keys(App.nomogramAxesRange).forEach((el) => {
             self.axesLabel[el] = el;
@@ -137,6 +144,32 @@ let NomogramView = function(targetID) {
             .color(colorFun);
 
         updateView();
+        updateLegend(attr);
+    }
+
+    /* update the legend based on the selected attribute for coloring */
+    function updateLegend(attr) {
+        d3.selectAll(".nomogramLegend").remove();
+
+        let attrVals = App.models.patients.getPatientKnnAttributeDomains()[attr];
+
+        for (let valInd in attrVals) {
+            self.legendSVG.append("line")
+                .attr("class", "nomogramLegend")
+                .attr("x1", 150)
+                .attr("y1", 9 + 5 * valInd)
+                .attr("x2", 155)
+                .attr("y2", 9 + 5 * valInd)
+                .style("stroke", App.attributeColors(attrVals[valInd]))
+                .style("stroke-width", "0.6px");
+
+            self.legendSVG.append("text")
+                .attr("class", "nomogramLegend")
+                .attr("x", 160)
+                .attr("y", 10 + 5 * valInd)
+                .style("font-size", 4)
+                .text(attrVals[valInd]);
+        }
     }
 
     /* update the nomogram with filtered axes */
@@ -164,7 +197,7 @@ let NomogramView = function(targetID) {
     }
 
     function updateAxisVisibility(axisStates) {
-      console.log(axisStates);
+        console.log(axisStates);
     }
 
     return {

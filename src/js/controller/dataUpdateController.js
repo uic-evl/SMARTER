@@ -52,11 +52,9 @@ let DataUpdateController = function() {
 
         // update views
         App.views.nomogram.updateFilterData(Object.values(updatedData));
-        // get the updated kaplan-meier patients and update the view
-        let maxOS = App.models.kaplanMeierPatient.getMaxOS();
-        App.views.kaplanMeier.setMaxOS(maxOS);
-        let updatedKaplanMeierData = App.models.kaplanMeierPatient.getKaplanMeierPatients();
-        App.views.kaplanMeier.update(updatedKaplanMeierData);
+
+        // update attribute selector controller to update the nomogram view and kaplan-meier view
+        App.controllers.attributeSelector.updateAttributeDropDown();
 
         // assign the new values to the priviate variables
         self.data = updatedData;

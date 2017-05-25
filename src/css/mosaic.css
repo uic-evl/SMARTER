@@ -2,3 +2,17 @@
     box-sizing: border-box;
     height: 100%;
 }
+
+#mosaicHeader
+{
+    height: 20%;
+
+    background-color: white;
+}
+
+#mosaicContext
+{
+    height: 80%;
+
+    background-color: lightblue;
+}
