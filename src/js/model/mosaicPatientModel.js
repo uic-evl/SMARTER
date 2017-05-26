@@ -39,6 +39,8 @@ let MosaicPatientModel = function() {
 
     /* group the patients based on the next two attributes */
     function groupPatients() {
+        self.patientGroupInfo = {};
+
         let attributeDomains = App.models.patients.getPatientKnnAttributeDomains();
         let attr0_length = attributeDomains[self.nextTwoAttributes[0]].length;
         let attr1_length = attributeDomains[self.nextTwoAttributes[1]].length;
@@ -89,7 +91,7 @@ let MosaicPatientModel = function() {
     return {
         updateAppliedFilters,
         updateNextTwoAttributes,
-        getPatients,
+        // getPatients,
         getPatientGroupInfo
     };
 }

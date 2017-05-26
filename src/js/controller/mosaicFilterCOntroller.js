@@ -21,7 +21,10 @@ let MosaicFilterController = function() {
         let patientGroupInfo = App.models.mosaicPatient.getPatientGroupInfo();
 
         // update mosiac view
-        App.views.mosaic.update(patientGroupInfo);
+        if (nextTwoAttributes.length > 0) {
+            App.views.mosaic.updateAttributes(nextTwoAttributes);
+            App.views.mosaic.update(patientGroupInfo);
+        }
 
     }
 
