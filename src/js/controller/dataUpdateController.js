@@ -52,7 +52,8 @@ let DataUpdateController = function() {
 
         // update controllers
         App.controllers.patientSelector.updatePateintDropDown();
-        App.controllers.mosaicFilter.updateFilters({"Ethnicity": "white", "Site": "supraglottic"});
+        App.controllers.mosaicFilter.updateFilters({});
+        // App.controllers.mosaicFilter.updateFilters({"Ethnicity": "white", "Site": "supraglottic"});
 
         // update views
         App.views.nomogram.updateFilterData(Object.values(updatedData));

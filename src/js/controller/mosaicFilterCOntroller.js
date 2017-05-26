@@ -16,11 +16,12 @@ let MosaicFilterController = function() {
         console.log(nextTwoAttributes);
 
         // get updated patients from the mosaicPatient model
-        App.models.mosaicPatient.setAppliedFilters(filters);
-        App.models.mosaicPatient.setNextTwoAttributes(nextTwoAttributes);
-        let currentPatients = App.models.mosaicPatient.updatePatients();
+        App.models.mosaicPatient.updateAppliedFilters(filters);
+        App.models.mosaicPatient.updateNextTwoAttributes(nextTwoAttributes);
+        let patientGroupInfo = App.models.mosaicPatient.getPatientGroupInfo();
 
         // update mosiac view
+        App.views.mosaic.update(patientGroupInfo);
 
     }
 
