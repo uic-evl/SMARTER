@@ -12,7 +12,7 @@ let MosaicFilterController = function() {
     function updateFilters(filters) {
 
         let nextTwoAttributes = _.slice(_.difference(App.mosaicAttributeOrder, Object.keys(filters)), 0, 2);
-        console.log(Object.keys(filters));
+        console.log(filters);
         console.log(nextTwoAttributes);
 
         // get updated patients from the mosaicPatient model

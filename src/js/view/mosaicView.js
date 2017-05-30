@@ -11,7 +11,8 @@ let MosaicView = function(targetID) {
         tileColor: [],
         tileTip: null,
         filters: {},
-        attributes: []
+        attributes: [],
+        threshold: 0.5
     };
 
     init();
@@ -22,7 +23,7 @@ let MosaicView = function(targetID) {
         self.targetSvg = self.targetElement.append("svg")
             .attr("width", self.targetElement.node().clientWidth)
             .attr("height", self.targetElement.node().clientHeight)
-            .attr("viewBox", "0 0 120 130")
+            .attr("viewBox", "0 0 150 130")
             .attr("preserveAspectRatio", "xMidYMin");
 
         self.menuBarElement = d3.select(targetID + "Header");
@@ -32,6 +33,7 @@ let MosaicView = function(targetID) {
         createTileTip();
 
         menuBar();
+        probThresholdBar();
     }
 
     function createTileTip() {
@@ -42,6 +44,31 @@ let MosaicView = function(targetID) {
             });
     }
 
+    /* slider for changing the probability threshold */
+    function probThresholdBar() {
+        self.targetSvg.append("rect")
+            .attr("x", 22)
+            .attr("y", 115)
+            .attr("width", 125)
+            .attr("height", 5)
+            .style("fill", "lightgray");
+
+        self.targetSvg.append("text")
+            .attr("x", 18)
+            .attr("y", 119)
+            .style("font-size", 5)
+            .style("text-anchor", "end")
+            .text("5 Year Survival: ");
+
+        self.targetSvg.append("text")
+            .attr("x", 150)
+            .attr("y", 119)
+            .style("font-size", 5)
+            .style("text-anchor", "start")
+            .text(self.threshold);
+
+    }
+
     function updateAttributes(attrs) {
         self.attributes = attrs;
 
@@ -50,7 +77,7 @@ let MosaicView = function(targetID) {
 
     /* update the view based on the current two attributes */
     function update(mosaicData) {
-        console.log(mosaicData);
+        // console.log(mosaicData);
         d3.selectAll(".mosaicTile").remove();
 
         self.targetSvg.call(self.tileTip);
@@ -71,56 +98,58 @@ let MosaicView = function(targetID) {
         for (let attr0Key of Object.keys(mosaicData).sort()) {
             if (attr0Key !== "num") {
                 // console.log(mosaicData[attr0Key]);
-                let tileWidth = (100 - tilePadding * (attr0_length - 1)) * mosaicData[attr0Key].num / mosaicData.num;
+                let tileWidth = (130 - tilePadding * (attr0_length - 1)) * mosaicData[attr0Key].num / mosaicData.num;
                 tileWidth = (tileWidth > 4) ? tileWidth : tileWidth * 4; // set min width for tiles
                 // tileWidth = (tileWidth === 0) ? 4 : tileWidth;
 
                 let preTileHeight = 0;
 
-                for (let attr1Key of Object.keys(mosaicData[attr0Key]).sort()) {
-                    if (attr1Key !== "num") {
-                        // console.log(mosaicData[attr0Key][attr1Key].num);
-                        let tileHeight = (100 - tilePadding * (attr1_length - 1)) * mosaicData[attr0Key][attr1Key].num / mosaicData[attr0Key].num;
-                        tileHeight = (tileHeight > 1) ? tileHeight : tileHeight * 3; // set min height for tiles
-                        tileHeight = (tileHeight === 0) ? 0.8 : tileHeight;
+                if (tileWidth !== 0) {
+                    for (let attr1Key of Object.keys(mosaicData[attr0Key]).sort()) {
+                        if (attr1Key !== "num") {
+                            // console.log(mosaicData[attr0Key][attr1Key].num);
+                            let tileHeight = (90 - tilePadding * (attr1_length - 1)) * mosaicData[attr0Key][attr1Key].num / mosaicData[attr0Key].num;
+                            tileHeight = (tileHeight > 1) ? tileHeight : tileHeight * 3; // set min height for tiles
+                            tileHeight = (tileHeight === 0) ? 0.8 : tileHeight;
 
-                        // draw tiles
-                        self.targetSvg.append("rect")
-                            .attr("class", "mosaicTile")
-                            .datum(mosaicData[attr0Key][attr1Key])
-                            .attr("x", 20 + preTileWidth)
-                            .attr("y", 15 + preTileHeight)
-                            .attr("width", tileWidth)
-                            .attr("height", tileHeight)
-                            .style("fill", function(d) {
-                                if (d.probMean >= 0.5) {
-                                    return self.tileColor[1];
-                                } else if (d.probMean < 0.5 && d.probMean > 0) {
-                                    return self.tileColor[0];
-                                } else {
-                                    return self.tileColor[2];
-                                }
-                            })
-                            .style("opacity", 0.75)
-                            .on("click", function() {
-                                onClickFunction(attr0Key, attr1Key);
-                            })
-                            .on("mouseover", self.tileTip.show)
-                            .on("mouseout", self.tileTip.hide);
+                            // draw tiles
+                            self.targetSvg.append("rect")
+                                .attr("class", "mosaicTile")
+                                .datum(mosaicData[attr0Key][attr1Key])
+                                .attr("x", 20 + preTileWidth)
+                                .attr("y", 15 + preTileHeight)
+                                .attr("width", tileWidth)
+                                .attr("height", tileHeight)
+                                .style("fill", function(d) {
+                                    if (d.probMean >= 0.5) {
+                                        return self.tileColor[1];
+                                    } else if (d.probMean < 0.5 && d.probMean > 0) {
+                                        return self.tileColor[0];
+                                    } else {
+                                        return self.tileColor[2];
+                                    }
+                                })
+                                .style("opacity", 0.75)
+                                .on("click", function() {
+                                    onClickFunction(attr0Key, attr1Key);
+                                })
+                                .on("mouseover", self.tileTip.show)
+                                .on("mouseout", self.tileTip.hide);
 
-                        if (preTileWidth === 0) { // only draw y labels once
-                            drawYLabels(attr1Key, 16 + preTileHeight + tileHeight / 2);
+                            if (preTileWidth === 0) { // only draw y labels once
+                                drawYLabels(attr1Key, 16 + preTileHeight + tileHeight / 2);
+                            }
+
+                            preTileHeight += tileHeight + tilePadding;
                         }
-
-                        preTileHeight += tileHeight + tilePadding;
                     }
-                }
 
-                if (tileWidth > 0) {
-                    drawXLabels(attr0Key, 20 + preTileWidth + tileWidth / 2);
-                }
+                    if (tileWidth > 0) {
+                        drawXLabels(attr0Key, 20 + preTileWidth + tileWidth / 2);
+                    }
 
-                preTileWidth += tileWidth + tilePadding;
+                    preTileWidth += tileWidth + tilePadding;
+                }
             }
         }
 
@@ -190,7 +219,7 @@ let MosaicView = function(targetID) {
         self.targetSvg.append("text")
             .attr("class", "mosaicTile")
             .attr("transform", "translate(" + xPos + ", 14) rotate(-22)")
-            .style("font-size", 4.5)
+            .style("font-size", 4.8)
             .text(text);
     }
 
