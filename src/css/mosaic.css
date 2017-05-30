@@ -3,16 +3,25 @@
     height: 100%;
 }
 
-#mosaicHeader
-{
+#mosaicHeader {
     height: 20%;
-
     background-color: white;
 }
 
-#mosaic
-{
+#mosaic {
     height: 80%;
-
     background-color: white;
+}
+
+.menuBar {
+    display: inline-block;
+    margin: 2px;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #a6a6a6;
+    color: black;
+    font-size: 1.2vmin;
+    cursor: pointer;
+    float: left;
 }

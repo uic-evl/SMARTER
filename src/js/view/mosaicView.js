@@ -7,6 +7,7 @@ let MosaicView = function(targetID) {
     let self = {
         targetElement: null,
         targetSvg: null,
+        menuBarElement: null,
         tileColor: [],
         tileTip: null,
         filters: {},
@@ -24,9 +25,13 @@ let MosaicView = function(targetID) {
             .attr("viewBox", "0 0 120 130")
             .attr("preserveAspectRatio", "xMidYMin");
 
+        self.menuBarElement = d3.select(targetID + "Header");
+
         self.tileColor = ["#d18161", "#70a4c2", "#000000"];
 
         createTileTip();
+
+        menuBar();
     }
 
     function createTileTip() {
@@ -127,6 +132,57 @@ let MosaicView = function(targetID) {
         self.filters[self.attributes[1]] = attr1Val;
 
         App.controllers.mosaicFilter.updateFilters(self.filters);
+
+        updateMenuBar([attr0Val, attr1Val]);
+    }
+
+    /* create the menu bar for resting the filters */
+    function menuBar() {
+        self.menuBarElement.append("h6")
+            .attr("class", "menuBar")
+            .text("Showing: Total Data ")
+            .on("click", function() {
+                // remove the options for filtering
+                for (let i = 1; i <= Object.keys(self.filters).length / 2; i++) {
+                    d3.select("#menuBar" + i).remove();
+                }
+                // reset to the state where no filter applied
+                self.filters = {};
+                App.controllers.mosaicFilter.updateFilters(self.filters);
+            });
+    }
+
+    /* update the menu bar based on the filters applied currently */
+    function updateMenuBar(attrVals) {
+        let filtersLength = Object.keys(self.filters).length / 2;
+
+        self.menuBarElement.append("h6")
+            .attr("class", "menuBar")
+            .attr("id", "menuBar" + filtersLength)
+            .text(attrVals[0] + ", " + attrVals[1])
+            .on("click", function() {
+                // remove the options for filtering
+                for (let i = filtersLength + 1; i <= Object.keys(self.filters).length / 2; i++) {
+                    d3.select("#menuBar" + i).remove();
+                }
+
+                // get the attributes based on the values
+                let key0 = _.findKey(self.filters, _.partial(_.isEqual, attrVals[0]));
+                let key1 = _.findKey(self.filters, _.partial(_.isEqual, attrVals[1]));
+
+                let key0Ind = App.mosaicAttributeOrder.indexOf(key0);
+                let key1Ind = App.mosaicAttributeOrder.indexOf(key1);
+
+                // remove the attributes after attrVals
+                let newFilters = {};
+                for (let i = 0; i <= key1Ind; i++) {
+                    newFilters[App.mosaicAttributeOrder[i]] = self.filters[App.mosaicAttributeOrder[i]];
+                }
+
+                App.controllers.mosaicFilter.updateFilters(newFilters);
+
+                self.filters = newFilters;
+            });
     }
 
     /* draw labels for tiles */
