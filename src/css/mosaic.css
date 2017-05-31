@@ -25,3 +25,7 @@
     cursor: pointer;
     float: left;
 }
+
+.thresholdBar {
+    border-radius: 5px;
+}

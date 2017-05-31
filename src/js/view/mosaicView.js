@@ -46,33 +46,79 @@ let MosaicView = function(targetID) {
 
     /* slider for changing the probability threshold */
     function probThresholdBar() {
+        let xScale = d3.scaleLinear()
+            .domain([0, 1])
+            .range([22, 147]);
+
+        let drag = d3.drag()
+            .on("drag", function() {
+                let newX = parseFloat(d3.select(this).attr("cx")) + d3.event.dx;
+                newX = (newX > 147) ? 147 : newX;
+                newX = (newX < 22) ? 22 : newX;
+                d3.select(this).attr("cx", newX);
+                updateThreshold(newX);
+            });
+
         self.targetSvg.append("rect")
+            .attr("class", "thresholdBar")
             .attr("x", 22)
-            .attr("y", 115)
+            .attr("y", 116)
             .attr("width", 125)
-            .attr("height", 5)
+            .attr("height", 4)
             .style("fill", "lightgray");
+
+        self.targetSvg.append("circle")
+            .attr("cx", xScale(self.threshold))
+            .attr("cy", 118)
+            .attr("r", 3.5)
+            .style("fill", "darkgray")
+            .call(drag);
 
         self.targetSvg.append("text")
             .attr("x", 18)
-            .attr("y", 119)
+            .attr("y", 120)
             .style("font-size", 5)
             .style("text-anchor", "end")
             .text("5 Year Survival: ");
 
         self.targetSvg.append("text")
-            .attr("x", 150)
-            .attr("y", 119)
+            .attr("id", "thresholdText")
+            .attr("x", 151)
+            .attr("y", 120)
             .style("font-size", 5)
             .style("text-anchor", "start")
             .text(self.threshold);
-
     }
 
+    /* update the probability threshold */
+    function updateThreshold(xPos) {
+        self.threshold = ((xPos - 22) / 125).toFixed(2);
+        // console.log(self.threshold);
+        d3.select("#thresholdText").text(self.threshold);
+        updateColor();
+    }
+
+    /* update the two attributes on x/y-axis */
     function updateAttributes(attrs) {
         self.attributes = attrs;
 
         // update();
+    }
+
+    /* update the mosaic tile color based on the threshold */
+    function updateColor() {
+        d3.selectAll(".mosaicTile")
+            .style("fill", function(d) {
+                if (d != undefined) {
+                    if (d.probMean >= self.threshold) {
+                        return self.tileColor[1];
+                    } else if (d.probMean < self.threshold && d.probMean > 0) {
+                        return self.tileColor[0];
+                    } else {
+                        return self.tileColor[2];
+                    }
+                }
+            });
     }
 
     /* update the view based on the current two attributes */
@@ -115,15 +161,23 @@ let MosaicView = function(targetID) {
                             // draw tiles
                             self.targetSvg.append("rect")
                                 .attr("class", "mosaicTile")
-                                .datum(mosaicData[attr0Key][attr1Key])
+                                .datum(function() {
+                                    let dataToBind = mosaicData[attr0Key][attr1Key]
+
+                                    if (dataToBind == undefined) {
+                                        console.log(attr0Key, attr1Key);
+                                    }
+
+                                    return dataToBind;
+                                })
                                 .attr("x", 20 + preTileWidth)
                                 .attr("y", 15 + preTileHeight)
                                 .attr("width", tileWidth)
                                 .attr("height", tileHeight)
                                 .style("fill", function(d) {
-                                    if (d.probMean >= 0.5) {
+                                    if (d.probMean >= self.threshold) {
                                         return self.tileColor[1];
-                                    } else if (d.probMean < 0.5 && d.probMean > 0) {
+                                    } else if (d.probMean < self.threshold && d.probMean > 0) {
                                         return self.tileColor[0];
                                     } else {
                                         return self.tileColor[2];
@@ -218,8 +272,8 @@ let MosaicView = function(targetID) {
     function drawXLabels(text, xPos) {
         self.targetSvg.append("text")
             .attr("class", "mosaicTile")
-            .attr("transform", "translate(" + xPos + ", 14) rotate(-22)")
-            .style("font-size", 4.8)
+            .attr("transform", "translate(" + xPos + ", 14) rotate(-20)")
+            .style("font-size", 5)
             .text(text);
     }
 
