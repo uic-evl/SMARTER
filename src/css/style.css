@@ -1,4 +1,6 @@
-body, html, .container-fluid {
+body,
+html,
+.container-fluid {
 	overflow: hidden;
 	height: 100%;
 }
@@ -75,7 +77,7 @@ div {
 
 #nomogramControls {
 	padding: 10px;
-	background-color: white;
+	background-color: #fff;
 }
 
 .checkbox-li {
@@ -109,11 +111,11 @@ div {
 
 #axisHeightSlider {
 	height: 80%;
-  width: 80%;
+	width: 80%;
 	background: lightgray;
 }
 
 .glyphicon-question-sign {
 	cursor: help;
-	color: rgb(133, 23, 23);
+	color: #851717;
 }
