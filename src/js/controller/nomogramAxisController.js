@@ -10,7 +10,10 @@ let NomogramAxisController = function(listID) {
         editMode: "domain",
         selectedAxis: null,
 
-        sliderSvg: null
+        sliderSvg: null,
+        sliderBrush: null,
+        brushFunc: null,
+        rangeScale: null
     };
 
     init();
@@ -21,8 +24,6 @@ let NomogramAxisController = function(listID) {
         for (let attribute of attributes) {
             self.checkboxStates[attribute] = true;
         }
-
-        axisHeightSlider();
     }
 
     function attachToList(listID) {
@@ -69,6 +70,10 @@ let NomogramAxisController = function(listID) {
             .text(d => d);
 
         this.selectedAxis = self.select.node().value;
+
+        self.selectedAxis = this.selectedAxis;
+
+        axisHeightSlider();
     }
 
     function attachToDomainRangeToggle(domainID, rangeID) {
@@ -90,6 +95,7 @@ let NomogramAxisController = function(listID) {
         self.selectedAxis = d3.select(this).node().value;
 
         console.log(self.selectedAxis);
+        updateBrush();
     }
 
     function toggleButtonOnClick() {
@@ -109,11 +115,54 @@ let NomogramAxisController = function(listID) {
 
     function axisHeightSlider() {
         let sliderElement = d3.select("#axisHeightSlider");
+        let sliderWidth = sliderElement.node().clientWidth;
+        let sliderHeight = sliderElement.node().clientHeight;
 
-        self.slider = sliderElement.append("svg")
-            .attr("width", sliderElement.node().clientWidth)
-            .attr("height", sliderElement.node().clientHeight)
-            .style("background-color", "lightgray");
+        self.sliderSvg = sliderElement.append("svg")
+            .attr("width", sliderWidth)
+            .attr("height", sliderHeight)
+        // .style("background-color", "lightblue");
+
+        let sliderBar = self.sliderSvg.append("rect")
+            .attr("x", sliderWidth / 4)
+            .attr("y", 0)
+            .attr("width", sliderWidth / 2)
+            .attr("height", sliderHeight)
+            .style("fill", "#cccccc")
+            .style("stroke", "none");
+
+        self.brushFunc = d3.brushY()
+            .extent([
+                [0, 3],
+                [sliderWidth, sliderHeight - 3]
+            ])
+            .on("end", brushended);
+
+        self.sliderBrush = self.sliderSvg.append("g")
+            .attr("class", "brush")
+            .call(self.brushFunc);
+
+        self.rangeScale = d3.scaleLinear()
+            .domain([0, 1])
+            .range([sliderHeight - 3, 3]);
+
+        // console.log(self.selectedAxis);
+        // console.log(App.nomogramAxesRange[self.selectedAxis]);
+        updateBrush();
+    }
+
+    function updateBrush() {
+        let range = [App.nomogramAxesRange[self.selectedAxis][0],
+            App.nomogramAxesRange[self.selectedAxis][1]
+        ];
+
+        self.sliderBrush
+            .call(self.brushFunc.move, [
+                self.rangeScale(d3.max(range)), self.rangeScale(d3.min(range))
+            ]);
+    }
+
+    function brushended() {
 
     }
 
