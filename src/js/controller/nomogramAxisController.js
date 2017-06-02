@@ -163,7 +163,14 @@ let NomogramAxisController = function(listID) {
     }
 
     function brushended() {
+        if (!d3.event.sourceEvent) return;
 
+        if (!d3.event.selection) {
+            console.log("reset");
+            updateBrush();
+        }
+
+        let newRange = d3.event.selection.map(self.rangeScale.invert);
     }
 
     return {
