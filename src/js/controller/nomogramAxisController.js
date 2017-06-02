@@ -8,7 +8,9 @@ let NomogramAxisController = function(listID) {
 
         checkboxStates: {},
         editMode: "domain",
-        selectedAxis: null
+        selectedAxis: null,
+
+        sliderSvg: null
     };
 
     init();
@@ -19,6 +21,8 @@ let NomogramAxisController = function(listID) {
         for (let attribute of attributes) {
             self.checkboxStates[attribute] = true;
         }
+
+        axisHeightSlider();
     }
 
     function attachToList(listID) {
@@ -84,6 +88,7 @@ let NomogramAxisController = function(listID) {
 
     function selectorOnChange() {
         self.selectedAxis = d3.select(this).node().value;
+
         console.log(self.selectedAxis);
     }
 
@@ -94,10 +99,22 @@ let NomogramAxisController = function(listID) {
             .classed("active", function() {
                 return d3.select(this).attr("value") === self.editMode;
             });
+
+        console.log(self.editMode);
     }
 
     function updateNomogramAxisVisibility() {
         App.views.nomogram.updateAxisVisibility(self.checkboxStates);
+    }
+
+    function axisHeightSlider() {
+        let sliderElement = d3.select("#axisHeightSlider");
+
+        self.slider = sliderElement.append("svg")
+            .attr("width", sliderElement.node().clientWidth)
+            .attr("height", sliderElement.node().clientHeight)
+            .style("background-color", "lightgray");
+
     }
 
     return {
