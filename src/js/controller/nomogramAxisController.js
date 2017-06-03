@@ -13,8 +13,16 @@ let NomogramAxisController = function(listID) {
         sliderSvg: null,
         sliderBrush: null,
         brushFunc: null,
+
         rangeScale: null,
-        attributeRange: {}
+        attributeRange: {},
+
+        attributeDomain: {},
+
+        axis: {
+            "domain": {},
+            "range": {}
+        }
     };
 
     init();
@@ -74,14 +82,13 @@ let NomogramAxisController = function(listID) {
 
         self.selectedAxis = this.selectedAxis;
 
-        axisHeightSlider();
+        // axisHeightSlider();
     }
 
     function attachToDomainRangeToggle(domainID, rangeID) {
         self.toggleButtons = d3.selectAll("#nomogramAxisButton")
             .on("click", toggleButtonOnClick);
     }
-
 
 
     function checkboxOnChange() {
@@ -112,6 +119,11 @@ let NomogramAxisController = function(listID) {
 
     function updateNomogramAxisVisibility() {
         App.views.nomogram.updateAxisVisibility(self.checkboxStates);
+    }
+
+
+    function updateAxesWithNewDomains(newDomains) {
+        self.attributeDomain = newDomains;
     }
 
     function axisHeightSlider() {
@@ -151,10 +163,13 @@ let NomogramAxisController = function(listID) {
             self.attributeRange[key] = value;
         });
 
+        console.log(self.attributeDomain);
+
         updateBrush();
     }
 
     function updateBrush() {
+        let domain = self.attributeDomain[self.selectedAxis];
         let range = self.attributeRange[self.selectedAxis];
 
         self.sliderBrush
@@ -185,6 +200,8 @@ let NomogramAxisController = function(listID) {
     return {
         attachToList,
         attachToSelect,
-        attachToDomainRangeToggle
+        attachToDomainRangeToggle,
+        axisHeightSlider,
+        updateAxesWithNewDomains
     };
 };

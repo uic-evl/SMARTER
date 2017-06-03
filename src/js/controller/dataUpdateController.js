@@ -42,18 +42,16 @@ let DataUpdateController = function() {
             // update controllers with new domains
             App.controllers.exploreForm.updateDropdownsWithNewDomains(updatedKnnAttributeDomains);
             App.controllers.addPatientForm.updateDropdownsWithNewDomains(updatedKnnAttributeDomains);
+            App.controllers.nomogramAxis.updateAxesWithNewDomains(updatedAttributeDomains);
         }
 
-        // update models
         // initialize the kaplan-meier model
         App.models.kaplanMeierPatient.initPatients(updatedData, App.patientKnnAttributes[0]);
-
-        // App.models.mosaicPatient.updatePatients();
 
         // update controllers
         App.controllers.patientSelector.updatePateintDropDown();
         App.controllers.mosaicFilter.updateFilters({});
-        // App.controllers.mosaicFilter.updateFilters({"Ethnicity": "white", "Site": "supraglottic"});
+        App.controllers.nomogramAxis.axisHeightSlider();
 
         // update views
         App.views.nomogram.updateFilterData(Object.values(updatedData));
