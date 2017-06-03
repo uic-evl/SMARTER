@@ -202,7 +202,7 @@ let NomogramView = function(targetID) {
         self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[0]);
         Object.keys(App.nomogramAxesRange).forEach((el) => {
             if (axisStates[el]) {
-              self.filteredAxes.push(el);
+                self.filteredAxes.push(el);
             }
         });
         self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[App.patientKnnAttributes.length + 1]);
@@ -212,12 +212,22 @@ let NomogramView = function(targetID) {
         updateView();
     }
 
+    /* update axes range */
+    function updateAxesRange(newRange) {
+        self.axesRange = newRange;
+
+        updateAxes();
+        updateView();
+    }
+
+
     return {
         setMode,
         updateFilterData,
         updateKnnData,
         updateAttributeColor,
         updateAttributeDomains,
-        updateAxisVisibility
+        updateAxisVisibility,
+        updateAxesRange
     };
 }

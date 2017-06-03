@@ -13,7 +13,8 @@ let NomogramAxisController = function(listID) {
         sliderSvg: null,
         sliderBrush: null,
         brushFunc: null,
-        rangeScale: null
+        rangeScale: null,
+        attributeRange: {}
     };
 
     init();
@@ -146,15 +147,15 @@ let NomogramAxisController = function(listID) {
             .domain([0, 1])
             .range([sliderHeight - 3, 3]);
 
-        // console.log(self.selectedAxis);
-        // console.log(App.nomogramAxesRange[self.selectedAxis]);
+        _.forEach(App.nomogramAxesRange, function(value, key) {
+            self.attributeRange[key] = value;
+        });
+
         updateBrush();
     }
 
     function updateBrush() {
-        let range = [App.nomogramAxesRange[self.selectedAxis][0],
-            App.nomogramAxesRange[self.selectedAxis][1]
-        ];
+        let range = self.attributeRange[self.selectedAxis];
 
         self.sliderBrush
             .call(self.brushFunc.move, [
@@ -165,12 +166,20 @@ let NomogramAxisController = function(listID) {
     function brushended() {
         if (!d3.event.sourceEvent) return;
 
+        // singel click outside of the brush on the slider
         if (!d3.event.selection) {
-            console.log("reset");
+            // reset to initial state
+            self.attributeRange[self.selectedAxis] = App.nomogramAxesRange[self.selectedAxis];
+
             updateBrush();
+
+            return;
         }
 
-        let newRange = d3.event.selection.map(self.rangeScale.invert);
+        self.attributeRange[self.selectedAxis] = d3.event.selection.map(self.rangeScale.invert);
+
+        // update the nomogram
+        App.views.nomogram.updateAxesRange(self.attributeRange);
     }
 
     return {
