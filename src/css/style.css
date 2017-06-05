@@ -117,7 +117,8 @@ div {
   width: 80%;
 }
 
-.glyphicon-question-sign {
+#allContent .glyphicon-question-sign {
   cursor: help;
   color: #851717;
+  font-size: 0.75em;
 }

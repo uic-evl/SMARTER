@@ -7,7 +7,7 @@ let NomogramAxisController = function(listID) {
         toggleButtons: null,
 
         checkboxStates: {},
-        editMode: "domain",
+        editMode: "range",
         selectedAxis: null,
 
         sliderSvg: null,
@@ -17,12 +17,15 @@ let NomogramAxisController = function(listID) {
         rangeScale: null,
         attributeRange: {},
 
+        domainScale: {},
         attributeDomain: {},
 
         axis: {
             "domain": {},
             "range": {}
-        }
+        },
+
+        resetElement: null
     };
 
     init();
@@ -33,6 +36,9 @@ let NomogramAxisController = function(listID) {
         for (let attribute of attributes) {
             self.checkboxStates[attribute] = true;
         }
+
+        self.resetElement = d3.select("#nomogramResetButton");
+        self.resetElement.on("click", resetAxes);
     }
 
     function attachToList(listID) {
@@ -102,7 +108,6 @@ let NomogramAxisController = function(listID) {
     function selectorOnChange() {
         self.selectedAxis = d3.select(this).node().value;
 
-        console.log(self.selectedAxis);
         updateBrush();
     }
 
@@ -114,7 +119,22 @@ let NomogramAxisController = function(listID) {
                 return d3.select(this).attr("value") === self.editMode;
             });
 
-        console.log(self.editMode);
+        if (self.editMode === "domain") {
+            self.select.selectAll("option")
+                .attr("disabled", function(d) {
+                    if (_.find(App.patientKnnAttributes, el => el === d)) {
+                        return true;
+                    }
+
+                    return null;
+                })
+        } else if (self.editMode === "range") {
+            self.select.selectAll("option")
+                .attr("enabled", function(d) {
+                  return true;
+                });
+        }
+        updateBrush();
     }
 
     function updateNomogramAxisVisibility() {
@@ -163,7 +183,25 @@ let NomogramAxisController = function(listID) {
             self.attributeRange[key] = value;
         });
 
+        // set the domain scale for each axis
+        _.forEach(self.attributeDomain, function(value, key) {
+            if (key == "AgeAtTx") {
+                self.domainScale[key] = d3.scaleLinear()
+                    .domain(self.attributeDomain[key])
+                    .range([3, sliderHeight - 3]);
+            } else if (key == "Probability of Survival") {
+                self.domainScale[key] = d3.scaleLinear()
+                    .domain([0, 1])
+                    .range([sliderHeight - 3, 3]);
+            } else {
+                self.domainScale[key] = d3.scaleOrdinal()
+                    .domain(self.attributeDomain[key])
+                    .range([3, sliderHeight - 3]);
+            }
+        });
+
         console.log(self.attributeDomain);
+        console.log(self.domainScale);
 
         updateBrush();
     }
@@ -172,10 +210,18 @@ let NomogramAxisController = function(listID) {
         let domain = self.attributeDomain[self.selectedAxis];
         let range = self.attributeRange[self.selectedAxis];
 
-        self.sliderBrush
-            .call(self.brushFunc.move, [
-                self.rangeScale(d3.max(range)), self.rangeScale(d3.min(range))
-            ]);
+        let domainScaleExtent = d3.extent(self.attributeDomain[self.selectedAxis], d => self.domainScale[self.selectedAxis](d));
+        console.log(domainScaleExtent);
+
+        if (self.editMode === "range") {
+            self.sliderBrush
+                .call(self.brushFunc.move, [
+                    self.rangeScale(d3.max(range)), self.rangeScale(d3.min(range))
+                ]);
+        } else if (self.editMode === "domain") {
+            self.sliderBrush
+                .call(self.brushFunc.move, domainScaleExtent);
+        }
     }
 
     function brushended() {
@@ -184,18 +230,34 @@ let NomogramAxisController = function(listID) {
         // singel click outside of the brush on the slider
         if (!d3.event.selection) {
             // reset to initial state
-            self.attributeRange[self.selectedAxis] = App.nomogramAxesRange[self.selectedAxis];
+            if (self.editMode === "range") {
+                self.attributeRange[self.selectedAxis] = App.nomogramAxesRange[self.selectedAxis];
 
-            updateBrush();
+                updateBrush();
+            }
 
             return;
         }
 
-        self.attributeRange[self.selectedAxis] = d3.event.selection.map(self.rangeScale.invert);
+        if (self.editMode === "range") {
+            // update the axis range
+            self.attributeRange[self.selectedAxis] = d3.event.selection.map(self.rangeScale.invert);
 
-        // update the nomogram
-        App.views.nomogram.updateAxesRange(self.attributeRange);
+            // update the nomogram
+            App.views.nomogram.updateAxesRange(self.attributeRange);
+        } else if (self.editMode === "domain") {
+            // update the axis domain
+            // self.attributeDomain[self.selectedAxis] =
+            console.log(d3.event.selection.map(self.domainScale[self.selectedAxis].invert));
+        }
+
     }
+
+    /* reset the axes settings to defaul */
+    function resetAxes() {
+        console.log("reset");
+    }
+
 
     return {
         attachToList,
