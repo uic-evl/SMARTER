@@ -98,7 +98,7 @@ let KiviatDiagramView = function(targetID) {
             self.legendSvg.append("text")
                 .attr("x", 30)
                 .attr("y", 16 + 37 * i)
-                .style("font-size", 8)
+                .style("font-size", "8px")
                 .style("font-weight", "bold")
                 .text(survivalRateText[i]);
         }
@@ -108,7 +108,7 @@ let KiviatDiagramView = function(targetID) {
             self.legendSvg.append("text")
                 .attr("x", 15)
                 .attr("y", 105 + attributeInd * 12)
-                .style("font-size", 8)
+                .style("font-size", "8px")
                 .text(attributeInd + ": " + App.patientKnnAttributes[attributeInd]);
         }
     }
@@ -196,7 +196,7 @@ let KiviatDiagramView = function(targetID) {
             axesGroup.append("text")
                 .attr("x", axisEndpoint.x)
                 .attr("y", axisEndpoint.y + 4)
-                .style("font-size", 10)
+                .style("font-size", "10px")
                 .style("text-anchor", "middle")
                 .text(j);
 
@@ -219,7 +219,7 @@ let KiviatDiagramView = function(targetID) {
             .attr("class", "similarityScore")
             .attr("x", 0)
             .attr("y", 10)
-            .style("font-size", 10);
+            .style("font-size", "10px");
     }
 
     function creatToolTips() {

@@ -168,7 +168,7 @@ let NomogramView = function(targetID) {
                 .attr("class", "nomogramLegend")
                 .attr("x", 160)
                 .attr("y", 10 + 5 * valInd)
-                .style("font-size", 4)
+                .style("font-size", "4px")
                 .text(attrVals[valInd]);
         }
     }
@@ -196,7 +196,6 @@ let NomogramView = function(targetID) {
     }
 
     function updateAxisVisibility(axisStates) {
-        // console.log(axisStates);
         // update self.filteredAxes
         self.filteredAxes = [];
         self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[0]);
@@ -220,6 +219,14 @@ let NomogramView = function(targetID) {
         updateView();
     }
 
+    /* update axes domain */
+    function updateAxesDomain(newDomain) {
+        self.axesDomain = newDomain;
+
+        updateAxes();
+        updateView();
+    }
+
 
     return {
         setMode,
@@ -228,6 +235,7 @@ let NomogramView = function(targetID) {
         updateAttributeColor,
         updateAttributeDomains,
         updateAxisVisibility,
-        updateAxesRange
+        updateAxesRange,
+        updateAxesDomain
     };
 }

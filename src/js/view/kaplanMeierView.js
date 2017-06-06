@@ -51,7 +51,7 @@ let KaplanMeierView = function(targetID) {
             self.targetSvg.append("text")
                 .attr("x", 2)
                 .attr("y", 91 - 8 * i)
-                .style("font-size", 4)
+                .style("font-size", "4px")
                 .text((0.1 * i).toFixed(1));
         }
     }
@@ -70,7 +70,7 @@ let KaplanMeierView = function(targetID) {
             .attr("class", "legend")
             .attr("x", 85)
             .attr("y", 4 + attrValNum * 5)
-            .style("font-size", 4)
+            .style("font-size", "4px")
             .text(attrVal);
     }
 
@@ -108,7 +108,7 @@ let KaplanMeierView = function(targetID) {
                 .attr("class", "yAxisLabels")
                 .attr("x", x(i))
                 .attr("y", 95)
-                .style("font-size", 4)
+                .style("font-size", "4px")
                 .style("text-anchor", "middle")
                 .text(i);
         }

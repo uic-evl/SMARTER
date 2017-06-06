@@ -77,7 +77,7 @@ let MosaicView = function(targetID) {
         self.targetSvg.append("text")
             .attr("x", 18)
             .attr("y", 120)
-            .style("font-size", 5)
+            .style("font-size", "5px")
             .style("text-anchor", "end")
             .text("5 Year Survival: ");
 
@@ -85,7 +85,7 @@ let MosaicView = function(targetID) {
             .attr("id", "thresholdText")
             .attr("x", 151)
             .attr("y", 120)
-            .style("font-size", 5)
+            .style("font-size", "5px")
             .style("text-anchor", "start")
             .text(self.threshold);
     }
@@ -273,7 +273,7 @@ let MosaicView = function(targetID) {
         self.targetSvg.append("text")
             .attr("class", "mosaicTile")
             .attr("transform", "translate(" + xPos + ", 14) rotate(-20)")
-            .style("font-size", 5)
+            .style("font-size", "5px")
             .text(text);
     }
 
@@ -281,7 +281,7 @@ let MosaicView = function(targetID) {
         self.targetSvg.append("text")
             .attr("class", "mosaicTile")
             .attr("transform", "translate(18, " + yPos + ")")
-            .style("font-size", 5)
+            .style("font-size", "5px")
             .style("text-anchor", "end")
             .text(text);
     }

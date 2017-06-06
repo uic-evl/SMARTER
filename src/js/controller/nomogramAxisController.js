@@ -14,16 +14,17 @@ let NomogramAxisController = function(listID) {
         sliderBrush: null,
         brushFunc: null,
 
-        rangeScale: null,
         attributeRange: {},
+        rangeScale: null,
 
-        domainScale: {},
+        attributeDomainDefault: {},
         attributeDomain: {},
+        domainScale: {},
 
-        axis: {
-            "domain": {},
-            "range": {}
-        },
+        // axis: {
+        //     "domain": {},
+        //     "range": {}
+        // },
 
         resetElement: null
     };
@@ -71,7 +72,6 @@ let NomogramAxisController = function(listID) {
     }
 
     function attachToSelect(selectID) {
-        // let attributes = App.patientKnnAttributes;
         // include age and surv prob axes
         let attributes = Object.keys(App.nomogramAxesRange);
 
@@ -87,8 +87,6 @@ let NomogramAxisController = function(listID) {
         this.selectedAxis = self.select.node().value;
 
         self.selectedAxis = this.selectedAxis;
-
-        // axisHeightSlider();
     }
 
     function attachToDomainRangeToggle(domainID, rangeID) {
@@ -108,6 +106,13 @@ let NomogramAxisController = function(listID) {
     function selectorOnChange() {
         self.selectedAxis = d3.select(this).node().value;
 
+        // disable the domain button when the non-age or non-prob axis is selected
+        if (self.selectedAxis !== "AgeAtTx" && self.selectedAxis !== "Probability of Survival") {
+            self.toggleButtons.node().disabled = true;
+        } else {
+            self.toggleButtons.node().disabled = false;
+        }
+
         updateBrush();
     }
 
@@ -119,21 +124,15 @@ let NomogramAxisController = function(listID) {
                 return d3.select(this).attr("value") === self.editMode;
             });
 
+        // disable the axis selection in the domain mode
         if (self.editMode === "domain") {
             self.select.selectAll("option")
-                .attr("disabled", function(d) {
-                    if (_.find(App.patientKnnAttributes, el => el === d)) {
-                        return true;
-                    }
-
-                    return null;
-                })
+                .attr("disabled", (d) => _.find(App.patientKnnAttributes, el => el === d));
         } else if (self.editMode === "range") {
             self.select.selectAll("option")
-                .attr("enabled", function(d) {
-                  return true;
-                });
+                .attr("disabled", null);
         }
+
         updateBrush();
     }
 
@@ -143,8 +142,10 @@ let NomogramAxisController = function(listID) {
 
 
     function updateAxesWithNewDomains(newDomains) {
-        self.attributeDomain = newDomains;
+        self.attributeDomain = Object.assign({}, newDomains);
+        self.attributeDomainDefault = Object.assign({}, newDomains);
     }
+
 
     function axisHeightSlider() {
         let sliderElement = d3.select("#axisHeightSlider");
@@ -175,50 +176,40 @@ let NomogramAxisController = function(listID) {
             .attr("class", "brush")
             .call(self.brushFunc);
 
-        self.rangeScale = d3.scaleLinear()
-            .domain([0, 1])
-            .range([sliderHeight - 3, 3]);
 
+        // get the attribute range on each axis
         _.forEach(App.nomogramAxesRange, function(value, key) {
             self.attributeRange[key] = value;
         });
 
-        // set the domain scale for each axis
-        _.forEach(self.attributeDomain, function(value, key) {
-            if (key == "AgeAtTx") {
-                self.domainScale[key] = d3.scaleLinear()
-                    .domain(self.attributeDomain[key])
-                    .range([3, sliderHeight - 3]);
-            } else if (key == "Probability of Survival") {
-                self.domainScale[key] = d3.scaleLinear()
-                    .domain([0, 1])
-                    .range([sliderHeight - 3, 3]);
-            } else {
-                self.domainScale[key] = d3.scaleOrdinal()
-                    .domain(self.attributeDomain[key])
-                    .range([3, sliderHeight - 3]);
-            }
-        });
+        // set the range scale for all axes
+        self.rangeScale = d3.scaleLinear()
+            .domain([0, 1])
+            .range([sliderHeight - 3, 3]);
 
-        console.log(self.attributeDomain);
-        console.log(self.domainScale);
+        // set the domain scale for age and prob-surv axis
+        self.domainScale["AgeAtTx"] = d3.scaleLinear()
+            .domain(self.attributeDomain["AgeAtTx"])
+            .range([3, sliderHeight - 3]);
+
+        self.domainScale["Probability of Survival"] = d3.scaleLinear()
+            .domain(self.attributeDomain["Probability of Survival"])
+            .range([sliderHeight - 3, 3]);
 
         updateBrush();
     }
 
     function updateBrush() {
-        let domain = self.attributeDomain[self.selectedAxis];
-        let range = self.attributeRange[self.selectedAxis];
-
-        let domainScaleExtent = d3.extent(self.attributeDomain[self.selectedAxis], d => self.domainScale[self.selectedAxis](d));
-        console.log(domainScaleExtent);
-
         if (self.editMode === "range") {
+            let range = self.attributeRange[self.selectedAxis];
+
             self.sliderBrush
                 .call(self.brushFunc.move, [
                     self.rangeScale(d3.max(range)), self.rangeScale(d3.min(range))
                 ]);
         } else if (self.editMode === "domain") {
+            let domainScaleExtent = d3.extent(self.attributeDomain[self.selectedAxis], d => self.domainScale[self.selectedAxis](d));
+
             self.sliderBrush
                 .call(self.brushFunc.move, domainScaleExtent);
         }
@@ -234,21 +225,32 @@ let NomogramAxisController = function(listID) {
                 self.attributeRange[self.selectedAxis] = App.nomogramAxesRange[self.selectedAxis];
 
                 updateBrush();
-            }
+            } else if (self.editMode === "domain") {
+                self.attributeDomain[self.selectedAxis] = self.attributeDomainDefault[self.selectedAxis];
 
+                updateBrush();
+            }
             return;
         }
 
         if (self.editMode === "range") {
             // update the axis range
             self.attributeRange[self.selectedAxis] = d3.event.selection.map(self.rangeScale.invert);
+            if (self.selectedAxis === "Probability of Survival") {
+                self.attributeRange[self.selectedAxis] = self.attributeRange[self.selectedAxis].reverse();
+            }
 
             // update the nomogram
             App.views.nomogram.updateAxesRange(self.attributeRange);
         } else if (self.editMode === "domain") {
             // update the axis domain
-            // self.attributeDomain[self.selectedAxis] =
-            console.log(d3.event.selection.map(self.domainScale[self.selectedAxis].invert));
+            self.attributeDomain[self.selectedAxis] = d3.event.selection.map(self.domainScale[self.selectedAxis].invert);
+            if (self.selectedAxis === "Probability of Survival") {
+              self.attributeDomain[self.selectedAxis] = self.attributeDomain[self.selectedAxis].reverse();
+            }
+
+            // update the nomogram
+            App.views.nomogram.updateAxesDomain(self.attributeDomain);
         }
 
     }
