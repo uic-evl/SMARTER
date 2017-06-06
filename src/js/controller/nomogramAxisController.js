@@ -258,6 +258,21 @@ let NomogramAxisController = function(listID) {
     /* reset the axes settings to defaul */
     function resetAxes() {
         console.log("reset");
+        // reset the axis domain and range
+        _.forEach(App.nomogramAxesRange, function(value, key) {
+            self.attributeRange[key] = value;
+        });
+
+        _.forEach(self.attributeDomainDefault, function(value, key) {
+            self.attributeDomain[key] = value;
+        });
+
+        // update brush
+        updateBrush();
+
+        // update the nomogram view
+        App.views.nomogram.updateAxesRange(self.attributeRange);
+        App.views.nomogram.updateAxesDomain(self.attributeDomain);
     }
 
 
