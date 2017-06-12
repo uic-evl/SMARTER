@@ -2,6 +2,10 @@
 
 var App = App || {};
 
+less.pageLoadFinished.then(function() {
+    App.init();
+  });
+
 (function() {
     App.models = {};
     App.controllers = {};
