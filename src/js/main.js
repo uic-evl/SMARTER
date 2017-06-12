@@ -79,6 +79,7 @@ var App = App || {};
         App.views.nomogram.setMode("knn");
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
         App.views.mosaic = new MosaicView("#mosaic");
+        App.views.helpInfo = new HelpInfoView("#HelpInfo");
 
 
         // load patients

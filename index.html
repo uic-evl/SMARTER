@@ -47,6 +47,7 @@
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
     <script src="src/js/view/kaplanMeierView.js" charset="utf-8"></script>
     <script src="src/js/view/mosaicView.js" charset="utf-8"></script>
+    <script src="src/js/view/helpInfoView.js" charset="utf-8"></script>
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
@@ -76,7 +77,7 @@
                           <span class="glyphicon glyphicon-info-sign"></span>
                           About
                         </button>
-                        <button class="btn btn-link navbar-btn">
+                        <button class="btn btn-link navbar-btn" id="HelpInfo">
                           <span class="glyphicon glyphicon-question-sign"></span>
                           Help
                         </button>
@@ -107,7 +108,7 @@
                     <div id="kiviatHeader">
                         <div class="row viewTitleDiv">
                             Most Similar Patients
-                            <span class="glyphicon glyphicon-question-sign" id="kiviatHelpIcon"></span>
+                            <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kiviat"></span>
                         </div>
                         <div class="row patient-dropdown-wrapper">
                             <div class="form-inline">
@@ -205,7 +206,7 @@
                             <div id="nomogramHeader">
                                 <div class="row viewTitleDiv">
                                     Nomogram Risk Prediction
-                                    <span class="glyphicon glyphicon-question-sign" id="nomogramHelpIcon"></span>
+                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-nomogram"></span>
                                 </div>
                                 <div class="row knnCheckBox">
                                     <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
@@ -223,7 +224,7 @@
                             <div id="kaplanMeierHeader">
                                 <div class="row viewTitleDiv">
                                     Survival Over Time
-                                    <span class="glyphicon glyphicon-question-sign" id="kaplanMeierHelpIcon"></span>
+                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kaplanMeier"></span>
                                 </div>
                                 <div class="row patient-dropdown-wrapper">
                                     <div class="form-inline">
@@ -244,7 +245,7 @@
                             <div id="mosaicHeader">
                                 <div class="row viewTitleDiv">
                                     Mosaic Context
-                                    <span class="glyphicon glyphicon-question-sign" id="mosaicHelpIcon"></span>
+                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-mosaic"></span>
                                 </div>
                             </div>
                             <div id="mosaic">
