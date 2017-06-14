@@ -12,11 +12,12 @@ let HelpInfoView = function(targetID) {
     targetElementMosaic: null,
 
     display: {
-      "help": false,
-      "help-kiviat": false,
-      "help-nomogram": false,
-      "help-kaplanMeier": false,
-      "help-mosaic": false
+      "infoDiv-help": false,
+      "infoDiv-kiviat": false,
+      "infoDiv-nomogram": false,
+      "infoDiv-nomogramControls": false,
+      "infoDiv-kaplanMeier": false,
+      "infoDiv-mosaic": false
     }
   };
 
@@ -39,6 +40,7 @@ let HelpInfoView = function(targetID) {
     self.targetElementMosaic.on("click", clickHelpMosaic);
   }
 
+
   function resetHelps(currentKey) {
     _.forEach(self.display, function(value, key) {
       if (key != currentKey) {
@@ -47,148 +49,118 @@ let HelpInfoView = function(targetID) {
     });
   }
 
+  function updateBgColor() {
+    less.modifyVars({
+      "@bgColor": "rgba(0, 0, 0, 0.75)"
+    });
+  }
+
+  function resetBgColor() {
+    less.modifyVars({
+      "@bgColor": "rgba(255, 255, 255, 1)"
+    });
+  }
+
+  function hideHelpPanels(excludedId, excludedId2) {
+    _.forEach(self.display, function(value, key) {
+      if (key != excludedId && key != excludedId2) {
+        d3.select("#" + key).style("display", "inline-block");
+      }
+    });
+    d3.select(".overlay").style("display", "inline-block");
+  }
+
+  function resetHelpPanels(excludedId, excludedId2) {
+    _.forEach(self.display, function(value, key) {
+      if (key != excludedId && key != excludedId2) {
+        d3.select("#" + key).style("display", "none");
+      }
+    });
+    d3.select(".overlay").style("display", "none");
+  }
+
+
   function clickHelp() {
     console.log("help");
-    self.display["help"] = !self.display["help"];
-    resetHelps("help");
+    self.display["infoDiv-help"] = !self.display["infoDiv-help"];
+    resetHelps("infoDiv-help");
 
-    // d3.select(".overlay").style("display", "inline-block");
-    // d3.select("#infoDiv-kiviat").style("display", "inline-block");
-    // d3.select("#infoDiv-nomogram").style("display", "inline-block");
-    // d3.select("#infoDiv-nomogramControls").style("display", "inline-block");
-    // d3.select("#infoDiv-kaplanMeier").style("display", "inline-block");
-    // d3.select("#infoDiv-mosaic").style("display", "inline-block");
+    resetHelpPanels();
 
-    d3.select("#infoDiv-kiviat").style("display", "none");
-    d3.select("#infoDiv-nomogram").style("display", "none");
-    d3.select("#infoDiv-nomogramControls").style("display", "none");
-    d3.select("#infoDiv-kaplanMeier").style("display", "none");
-    d3.select("#infoDiv-mosaic").style("display", "none");
-    // d3.select(".container-fluid").style("background", rgba(0, 0, 0, 0.75));
-    if (self.display["help"]) {
+    if (self.display["infoDiv-help"]) {
       // change ".container-fluid" background-color to rgba(0, 0, 0, 0.75)
-      less.modifyVars({
-        "@bgColor": "rgba(0, 0, 0, 0.75)"
-      });
-
+      updateBgColor();
+      d3.select(".overlay").style("display", "inline-block");
+      d3.select("#helpImg").attr("src", "imgs/help.png");
     } else {
       // reset ".container-fluid" background-color to white
-      less.modifyVars({
-        "@bgColor": "rgba(255, 255, 255, 1)"
-      });
-
+      resetBgColor();
+      d3.select(".overlay").style("display", "none");
     }
   }
 
   function clickHelpKiviat() {
     console.log("help-kiviat");
-    self.display["help-kiviat"] = !self.display["help-kiviat"];
-    resetHelps("help-kiviat");
-
-    // d3.select(".overlay").style("display", "inline-block");
-    // d3.select("#infoDiv-kiviat").style("display", "inline-block");
+    self.display["infoDiv-kiviat"] = !self.display["infoDiv-kiviat"];
+    resetHelps("infoDiv-kiviat");
 
     d3.select("#infoDiv-kiviat").style("display", "none");
-    if (self.display["help-kiviat"]) {
-      less.modifyVars({
-        "@bgColor": "rgba(0, 0, 0, 0.75)"
-      });
-      d3.select("#infoDiv-nomogram").style("display", "inline-block");
-      d3.select("#infoDiv-nomogramControls").style("display", "inline-block");
-      d3.select("#infoDiv-kaplanMeier").style("display", "inline-block");
-      d3.select("#infoDiv-mosaic").style("display", "inline-block");
+    if (self.display["infoDiv-kiviat"]) {
+      updateBgColor();
+      hideHelpPanels("infoDiv-kiviat");
+      d3.select("#helpImg").attr("src", "imgs/help-kiviat.png");
     } else {
-      less.modifyVars({
-        "@bgColor": "rgba(255, 255, 255, 1)"
-      });
-      d3.select("#infoDiv-nomogram").style("display", "none");
-      d3.select("#infoDiv-nomogramControls").style("display", "none");
-      d3.select("#infoDiv-kaplanMeier").style("display", "none");
-      d3.select("#infoDiv-mosaic").style("display", "none");
+      resetBgColor();
+      resetHelpPanels("infoDiv-kiviat");
     }
   }
 
   function clickHelpNomogram() {
     console.log("help-nomogram");
-    self.display["help-nomogram"] = !self.display["help-nomogram"];
-    resetHelps("help-nomogram");
-
-    // d3.select(".overlay").style("display", "inline-block");
-    // d3.select("#infoDiv-nomogram").style("display", "inline-block");
-    // d3.select("#infoDiv-nomogramControls").style("display", "inline-block");
+    self.display["infoDiv-nomogram"] = !self.display["infoDiv-nomogram"];
+    resetHelps("infoDiv-nomogram");
+    self.display["infoDiv-nomogramControls"] = self.display["infoDiv-nomogram"];
 
     d3.select("#infoDiv-nomogram").style("display", "none");
     d3.select("#infoDiv-nomogramControls").style("display", "none");
-    if (self.display["help-nomogram"]) {
-      less.modifyVars({
-        "@bgColor": "rgba(0, 0, 0, 0.75)"
-      });
-      d3.select("#infoDiv-kiviat").style("display", "inline-block");
-      d3.select("#infoDiv-kaplanMeier").style("display", "inline-block");
-      d3.select("#infoDiv-mosaic").style("display", "inline-block");
+    if (self.display["infoDiv-nomogram"]) {
+      updateBgColor();
+      hideHelpPanels("infoDiv-nomogram", "infoDiv-nomogramControls");
     } else {
-      less.modifyVars({
-        "@bgColor": "rgba(255, 255, 255, 1)"
-      });
-      d3.select("#infoDiv-kiviat").style("display", "none");
-      d3.select("#infoDiv-kaplanMeier").style("display", "none");
-      d3.select("#infoDiv-mosaic").style("display", "none");
+      resetBgColor();
+      resetHelpPanels("infoDiv-nomogram", "infoDiv-nomogramControls");
     }
   }
 
   function clickHelpKaplanMeier() {
     console.log("help-kaplanMeier");
-    self.display["help-kaplanMeier"] = !self.display["help-kaplanMeier"];
-    resetHelps("help-kaplanMeier");
-
-    // d3.select(".overlay").style("display", "inline-block");
-    // d3.select("#infoDiv-kaplanMeier").style("display", "inline-block");
+    self.display["infoDiv-kaplanMeier"] = !self.display["infoDiv-kaplanMeier"];
+    resetHelps("infoDiv-kaplanMeier");
 
     d3.select("#infoDiv-kaplanMeier").style("display", "none");
-    if (self.display["help-kaplanMeier"]) {
-      less.modifyVars({
-        "@bgColor": "rgba(0, 0, 0, 0.75)"
-      });
-      d3.select("#infoDiv-kiviat").style("display", "inline-block");
-      d3.select("#infoDiv-nomogram").style("display", "inline-block");
-      d3.select("#infoDiv-nomogramControls").style("display", "inline-block");
-      d3.select("#infoDiv-mosaic").style("display", "inline-block");
+    if (self.display["infoDiv-kaplanMeier"]) {
+      updateBgColor();
+      hideHelpPanels("infoDiv-kaplanMeier");
+      d3.select("#helpImg").attr("src", "imgs/help-kaplanMeier.png");
     } else {
-      less.modifyVars({
-        "@bgColor": "rgba(255, 255, 255, 1)"
-      });
-      d3.select("#infoDiv-kiviat").style("display", "none");
-      d3.select("#infoDiv-nomogram").style("display", "none");
-      d3.select("#infoDiv-nomogramControls").style("display", "none");
-      d3.select("#infoDiv-mosaic").style("display", "none");
+      resetBgColor();
+      resetHelpPanels("infoDiv-kaplanMeier");
     }
   }
 
   function clickHelpMosaic() {
     console.log("help-mosaic");
-    self.display["help-mosaic"] = !self.display["help-mosaic"];
-    resetHelps("help-mosaic");
-
-    // d3.select(".overlay").style("display", "inline-block");
-    // d3.select("#infoDiv-mosaic").style("display", "inline-block");
+    self.display["infoDiv-mosaic"] = !self.display["infoDiv-mosaic"];
+    resetHelps("infoDiv-mosaic");
 
     d3.select("#infoDiv-mosaic").style("display", "none");
-    if (self.display["help-mosaic"]) {
-      less.modifyVars({
-        "@bgColor": "rgba(0, 0, 0, 0.75)"
-      });
-      d3.select("#infoDiv-kiviat").style("display", "inline-block");
-      d3.select("#infoDiv-nomogram").style("display", "inline-block");
-      d3.select("#infoDiv-nomogramControls").style("display", "inline-block");
-      d3.select("#infoDiv-kaplanMeier").style("display", "inline-block");
+    if (self.display["infoDiv-mosaic"]) {
+      updateBgColor();
+      hideHelpPanels("infoDiv-mosaic");
+      d3.select("#helpImg").attr("src", "imgs/help-mosaic.png");
     } else {
-      less.modifyVars({
-        "@bgColor": "rgba(255, 255, 255, 1)"
-      });
-      d3.select("#infoDiv-kiviat").style("display", "none");
-      d3.select("#infoDiv-nomogram").style("display", "none");
-      d3.select("#infoDiv-nomogramControls").style("display", "none");
-      d3.select("#infoDiv-kaplanMeier").style("display", "none");
+      resetBgColor();
+      resetHelpPanels("infoDiv-mosaic");
     }
   }
 
