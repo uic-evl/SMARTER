@@ -126,6 +126,7 @@ let HelpInfoView = function(targetID) {
     if (self.display["infoDiv-nomogram"]) {
       updateBgColor();
       hideHelpPanels("infoDiv-nomogram", "infoDiv-nomogramControls");
+      d3.select("#helpImg").attr("src", "imgs/help-nomogram.png");
     } else {
       resetBgColor();
       resetHelpPanels("infoDiv-nomogram", "infoDiv-nomogramControls");
