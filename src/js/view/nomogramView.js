@@ -47,6 +47,19 @@ let NomogramView = function(targetID) {
         self.filteredAxes = Object.keys(App.nomogramAxesRange);
         console.log(self.filteredAxes);
 
+        let menuDiv = d3.select(self.targetID+"Header")
+            .select(".viewTitleDiv").append("div")
+            .attr("class", "pull-left")
+            .append("button")
+            .attr("class", 'btn btn-secondary navbar-btn')
+            .attr("id", "nomogram-menu-button")
+            .on("click", function() {
+                $('#nomogramControls').toggle();
+            });
+
+        d3.select("#nomogram-menu-button").append("span")
+            .attr("class", 'glyphicon glyphicon-cog');
+
         createNomogram();
     }
 
@@ -226,7 +239,6 @@ let NomogramView = function(targetID) {
         updateAxes();
         updateView();
     }
-
 
     return {
         setMode,
