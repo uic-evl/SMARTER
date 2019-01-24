@@ -6,6 +6,10 @@
 
     <link rel="stylesheet" href="lib/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/css/d3-tip.css">
+    <link rel="stylesheet" href="lib/css/phoneLayout.css">
+    <link rel="stylesheet" href="lib/css/tabletLayout.css">
+    <link rel="stylesheet" href="lib/css/laptopLayout.css">
+    <link rel="stylesheet" href="lib/css/controls.css">
     <!-- <link rel="stylesheet" href="https://rawgithub.com/Caged/d3-tip/master/examples/example-styles.css"> -->
 
     <link rel="stylesheet/less" href="src/css/style.less">
@@ -44,21 +48,23 @@
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
     <script src="src/js/controller/mosaicFilterController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
+    <script src="src/js/controller/demographicsFormController.js" charset="utf-8"></script>
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
     <script src="src/js/view/kaplanMeierView.js" charset="utf-8"></script>
     <script src="src/js/view/mosaicView.js" charset="utf-8"></script>
     <script src="src/js/view/helpInfoView.js" charset="utf-8"></script>
+    <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
 
 <body>
-  <div class="info-overlay">
+  <div class="info-overlay dashboard-help" style="display: none">
     <img id="helpImg" src="imgs/help.png">
   </div>
-    <div class="container-fluid">
+    <div class="container-fluid dashboard" style="display: none">
         <div class="row" id="title">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
@@ -378,6 +384,114 @@
 
         </div>
     </div>
+ <div class="container-fluid" style="display: block">
+     <h3 class=title>SMART Therapy Explorer</h3>
+     <div class="row">
+         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+             <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics</button>
+             <div id="demographics" class="collapse">
+                 <label>Patient ID</label>
+                 <select class="idSelect">
+                     <option>N/A</option>
+                 </select>
+                 <label>Age</label>
+                 <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
+                 <label>Gender</label>
+                 <input type="radio" name="Gender" value="Male" id="male-radio">Male
+                 <input type="radio" name="Gender" value="Female" id="female-radio">Female
+                 <label>Race</label>
+                 <input type="text" name="Race" placeholder="Race" id="race-element">
+                 <label>Aspiration</label>
+                 <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
+                 <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
+                 <label>HPV/P16</label>
+                 <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
+                 <label>ECOG Value</label>
+                 <input type="radio" name="ecog" value="0" id="ecog-0-radio">0
+                 <input type="radio" name="ecog" value="1" id="ecog-1-radio">1
+                 <input type="radio" name="ecog" value="2" id="ecog-2-radio">2
+                 <input type="radio" name="ecog" value="3" id="ecog-3-radio">3
+                 <label>Smoking Status</label>
+                 <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
+                 <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
+                 <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
+                 <label>Packs/Year</label>
+                 <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
+                 <div>
+                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
+                 </div>
+             </div>
+         </div>
+         <div class="col-xs-12 col-sm-6 col-md-4">
+             <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
+             <div id="cancerDescriptors" class="collapse">
+                 <label>Tumor Site</label>
+                 <input type="text" name="Site" placeholder="Tumor Site">
+                 <label>Tumor Subsite</label>
+                 <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite">
+                 <label>AJCC 7th Edition</label>
+                 <input type="radio" name="AJCC 7th edition" value="I">I
+                 <input type="radio" name="AJCC 7th edition" value="II">II
+                 <input type="radio" name="AJCC 7th edition" value="III">III
+                 <input type="radio" name="AJCC 7th edition" value="IV">IV
+                 <label>AJCC 8th Edition</label>
+                 <input type="radio" name="AJCC 8th edition" value="I">I
+                 <input type="radio" name="AJCC 8th edition" value="II">II
+                 <input type="radio" name="AJCC 8th edition" value="III">III
+                 <input type="radio" name="AJCC 8th edition" value="IV">IV
+                 <label>T-category</label>
+                 <input type="radio" name="T-category" value="T1">T1
+                 <input type="radio" name="T-category" value="T2">T2
+                 <input type="radio" name="T-category" value="T3">T3
+                 <input type="radio" name="T-category" value="T4">T4
+                 <label>N-Category</label>
+                 <input type="radio" name="N-category" value="N/A">N/A
+                 <input type="radio" name="N-category" value="N0">N0
+                 <input type="radio" name="N-category" value="N1">N1
+                 <input type="radio" name="N-category" value="N2">N2
+                 <input type="radio" name="N-category" value="N3">N3
+                 <label>Pathological Grade</label>
+                 <input type="radio" name="Pathological Grade" value="I">I
+                 <input type="radio" name="Pathological Grade" value="II">II
+                 <input type="radio" name="Pathological Grade" value="III">III
+                 <input type="radio" name="Pathological Grade" value="IV">IV
+                 <label>Affected Lymph Nodes</label>
+                 <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node">
+                 <div>
+                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
+                 </div>
+             </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+             <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment</button>
+             <div id="treatment" class="collapse">
+                 <div class="left">
+                     <label>Chemotherapy</label>
+                     <input type="text" name="Therapeutic combination" placeholder="Chemotherapy">
+                     <label>Local Therapy</label>
+                     <input type="text" name="Local_Therapy" placeholder="Local Therapy">
+                     <label>Treatment Duration</label>
+                     <input type="text" name="Treatment duration (Days)" placeholder="Duration">
+                     <label>Total Dose</label>
+                     <input type="text" name="Total dose" placeholder="Total Dose">
+                 </div>
+                 <div class="right">
+                     <label>Total Fraction</label>
+                     <input type="text" name="Total fractions" placeholder="Total Fraction">
+                     <label>Dose/Day</label>
+                     <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day">
+                     <label>Neck Dissection after IMRT</label>
+                     <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection">
+                     <label>Neck Boost</label>
+                     <input type="radio" name="Neck boost (Y/N)" value="Y">Yes
+                     <input type="radio" name="Neck boost (Y/N)" value="N">No
+                 </div>
+             </div>
+         </div>
+     </div>
+     <button class="btn btn-primary submitButton" type="submit" value="Submit">Submit</button>
+
+ </div>
 </body>
 
 </html>

@@ -59,6 +59,8 @@ less.pageLoadFinished.then(function() {
         App.controllers.nomogramKnn = new NomogramKnnController("#knnCheckBox");
         App.controllers.filters = new FilterController();
 
+        App.controllers.demographicsFormController = new DemographicsFormController();
+
         App.controllers.exploreForm = new ExploreFormController("#exploreForm");
         App.controllers.exploreForm.setFilterResetButton("#exploreFormReset")
         App.controllers.exploreForm.setFormApplyButton("#exploreFormApply");
@@ -78,12 +80,14 @@ less.pageLoadFinished.then(function() {
         App.controllers.mosaicFilter = new MosaicFilterController();
 
         // creat views
-        App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
-        App.views.nomogram = new NomogramView("#nomogram");
-        App.views.nomogram.setMode("knn");
-        App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
-        App.views.mosaic = new MosaicView("#mosaic");
-        App.views.helpInfo = new HelpInfoView("#HelpInfo");
+        // App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
+        // App.views.nomogram = new NomogramView("#nomogram");
+        // App.views.nomogram.setMode("knn");
+        // App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
+        // App.views.mosaic = new MosaicView("#mosaic");
+        // App.views.helpInfo = new HelpInfoView("#HelpInfo");
+
+        App.views.demographForm = new DemographicsFormView();
 
 
         // load patients
@@ -91,13 +95,16 @@ less.pageLoadFinished.then(function() {
             .then(function( /*data*/ ) {
                 console.log("Promise Finished" /*, data*/ );
 
+                // console.log(App.controllers.demographicsFormController);
+
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
-                App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
+                App.controllers.demographicsFormController.attachToSelect(".idSelect")
+                // App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
 
-                App.controllers.dataUpdate.updateApplication();
+                // App.controllers.dataUpdate.updateApplication();
 
 
-                App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
+                // App.models.applicationState.loadStateFromCookie(); // dont currently load the cookie
             })
             .catch(function(err) {
                 console.log("Promise Error", err);
