@@ -30,7 +30,6 @@ let DemographicsFormController = function() {
     }
 
     function updateDemographicsForm(data) {
-        console.log(data);
         App.views.demographForm.updateForm(data);
     }
 
