@@ -3,7 +3,7 @@
 var App = App || {};
 
 let TreatmentFormView = function () {
-    self = {};
+    // self = {};
 
     init();
 
@@ -14,7 +14,7 @@ let TreatmentFormView = function () {
         self.totalDoseElement = d3.select("#total-dose-element");
         self.dosePerDayElement = d3.select("#dose-element");
         self.totalFractionElement = d3.select("#total-fraction-element");
-        self.neckElement = d3.select("neck-dissection-element");
+        self.neckElement = d3.select("#neck-dissection-element");
         self.neckBoostYesRadio = d3.select("#neck-boost-y-radio");
         self.neckBoostNoRadio = d3.select("#neck-boost-n-radio");
     }

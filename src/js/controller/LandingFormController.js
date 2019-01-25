@@ -31,9 +31,15 @@ let LandingFormController = function() {
 
     function updateDemographicsForm(data) {
         App.views.demographForm.updateForm(data);
+        App.views.treatmentForm.updateForm(data);
     }
 
-
+    function consolidateData() {
+        return {
+            ...App.views.demographForm.consolidateData(),
+            ...App.views.treatmentForm.consolidateData()
+        }
+    }
 
     return {
         attachToSelect

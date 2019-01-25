@@ -88,7 +88,7 @@ less.pageLoadFinished.then(function() {
         // App.views.helpInfo = new HelpInfoView("#HelpInfo");
 
         App.views.demographForm = new DemographicsFormView();
-
+        App.views.treatmentForm = new TreatmentFormView();
 
         // load patients
         App.models.patients.loadPatients()

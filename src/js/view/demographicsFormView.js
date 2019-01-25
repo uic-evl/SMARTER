@@ -3,7 +3,7 @@
 var App = App || {};
 
 let DemographicsFormView = function () {
-    self = {};
+    // self = {};
 
     init();
 
@@ -33,11 +33,11 @@ let DemographicsFormView = function () {
         setGenderElement(gender);
         setEcogValue(ecog);
 
-
+        console.log(data);
     }
 
     function consolidateData() {
-        let demographicData = {
+        return {
             age: getAgeElement(),
             race: getRaceElement(),
             gender: getGenderElement(),
@@ -46,8 +46,6 @@ let DemographicsFormView = function () {
             smokingStatus: getSmokingStatus(),
             packsPerYear: getPacksPerYearElement()
         }
-
-        return demographicData;
     }
 
     function getAgeElement() {
