@@ -3,7 +3,6 @@
 var App = App || {};
 
 let DemographicsFormView = function () {
-    // self = {};
 
     init();
 

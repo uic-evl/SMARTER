@@ -79,7 +79,7 @@ less.pageLoadFinished.then(function() {
 
         App.controllers.mosaicFilter = new MosaicFilterController();
 
-        // creat views
+        // create views
         // App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
         // App.views.nomogram = new NomogramView("#nomogram");
         // App.views.nomogram.setMode("knn");
@@ -89,6 +89,7 @@ less.pageLoadFinished.then(function() {
 
         App.views.demographForm = new DemographicsFormView();
         App.views.treatmentForm = new TreatmentFormView();
+        App.views.cancerDescriptorsForm = new CancerDescriptorsFormView();
 
         // load patients
         App.models.patients.loadPatients()

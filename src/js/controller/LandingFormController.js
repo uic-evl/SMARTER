@@ -24,24 +24,28 @@ let LandingFormController = function() {
                 let selectedID = d3.select(this).node().value;
                 self.currentPatient = selectedID;
                 console.log(selectedID);
-                updateDemographicsForm(patients[selectedID]);
+                updateLandingForms(patients[selectedID]);
             })
 
     }
 
-    function updateDemographicsForm(data) {
+    function updateLandingForms(data) {
         App.views.demographForm.updateForm(data);
         App.views.treatmentForm.updateForm(data);
+        App.views.cancerDescriptorsForm.updateForm(data);
     }
 
     function consolidateData() {
         return {
             ...App.views.demographForm.consolidateData(),
-            ...App.views.treatmentForm.consolidateData()
+            ...App.views.treatmentForm.consolidateData(),
+            ...App.views.cancerDescriptorsForm.consolidateData()
         }
     }
 
     return {
-        attachToSelect
+        attachToSelect,
+        consolidateData,
+
     }
 }

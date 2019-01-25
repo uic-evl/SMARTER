@@ -3,7 +3,6 @@
 var App = App || {};
 
 let TreatmentFormView = function () {
-    // self = {};
 
     init();
 

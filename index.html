@@ -57,6 +57,7 @@
     <script src="src/js/view/helpInfoView.js" charset="utf-8"></script>
     <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
+    <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
@@ -427,37 +428,37 @@
              <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
              <div id="cancerDescriptors" class="collapse">
                  <label>Tumor Site</label>
-                 <input type="text" name="Site" placeholder="Tumor Site">
+                 <input type="text" name="Site" placeholder="Tumor Site" id="tumor-site">
                  <label>Tumor Subsite</label>
-                 <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite">
+                 <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
                  <label>AJCC 7th Edition</label>
-                 <input type="radio" name="AJCC 7th edition" value="I">I
-                 <input type="radio" name="AJCC 7th edition" value="II">II
-                 <input type="radio" name="AJCC 7th edition" value="III">III
-                 <input type="radio" name="AJCC 7th edition" value="IV">IV
+                 <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
+                 <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
+                 <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
+                 <input type="radio" name="AJCC 7th edition" value="IV" id="ajcc7-4">IV
                  <label>AJCC 8th Edition</label>
-                 <input type="radio" name="AJCC 8th edition" value="I">I
-                 <input type="radio" name="AJCC 8th edition" value="II">II
-                 <input type="radio" name="AJCC 8th edition" value="III">III
-                 <input type="radio" name="AJCC 8th edition" value="IV">IV
+                 <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
+                 <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
+                 <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
+                 <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV
                  <label>T-category</label>
-                 <input type="radio" name="T-category" value="T1">T1
-                 <input type="radio" name="T-category" value="T2">T2
-                 <input type="radio" name="T-category" value="T3">T3
-                 <input type="radio" name="T-category" value="T4">T4
+                 <input type="radio" name="T-category" value="T1" id="tcat1">T1
+                 <input type="radio" name="T-category" value="T2" id="tcat2">T2
+                 <input type="radio" name="T-category" value="T3" id="tcat3">T3
+                 <input type="radio" name="T-category" value="T4" id="tcat4">T4
                  <label>N-Category</label>
-                 <input type="radio" name="N-category" value="N/A">N/A
-                 <input type="radio" name="N-category" value="N0">N0
-                 <input type="radio" name="N-category" value="N1">N1
-                 <input type="radio" name="N-category" value="N2">N2
-                 <input type="radio" name="N-category" value="N3">N3
+                 <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A
+                 <input type="radio" name="N-category" value="N0" id="ncat-0">N0
+                 <input type="radio" name="N-category" value="N1" id="ncat-1">N1
+                 <input type="radio" name="N-category" value="N2" id="ncat-2">N2
+                 <input type="radio" name="N-category" value="N3" id="ncat-3">N3
                  <label>Pathological Grade</label>
-                 <input type="radio" name="Pathological Grade" value="I">I
-                 <input type="radio" name="Pathological Grade" value="II">II
-                 <input type="radio" name="Pathological Grade" value="III">III
-                 <input type="radio" name="Pathological Grade" value="IV">IV
+                 <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
+                 <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
+                 <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
+                 <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
                  <label>Affected Lymph Nodes</label>
-                 <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node">
+                 <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="affected-lymph">
                  <div>
                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
                  </div>
