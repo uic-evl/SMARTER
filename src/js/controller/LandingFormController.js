@@ -6,10 +6,11 @@ let LandingFormController = function() {
 
     let self = {
         patientDropDown: null,
-        currentPatient: null
+        currentPatient: null,
+        submitButton: null
     };
 
-    function attachToSelect(element) {
+    function setPatientDropdown(element) {
         let patients = App.models.patients.filterPatients();
 
         self.patientDropDown = d3.select(element)
@@ -22,11 +23,36 @@ let LandingFormController = function() {
         d3.select(element)
             .on("change", function () {
                 let selectedID = d3.select(this).node().value;
-                self.currentPatient = selectedID;
-                console.log(selectedID);
-                updateLandingForms(patients[selectedID]);
+                if (selectedID !== "N/A") {
+                    self.currentPatient = selectedID;
+                    console.log(selectedID);
+                    updateLandingForms(patients[selectedID]);
+                }
             })
 
+    }
+
+    function setSubmitButton(element) {
+        self.submitButton = d3.select(element)
+            .on("click", function() {
+                let data = consolidateData();
+                console.log(data);
+                if (data.age === null)
+                    return;
+                else {
+                    $(".landing-form").hide();
+                    // $(".dashboard-help").css("display", "block");
+                    // $(".dashboard").css("display", "block");
+                    if(self.currentPatient !== null) {
+                        App.controllers.patientSelector.updatePateintDropDown();
+                        App.controllers.patientSelector.setPatient(self.currentPatient);
+
+                    }else {
+                        // Check if there is newly entered data.
+                        // Figure out what all has to be done to.
+                    }
+                }
+            })
     }
 
     function updateLandingForms(data) {
@@ -44,8 +70,8 @@ let LandingFormController = function() {
     }
 
     return {
-        attachToSelect,
+        setPatientDropdown,
         consolidateData,
-
+        setSubmitButton
     }
 }

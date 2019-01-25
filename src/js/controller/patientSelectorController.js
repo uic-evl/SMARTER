@@ -60,9 +60,17 @@ let PatientSelectorController = function() {
             })
     }
 
+    function setPatient(subjectID) {
+        self.patientDropDown
+            .property("value", subjectID);
+        self.currentPatient = subjectID;
+        updateSelectedPatients(subjectID);
+    }
+
     /* get the selected patients and the knn info from the PatientModel, and update views */
     function updateSelectedPatients(subjectID) {
         // update the application state
+
         App.models.applicationState.setSelectedPatientID(subjectID);
 
         let updatedPatients = getUpdatedData(subjectID);
@@ -89,6 +97,7 @@ let PatientSelectorController = function() {
     /* return the pubilicly accessible functions */
     return {
         attachToSelect,
-        updatePateintDropDown: populatePateintDropDown
+        updatePateintDropDown: populatePateintDropDown,
+        setPatient
     };
 }
