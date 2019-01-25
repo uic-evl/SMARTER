@@ -59,7 +59,7 @@ less.pageLoadFinished.then(function() {
         App.controllers.nomogramKnn = new NomogramKnnController("#knnCheckBox");
         App.controllers.filters = new FilterController();
 
-        App.controllers.demographicsFormController = new DemographicsFormController();
+        App.controllers.landingFormController = new LandingFormController();
 
         App.controllers.exploreForm = new ExploreFormController("#exploreForm");
         App.controllers.exploreForm.setFilterResetButton("#exploreFormReset")
@@ -98,7 +98,7 @@ less.pageLoadFinished.then(function() {
                 // console.log(App.controllers.demographicsFormController);
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
-                App.controllers.demographicsFormController.attachToSelect(".idSelect")
+                App.controllers.landingFormController.attachToSelect(".idSelect");
                 // App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
 
                 // App.controllers.dataUpdate.updateApplication();

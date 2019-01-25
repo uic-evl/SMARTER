@@ -2,7 +2,7 @@
 
 var App = App || {};
 
-let DemographicsFormController = function() {
+let LandingFormController = function() {
 
     let self = {
         patientDropDown: null,
