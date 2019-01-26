@@ -7,7 +7,8 @@ let LandingFormController = function() {
     let self = {
         patientDropDown: null,
         currentPatient: null,
-        submitButton: null
+        submitButton: null,
+        showFormButton: null
     };
 
     function setPatientDropdown(element) {
@@ -55,6 +56,13 @@ let LandingFormController = function() {
             })
     }
 
+    function setShowFormButton(element) {
+        self.showFormButton = d3.select(element)
+            .on("click", function() {
+                $(".landing-form").show();
+            })
+    }
+
     function updateLandingForms(data) {
         App.views.demographForm.updateForm(data);
         App.views.treatmentForm.updateForm(data);
@@ -72,6 +80,7 @@ let LandingFormController = function() {
     return {
         setPatientDropdown,
         consolidateData,
-        setSubmitButton
+        setSubmitButton,
+        setShowFormButton
     }
 }

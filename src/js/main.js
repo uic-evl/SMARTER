@@ -101,6 +101,7 @@ less.pageLoadFinished.then(function() {
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");
                 App.controllers.landingFormController.setSubmitButton(".submitButton");
+                App.controllers.landingFormController.setShowFormButton("#add-patient-button");
                 App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
 
                 App.controllers.dataUpdate.updateApplication();
