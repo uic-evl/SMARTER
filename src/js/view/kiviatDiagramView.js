@@ -61,12 +61,14 @@ let KiviatDiagramView = function(targetID) {
     }
 
     function setDendrogramButtons(pid) {
+        // Tim's work currently hosted using GH pages.
         let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`;
         self.dendrogramButton
             .attr("href", url);
     }
 
     function setLymphButton(pid) {
+        // Tim's work currently hosted using GH pages.
         let url = `https://uic-evl.github.io/LymphaticCancerViz/?id=${pid}`;
         self.lymphNodeButton
             .attr("href", url)
