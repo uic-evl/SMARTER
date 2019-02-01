@@ -67,6 +67,10 @@ let PatientSelectorController = function() {
         updateSelectedPatients(subjectID);
     }
 
+    function getCurrentPatient() {
+        return self.currentPatient;
+    }
+
     /* get the selected patients and the knn info from the PatientModel, and update views */
     function updateSelectedPatients(subjectID) {
         // update the application state
@@ -98,6 +102,7 @@ let PatientSelectorController = function() {
     return {
         attachToSelect,
         updatePateintDropDown: populatePateintDropDown,
-        setPatient
+        setPatient,
+        getCurrentPatient // used in kiviatDiagramView for setting dendrogram links.
     };
 }

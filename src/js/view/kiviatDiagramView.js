@@ -14,7 +14,9 @@ let KiviatDiagramView = function(targetID) {
         legendElement: null,
         legendSvg: null,
         axisTip: null,
-        centerTip: null
+        centerTip: null,
+        dendrogramButton: null,
+        lymphNodeButton: null
     }
 
     init();
@@ -23,6 +25,10 @@ let KiviatDiagramView = function(targetID) {
         self.subjectElement = d3.select(targetID + "-subject");
         self.neighborsElement = d3.select(targetID + "-neighbors");
         self.legendElement = d3.select(targetID + "-legend");
+
+        // Code to link the Tim's lymph repo
+        self.dendrogramButton = d3.select("#goto-dendrogram");
+        self.lymphNodeButtnon = d3.select("#goto-lymphthingy");
 
         self.subjectSvg = self.subjectElement.append("svg")
             .attr("width", self.subjectElement.node().clientWidth)
@@ -52,6 +58,18 @@ let KiviatDiagramView = function(targetID) {
         // .range(['#d73027','#fc8d59','#fee090','#ffffbf','#e0f3f8','#91bfdb','#4575b4']);
 
         drawLegend();
+    }
+
+    function setDendrogramButtons(pid) {
+        let url = `https://uic-evl.github.io/LymphaticCancerViz/dendrogram/?id=${pid}`;
+        self.dendrogramButton
+            .attr("href", url);
+    }
+
+    function setLymphButton(pid) {
+        let url = `https://uic-evl.github.io/LymphaticCancerViz/?id=${pid}`;
+        self.lymphNodeButton
+            .attr("href", url)
     }
 
     function drawLegend() {
@@ -121,6 +139,12 @@ let KiviatDiagramView = function(targetID) {
         if (patients.subject.score) {
             delete patients.subject.score;
         }
+
+        let currentPatient = App.controllers.patientSelector.getCurrentPatient();
+
+        // sets the mist similar patients buttons' links.
+        setDendrogramButtons(currentPatient);
+        setLymphButton(currentPatient);
 
         // update the kiviat diagram of the subject
         self.subjectSvg
