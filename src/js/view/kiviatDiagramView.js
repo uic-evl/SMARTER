@@ -15,17 +15,22 @@ let KiviatDiagramView = function(targetID) {
         legendSvg: null,
         axisTip: null,
         centerTip: null,
-        dendrogramButton: d3.select("#dendrogramlinker"),
-        lymphNodeButton: d3.select("#lymphthingylinker"),
-        camprtButton: d3.select("#camprtlinker")
+        dendrogramButton:null,
+        lymphNodeButton: null,
+        camprtButton: null
     };
-
-    init();
 
     function init() {
         self.subjectElement = d3.select(targetID + "-subject");
         self.neighborsElement = d3.select(targetID + "-neighbors");
         self.legendElement = d3.select(targetID + "-legend");
+
+        // Code to link the Tim's lymph repo
+        self.dendrogramButton = d3.select("#dendrogramlinker");
+        self.lymphNodeButton = d3.select("#lymphthingylinker");
+
+        // Code to link CAMP-RT
+        self.camprtButton = d3.select("#camprtlinker");
 
         self.subjectSvg = self.subjectElement.append("svg")
             .attr("width", self.subjectElement.node().clientWidth)
@@ -55,13 +60,6 @@ let KiviatDiagramView = function(targetID) {
         // .range(['#d73027','#fc8d59','#fee090','#ffffbf','#e0f3f8','#91bfdb','#4575b4']);
 
         drawLegend();
-
-        // // Code to link the Tim's lymph repo
-        // self.dendrogramButton = d3.select("#dendrogramlinker");
-        // self.lymphNodeButtnon = d3.select("#lymphthingylinker");
-        //
-        // // Code to link CAMP-RT
-        // self.camprtButton = d3.select("#camprtlinker");
     }
 
     function setDendrogramButtons(pid) {
@@ -350,9 +348,11 @@ let KiviatDiagramView = function(targetID) {
         }
     }
 
+    init();
 
     return {
         update,
         updateAttributeDomains
     };
+
 }
