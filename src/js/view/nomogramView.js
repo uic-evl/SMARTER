@@ -240,6 +240,20 @@ let NomogramView = function(targetID) {
         updateView();
     }
 
+    function setNomogramSelector(element, default_selected="default") {
+        let nomogramsTypes = App.models.nomogramModel.getAxesNames();
+
+        console.log(nomogramsTypes);
+        d3.select(element)
+            .selectAll("option")
+            .data(nomogramsTypes)
+            .enter().append('option')
+            .property("selected", (d) => d === default_selected)
+            .attr("value", (d) => d)
+            .attr("id", (d) => d+"-nomogram-selector")
+            .text((d) => d);
+    }
+
     return {
         setMode,
         updateFilterData,
@@ -248,6 +262,7 @@ let NomogramView = function(targetID) {
         updateAttributeDomains,
         updateAxisVisibility,
         updateAxesRange,
-        updateAxesDomain
+        updateAxesDomain,
+        setNomogramSelector
     };
 }

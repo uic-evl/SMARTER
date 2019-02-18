@@ -41,15 +41,29 @@ less.pageLoadFinished.then(function() {
     ];
     App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
-
-    App.init = function() {
+    App.createModels = function() {
         // creat models
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
         App.models.mosaicPatient = new MosaicPatientModel();
+        App.models.nomogramModel = new NomogramModel();
+    }
 
-        // create controllers
+    App.createViews = function() {
+        App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
+        App.views.nomogram = new NomogramView("#nomogram");
+        App.views.nomogram.setMode("knn");
+        App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
+        App.views.mosaic = new MosaicView("#mosaic");
+        App.views.helpInfo = new HelpInfoView("#HelpInfo");
+
+        App.views.demographForm = new DemographicsFormView();
+        App.views.treatmentForm = new TreatmentFormView();
+        App.views.cancerDescriptorsForm = new CancerDescriptorsFormView();
+    }
+
+    App.createControllers = function() {
         App.controllers.settings = new SettingsController();
         App.controllers.settings.attachCookiesCheckbox("#cookieCheckbox");
 
@@ -79,17 +93,22 @@ less.pageLoadFinished.then(function() {
 
         App.controllers.mosaicFilter = new MosaicFilterController();
 
-        // create views
-        App.views.kiviatDiagram = new KiviatDiagramView("#kiviatDiagram");
-        App.views.nomogram = new NomogramView("#nomogram");
-        App.views.nomogram.setMode("knn");
-        App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
-        App.views.mosaic = new MosaicView("#mosaic");
-        App.views.helpInfo = new HelpInfoView("#HelpInfo");
+        App.controllers.allNomogramController = new AllNomogramsController();
 
-        App.views.demographForm = new DemographicsFormView();
-        App.views.treatmentForm = new TreatmentFormView();
-        App.views.cancerDescriptorsForm = new CancerDescriptorsFormView();
+    };
+
+    App.init = function() {
+
+
+        // create controllers
+
+        // create views
+        App.createModels();
+
+        App.models.nomogramModel.loadAxes()
+            .then(() => {
+                console.log("Axes loaded");
+            });
 
         // load patients
         App.models.patients.loadPatients()
@@ -97,12 +116,15 @@ less.pageLoadFinished.then(function() {
                 console.log("Promise Finished" /*, data*/ );
 
                 // console.log(App.controllers.demographicsFormController);
+                App.createViews();
+                App.createControllers();
 
                 App.controllers.patientSelector.attachToSelect(".patient-dropdown");
                 App.controllers.landingFormController.setPatientDropdown(".idSelect");
                 App.controllers.landingFormController.setSubmitButton(".submitButton");
                 App.controllers.landingFormController.setShowFormButton("#add-patient-button");
                 App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
+                App.views.nomogram.setNomogramSelector("#nomogram-selector");
 
                 App.controllers.dataUpdate.updateApplication();
 

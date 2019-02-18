@@ -36,6 +36,7 @@
     <script src="src/js/model/applicationStateModel.js" charset="utf-8"></script>
     <script src="src/js/model/kaplanMeierPatientModel.js" charset="utf-8"></script>
     <script src="src/js/model/mosaicPatientModel.js" charset="utf-8"></script>
+    <script src="src/js/model/nomogramModel.js" charset="utf-8"></script>
 
     <script src="src/js/controller/dataUpdateController.js" charset="utf-8"></script>
     <script src="src/js/controller/patientSelectorController.js" charset="utf-8"></script>
@@ -49,6 +50,7 @@
     <script src="src/js/controller/mosaicFilterController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
     <script src="src/js/controller/LandingFormController.js" charset="utf-8"></script>
+    <script src="src/js/controller/allNomogramsController.js" charset="utf-8"></script>
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
@@ -58,6 +60,7 @@
     <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
     <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
+
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
@@ -266,6 +269,9 @@
                 <div class="contentDiv" id="nomogramControls">
                     <div class="row dropdown-control-row">
                         <div class="col-md-12">
+                            <div class="row">
+                                <select class="btn btn-success btn-block dropdown-toggle" id="nomogram-selector"></select>
+                            </div>
                             <div class="row dropdown-row">
                                 <div class="dropdown">
                                     <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
