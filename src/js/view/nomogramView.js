@@ -243,15 +243,18 @@ let NomogramView = function(targetID) {
     function setNomogramSelector(element, default_selected="default") {
         let nomogramsTypes = App.models.nomogramModel.getAxesNames();
 
-        console.log(nomogramsTypes);
-        d3.select(element)
+        let nomogramSelector = d3.select(element)
+            .on("change", function() {
+                console.log(d3.select(this).property("value"));
+            })
             .selectAll("option")
             .data(nomogramsTypes)
             .enter().append('option')
             .property("selected", (d) => d === default_selected)
             .attr("value", (d) => d)
-            .attr("id", (d) => d+"-nomogram-selector")
+            .attr("id", (d) => d + "-nomogram-selector")
             .text((d) => d);
+
     }
 
     return {
