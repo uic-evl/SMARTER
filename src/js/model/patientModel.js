@@ -14,6 +14,7 @@ let PatientModel = function() {
     function loadPatients() {
         let survivalProbabilityFile = "data/SurvivalProbability.csv ";
         let kaplanMeierFile = "data/correctKaplanMeier.csv";
+        let newDataFile = "data/newdata.csv";
 
         // use promise to notify main when the data has been loaded
         return new Promise(function(resolve, reject) {
@@ -23,28 +24,35 @@ let PatientModel = function() {
             dataLoadQueue
                 .defer(d3.csv, survivalProbabilityFile)
                 .defer(d3.csv, kaplanMeierFile)
+                .defer(d3.csv, newDataFile)
                 .await(loadAllFiles);
 
             // called after both files are loaded, and combines the data from two files
-            function loadAllFiles(error, probData, kaplanMeierData) {
+            function loadAllFiles(error, probData, kaplanMeierData, newData) {
                 if (error) {
                     // reject on error in await callback
                     reject(error);
                 }
-
+                // console.log(newData);
+                // console.log(newData[0]["Dummy ID"]);
                 // convert array to object using IDs as the key
-                _.forEach(probData, (d, i) => {
+                _.forEach(newData, (d, i) => {
                     self.patients[i] = d;
-                    self.patients[i].AgeAtTx = +(self.patients[i].AgeAtTx);
-                    self.patients[i]["Probability of Survival"] = +(self.patients[i]["Probability of Survival"]);
+                    self.patients[i].AgeAtTx = +(d["Age at Diagnosis (Calculated)"]);
+                    self.patients[i]["Probability of Survival"] = +(d["overall_survival_5yr_prob"]);
+                    self.patients[i].ID = d["Dummy ID"];
+                    self.patients[i].OS = +d["OS (Calculated)"];
+                    self.patients[i].Censor = +d.Censor;
+
+                    console.log(self.patients[i]);
                 });
 
                 // added properties to patients which are only present in the second file
-                kaplanMeierData.forEach(function(d, i) {
-                    self.patients[i].ID = i;
-                    self.patients[i].OS = +d.OS;
-                    self.patients[i].Censor = +d.Censor;
-                });
+                // newData.forEach(function(d, i) {
+                //     console.log(d["Dummy ID"]);
+                //     s
+                // });
+
 
                 // calculate the patient attribute domains including age and survival pbty
                 calculatePatientAttributeDomains();

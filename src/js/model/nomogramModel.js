@@ -53,14 +53,23 @@ let NomogramModel = function() {
     let getOverallAxes = () => axes.overall;
     let getProgressionAxes = () => axes.progression;
 
+    let axesfunctions = {
+        "aspiration": getAspirationAxes,
+        "default": getDefaultAxes,
+        "overall": getOverallAxes,
+        "progression": getProgressionAxes
+    };
+
+    let getAxesData = function(type) {
+        return axesfunctions[type]();
+    }
+
+
     let getAxesNames = () => _axes_names;
 
     return {
         loadAxes,
-        getAspirationAxes,
-        getDefaultAxes,
-        getOverallAxes,
-        getProgressionAxes,
+        getAxesData,
         getAxesNames
     }
 }

@@ -68,6 +68,23 @@ let NomogramView = function(targetID) {
         updateView();
     }
 
+    function updateNomogram(nomogramtype) {
+        const data = App.models.nomogramModel.getAxesData(nomogramtype);
+        self.filteredAxes = Object.keys(data);
+        self.axesDomain = {};
+        self.axesRange = {};
+        self.axesLabel = {};
+        self.filteredAxes.forEach((key) => {
+            self.axesRange[key] = data[key].rangeShrink;
+            self.axesDomain[key] = data[key].domain;
+            self.axesLabel[key] = data[key].label;
+        });
+        console.log(self.filteredAxes);
+        // updateAxes();
+        // updateView();
+
+    }
+
     /* initialize the nomoggram */
     function createNomogram() {
         // self.targetElement.selectAll("*").remove();
@@ -188,6 +205,7 @@ let NomogramView = function(targetID) {
 
     /* update the nomogram with filtered axes */
     function updateAxes() {
+        console.log(self.filteredAxes);
         self.nomogram
             .setAxes(self.filteredAxes.map(el => {
                 return {
@@ -245,7 +263,7 @@ let NomogramView = function(targetID) {
 
         let nomogramSelector = d3.select(element)
             .on("change", function() {
-                console.log(d3.select(this).property("value"));
+                updateNomogram(d3.select(this).property("value"));
             })
             .selectAll("option")
             .data(nomogramsTypes)
