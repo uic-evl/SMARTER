@@ -14,10 +14,10 @@ let DemographicsFormView = function () {
         self.aspirationYesRadio = d3.select('#aspiration-y-radio');
         self.aspirationNoRadio = d3.select('#aspiration-n-radio');
         self.hpvp16Element = d3.select("#hpvp16-element");
-        self.ecog0Element = d3.select("#ecog-0-radio");
-        self.ecog1Element = d3.select("#ecog-1-radio");
-        self.ecog2Element = d3.select("#ecog-2-radio");
-        self.ecog3Element = d3.select("#ecog-3-radio");
+        // self.ecog0Element = d3.select("#ecog-0-radio");
+        // self.ecog1Element = d3.select("#ecog-1-radio");
+        // self.ecog2Element = d3.select("#ecog-2-radio");
+        // self.ecog3Element = d3.select("#ecog-3-radio");
         self.smokingStatusNeverElement = d3.select("#smoking-never-radio");
         self.smokingStatusFormerElement = d3.select("#smoking-former-radio");
         self.smokingStatusCurrentElement = d3.select("#smoking-current-radio");
@@ -26,12 +26,16 @@ let DemographicsFormView = function () {
 
     function updateForm(data) {
         // Update attributes
-        let {AgeAtTx: age, Ethnicity: eth, Gender: gender, ID: id, ecog} = data;
+        let {AgeAtTx: age, Race: eth, Gender: gender, ID: id, "Smoking status at Diagnosis (Never/Former/Current)":smoking_stat,
+        "HPV/P16 status":hpv_stat, "Aspiration rate(Y/N)":aspiration, "Smoking status (Packs/Year)":packsperyear} = data;
         setAgeElement(age);
         setRaceElement(eth);
         setGenderElement(gender);
-        setEcogValue(ecog);
-
+        // setEcogValue(ecog);
+        setSmokingStatus(smoking_stat);
+        setHpvp16Element(hpv_stat);
+        setAspirationElement(aspiration);
+        setPacksPerYearElement(packsperyear);
         console.log(data);
     }
 
@@ -40,7 +44,8 @@ let DemographicsFormView = function () {
             age: getAgeElement(),
             race: getRaceElement(),
             gender: getGenderElement(),
-            ecog: getEcogValue(),
+            // ecog: getEcogValue(),
+            aspiration: getAspirationElement(),
             hpvp16: getHpvp16Element(),
             smokingStatus: getSmokingStatus(),
             packsPerYear: getPacksPerYearElement()
@@ -74,6 +79,7 @@ let DemographicsFormView = function () {
     }
 
     function setGenderElement(gender) {
+        gender = gender.toLowerCase();
         if (gender !== undefined) {
             if (gender === "male") {
                 self.genderMaleElement
@@ -108,7 +114,7 @@ let DemographicsFormView = function () {
     }
 
     function setHpvp16Element(data) {
-        if (val !== undefined) {
+        if (data !== undefined) {
             self.hpvp16Element
                 .attr("value", data)
                 .text(data);
@@ -191,6 +197,7 @@ let DemographicsFormView = function () {
     }
 
     function setSmokingStatus(data) {
+        data = data.toLowerCase();
         if (data !== undefined) {
             if (data === 'never') {
                 self.smokingStatusNeverElement
@@ -227,6 +234,38 @@ let DemographicsFormView = function () {
                 .attr("value", data)
                 .text(data);
         }
+    }
+
+    function setAspirationElement(data) {
+        if (data !== undefined) {
+            data = data.toLowerCase();
+            if (data === "y" || data === "yes") {
+                self.aspirationYesRadio
+                    .property("checked", true);
+                self.aspirationNoRadio
+                    .property("checked", false);
+            } else if (data === "n" || data === "no") {
+                self.aspirationYesRadio
+                    .property("checked", false);
+                self.aspirationNoRadio
+                    .property("checked", true);
+            }
+        }
+    }
+
+    function getAspirationElement() {
+        let yes = self.aspirationYesRadio.property("checked");
+        let no = self.aspirationNoRadio.property("checked");
+
+        if (yes) {
+            return "Yes";
+        }
+
+        if (no) {
+            return "No";
+        }
+
+        return undefined;
     }
 
     return {

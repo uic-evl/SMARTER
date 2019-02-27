@@ -34,9 +34,15 @@ let CancerDescriptorsFormView = function() {
     }
 
     function updateForm(data) {
-        let {Site: tumorSite, Tcategory: tcat} = data;
+        let {"Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)": tumorSite, "T-category": tcat, "N-category":ncat,
+        "AJCC 7th edition":ajcc7, "AJCC 8th edition":ajcc8, "Affected Lymph node cleaned":affected_lymph_node, "Pathological Grade":pgrade} = data;
         setTumorSiteElement(tumorSite);
         setTcatElement(tcat);
+        setAjcc7Element(ajcc7);
+        setAjcc8Element(ajcc8);
+        setAffectedLymphNodeElement(affected_lymph_node);
+        setNcatElement(ncat);
+        setPGradeElement(pgrade);
     }
 
     function consolidateData() {

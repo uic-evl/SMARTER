@@ -12,8 +12,8 @@ let PatientModel = function() {
 
     /* load data from two csv files, returning a promise that resolves upon completion */
     function loadPatients() {
-        let survivalProbabilityFile = "data/SurvivalProbability.csv ";
-        let kaplanMeierFile = "data/correctKaplanMeier.csv";
+        // let survivalProbabilityFile = "data/SurvivalProbability.csv ";
+        // let kaplanMeierFile = "data/correctKaplanMeier.csv";
         let newDataFile = "data/newdata.csv";
 
         // use promise to notify main when the data has been loaded
@@ -22,13 +22,16 @@ let PatientModel = function() {
             let dataLoadQueue = d3.queue();
 
             dataLoadQueue
-                .defer(d3.csv, survivalProbabilityFile)
-                .defer(d3.csv, kaplanMeierFile)
+                // .defer(d3.csv, survivalProbabilityFile)
+                // .defer(d3.csv, kaplanMeierFile)
                 .defer(d3.csv, newDataFile)
                 .await(loadAllFiles);
 
             // called after both files are loaded, and combines the data from two files
-            function loadAllFiles(error, probData, kaplanMeierData, newData) {
+            function loadAllFiles(error,
+                                  // probData,
+                                  // kaplanMeierData,
+                                  newData) {
                 if (error) {
                     // reject on error in await callback
                     reject(error);
@@ -37,6 +40,9 @@ let PatientModel = function() {
                 // console.log(newData[0]["Dummy ID"]);
                 // convert array to object using IDs as the key
                 _.forEach(newData, (d, i) => {
+                    if (d['Dummy ID'] === "2006") {
+                        console.log("Dummy id 2006 ", d);
+                    }
                     self.patients[i] = d;
                     self.patients[i].AgeAtTx = +(d["Age at Diagnosis (Calculated)"]);
                     self.patients[i]["Probability of Survival"] = +(d["overall_survival_5yr_prob"]);
@@ -44,17 +50,7 @@ let PatientModel = function() {
                     self.patients[i].OS = +d["OS (Calculated)"];
                     self.patients[i].Censor = +d.Censor;
 
-                    console.log(self.patients[i]);
                 });
-
-                // added properties to patients which are only present in the second file
-                // newData.forEach(function(d, i) {
-                //     console.log(d["Dummy ID"]);
-                //     s
-                // });
-
-
-                // calculate the patient attribute domains including age and survival pbty
                 calculatePatientAttributeDomains();
 
                 // resolve within await callback after data finished processing

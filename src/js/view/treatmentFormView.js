@@ -19,9 +19,17 @@ let TreatmentFormView = function () {
     }
 
     function updateForm(data) {
-        let {Chemotherapy: chemo, Local_Therapy: local_therapy} = data;
+        let {Chemotherapy: chemo, Local_Therapy: local_therapy, "Neck boost (Y/N)":neck_boost,
+        "Dose/fraction (Gy)":dose_per_day, "Total dose":total_dose, "Total fractions":total_fractions, "Treatment duration (Days)":duration,
+        "Neck Disssection after IMRT (Y/N)":neck_dissection} = data;
         setChemoElement(chemo);
         setLocalTherapyElement(local_therapy);
+        setNeckBoostElement(neck_boost);
+        setTotalDoseElement(total_dose);
+        setDosePerDayElement(dose_per_day);
+        setTotalFractionElement(total_fractions);
+        setDurationElement(duration);
+        setNeckElement(neck_dissection);
     }
 
     function consolidateData() {
@@ -134,13 +142,14 @@ let TreatmentFormView = function () {
     }
 
     function setNeckBoostElement(data) {
+        data = data.toLowerCase();
         if (data !== undefined) {
-            if (data === "yes") {
+            if (data === "yes" || data==="y") {
                 self.neckBoostYesRadio
                     .property("checked", true);
                 self.neckBoostNoRadio
                     .property("checked", false);
-            } else if (data === "no") {
+            } else if (data === "no" || data === "n") {
                 self.neckBoostYesRadio
                     .property("checked", false);
                 self.neckBoostNoRadio
