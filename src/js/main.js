@@ -97,8 +97,6 @@ less.pageLoadFinished.then(function() {
 
         App.controllers.mosaicFilter = new MosaicFilterController();
 
-        App.controllers.allNomogramController = new AllNomogramsController();
-
     };
 
     App.init = function() {
