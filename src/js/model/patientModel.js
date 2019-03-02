@@ -40,9 +40,9 @@ let PatientModel = function() {
                 // console.log(newData[0]["Dummy ID"]);
                 // convert array to object using IDs as the key
                 _.forEach(newData, (d, i) => {
-                    if (d['Dummy ID'] === "2006") {
-                        console.log("Dummy id 2006 ", d);
-                    }
+                    // if (d['Dummy ID'] === "2006") {
+                    //     console.log("Dummy id 2006 ", d);
+                    // }
                     self.patients[i] = d;
                     self.patients[i].AgeAtTx = +(d["Age at Diagnosis (Calculated)"]);
                     self.patients[i]["Probability of Survival"] = +(d["overall_survival_5yr_prob"]);
@@ -131,7 +131,7 @@ let PatientModel = function() {
 
         // get the actual patient attributes used for calculating knn
         let knnAttributes = _.difference(patientAttributes, knnExcludedAttributes);
-        console.log(knnAttributes);
+        // console.log(knnAttributes);
 
         // calculate the similarity scores between the selected patient and the rest patients in the list
         for (let patientID of Object.keys(self.patients)) {

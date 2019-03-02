@@ -48,6 +48,10 @@ let NomogramModel = function() {
         })
     }
 
+    function setAxes () {
+
+    }
+
     let getAspirationAxes = () => axes.aspiration;
     let getDefaultAxes = () => axes.default;
     let getOverallAxes = () => axes.overall;
@@ -60,9 +64,9 @@ let NomogramModel = function() {
         "progression": getProgressionAxes
     };
 
-    let getAxesData = function(type) {
+    let getAxesData = function(type="default") {
         return axesfunctions[type]();
-    }
+    };
 
 
     let getAxesNames = () => _axes_names;

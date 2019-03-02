@@ -9,9 +9,7 @@ let NomogramView = function(targetID) {
         targetElement: null,
         legendSVG: null,
         nomogram: null,
-        axesLabel: {},
-        axesRange: {},
-        axesDomain: {},
+        axes: {},
         filteredAxes: [],
         strokewidth: {
             "knn": null,
@@ -36,15 +34,21 @@ let NomogramView = function(targetID) {
             .attr("height", self.targetElement.node().clientHeight)
             .attr("viewBox", "0 0 200 100")
             .attr("preserveAspectRatio", "xMidYMid");
+        
+        let axes = App.models.nomogramModel.getAxesData();
+        self.axes = axes;
 
-        Object.keys(App.nomogramAxesRange).forEach((el) => {
-            self.axesLabel[el] = el;
-        });
+        // Object.keys(axes).forEach((el) => {
+        //     self.axesLabel[el] = el;
+        //     self.axesRange[el] = axes[el]["rangeShrink"];
+        //     self.axesDomain[el] = axes[el]["domain"];
+        //     self.axesType[el] = axes[el]["type"];
+        // });
         // self.axesLabel["Probability of Survival"] = "5-year Survival Pbty";
 
-        self.axesRange = App.nomogramAxesRange;
+        // self.axesRange = App.nomogramAxesRange;
 
-        self.filteredAxes = Object.keys(App.nomogramAxesRange);
+        self.filteredAxes = Object.keys(axes);
         console.log(self.filteredAxes);
 
         let menuDiv = d3.select(self.targetID+"Header")
@@ -69,19 +73,11 @@ let NomogramView = function(targetID) {
     }
 
     function updateNomogram(nomogramtype) {
-        const data = App.models.nomogramModel.getAxesData(nomogramtype);
-        self.filteredAxes = Object.keys(data);
-        self.axesDomain = {};
-        self.axesRange = {};
-        self.axesLabel = {};
-        self.filteredAxes.forEach((key) => {
-            self.axesRange[key] = data[key].rangeShrink;
-            self.axesDomain[key] = data[key].domain;
-            self.axesLabel[key] = data[key].label;
-        });
-        console.log(self.filteredAxes);
-        // updateAxes();
-        // updateView();
+        self.axes = App.models.nomogramModel.getAxesData(nomogramtype);
+        self.filteredAxes = Object.keys(self.axes);
+
+        updateAxes();
+        updateView();
 
     }
 
@@ -96,14 +92,7 @@ let NomogramView = function(targetID) {
 
         self.nomogram = new Nomogram()
             .target(self.targetID)
-            .setAxes(self.filteredAxes.map(el => {
-                return {
-                    name: el,
-                    label: self.axesLabel[el],
-                    domain: self.axesDomain[el],
-                    rangeShrink: self.axesRange[el]
-                };
-            }), "reduce")
+            .setAxes(self.filteredAxes.map(el => self.axes[el]), "reduce", "shrinkAxis")
             .margins({
                 top: 5,
                 left: 40,
@@ -130,6 +119,7 @@ let NomogramView = function(targetID) {
             self.nomogram
                 .data(self.data[self.mode])
                 .strokeWidth(function(d) {
+                    // console.log(d);
                     if (d.ID === self.selectedPatientID) {
                         return self.strokewidth[self.mode] * 2;
                     } else {
@@ -207,20 +197,13 @@ let NomogramView = function(targetID) {
     function updateAxes() {
         console.log(self.filteredAxes);
         self.nomogram
-            .setAxes(self.filteredAxes.map(el => {
-                return {
-                    name: el,
-                    label: self.axesLabel[el],
-                    domain: self.axesDomain[el].map(d => d),
-                    rangeShrink: self.axesRange[el]
-                };
-            }), "reduce");
+            .setAxes(self.filteredAxes.map(el => self.axes[el]), "reduce", "shrinkAxis");
     }
 
     /* get the updated attribute domians */
     function updateAttributeDomains(newDomains) {
-        for (let attribute of Object.keys(App.nomogramAxesRange)) {
-            self.axesDomain[attribute] = newDomains[attribute];
+        for (let attribute of Object.keys(self.axes)) {
+            self.axes[attribute]["domain"] = newDomains[attribute];
         }
 
         updateAxes();

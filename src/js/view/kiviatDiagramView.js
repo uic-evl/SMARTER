@@ -152,7 +152,7 @@ let KiviatDiagramView = function(targetID) {
 
         let currentPatient = App.controllers.patientSelector.getCurrentPatient();
 
-        console.log(patients);
+        // console.log(patients);
 
         // sets the mist similar patients buttons' links.
         setDendrogramButtons(currentPatient);
@@ -206,7 +206,7 @@ let KiviatDiagramView = function(targetID) {
         translateGroup.append("path")
             .attr("class", "kiviatPath");
 
-        console.log(App.patientKnnAttributes);
+        // console.log(App.patientKnnAttributes);
 
         // tool tip circle in the center to show ID, Age, and Survial Prob
         axesGroup.append("circle")
@@ -310,10 +310,10 @@ let KiviatDiagramView = function(targetID) {
     /* calculate the path */
     function calculatePath(d) {
         let pathCoord = [];
-        console.log(d);
+        // console.log(d);
         for (let attributeInd in App.patientKnnAttributes) {
             let attribute = App.patientKnnAttributes[attributeInd];
-            console.log(attribute, d[attribute]);
+            // console.log(attribute, d[attribute]);
             let xPoint = self.attributeScales[attribute](d[attribute]);
 
             let endpoint = rotatePointOntoAxis(xPoint, attributeInd);
