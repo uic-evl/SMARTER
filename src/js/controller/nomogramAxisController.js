@@ -20,6 +20,7 @@ let NomogramAxisController = function(listID) {
         attributeDomainDefault: {},
         attributeDomain: {},
         domainScale: {},
+        axes: {},
 
         // axis: {
         //     "domain": {},
@@ -33,6 +34,7 @@ let NomogramAxisController = function(listID) {
 
     function init() {
         let attributes = App.patientKnnAttributes;
+        self.axes = App.models.axesModel.getAxesData();
 
         for (let attribute of attributes) {
             self.checkboxStates[attribute] = true;
@@ -73,7 +75,7 @@ let NomogramAxisController = function(listID) {
 
     function attachToSelect(selectID) {
         // include age and surv prob axes
-        let attributes = Object.keys(App.nomogramAxesRange);
+        let attributes = Object.keys(self.axes);
 
         self.select = d3.select(selectID)
             .on("change", selectorOnChange);
@@ -89,9 +91,11 @@ let NomogramAxisController = function(listID) {
         self.selectedAxis = this.selectedAxis;
     }
 
-    function attachToDomainRangeToggle(domainID, rangeID) {
-        self.toggleButtons = d3.selectAll("#nomogramAxisButton")
-            .on("click", toggleButtonOnClick);
+    function attachToDomainRangeToggle(elements) {
+        self.toggleButtons =
+            d3.selectAll(elements)
+                .on("click", toggleButtonOnClick);
+
     }
 
 
@@ -105,12 +109,16 @@ let NomogramAxisController = function(listID) {
 
     function selectorOnChange() {
         self.selectedAxis = d3.select(this).node().value;
-
+        // console.log(self.selectedAxis);
         // disable the domain button when the non-age or non-prob axis is selected
-        if (self.selectedAxis !== "AgeAtTx" && self.selectedAxis !== "Probability of Survival") {
-            self.toggleButtons.node().disabled = true;
+        console.log(self.toggleButtons);
+        if (self.selectedAxis !== "AgeAtTx" && self.selectedAxis !== "Predictive Probability") {
+            self.toggleButtons
+                .attr("disabled", true);
+
         } else {
-            self.toggleButtons.node().disabled = false;
+            self.toggleButtons
+                .attr("disabled", null);
         }
 
         updateBrush();
@@ -178,9 +186,10 @@ let NomogramAxisController = function(listID) {
 
 
         // get the attribute range on each axis
-        _.forEach(App.nomogramAxesRange, function(value, key) {
-            self.attributeRange[key] = value;
+        _.forEach(self.axes, function(value, key) {
+            self.attributeRange[key] = value["rangeShrink"];
         });
+
 
         // set the range scale for all axes
         self.rangeScale = d3.scaleLinear()
@@ -188,13 +197,13 @@ let NomogramAxisController = function(listID) {
             .range([sliderHeight - 3, 3]);
 
         // set the domain scale for age and prob-surv axis
-        self.domainScale["AgeAtTx"] = d3.scaleLinear()
-            .domain(self.attributeDomain["AgeAtTx"])
-            .range([3, sliderHeight - 3]);
+        // self.domainScale["AgeAtTx"] = d3.scaleLinear()
+        //     .domain(self.attributeDomain["AgeAtTx"])
+        //     .range([3, sliderHeight - 3]);
 
-        self.domainScale["Probability of Survival"] = d3.scaleLinear()
-            .domain(self.attributeDomain["Probability of Survival"])
-            .range([sliderHeight - 3, 3]);
+        // self.domainScale["Probability of Survival"] = d3.scaleLinear()
+        //     .domain(self.attributeDomain["Probability of Survival"])
+        //     .range([sliderHeight - 3, 3]);
 
         updateBrush();
     }
@@ -222,7 +231,7 @@ let NomogramAxisController = function(listID) {
         if (!d3.event.selection) {
             // reset to initial state
             if (self.editMode === "range") {
-                self.attributeRange[self.selectedAxis] = App.nomogramAxesRange[self.selectedAxis];
+                self.attributeRange[self.selectedAxis] = self.axes[self.selectedAxis]["rangeShrink"];
 
                 updateBrush();
             } else if (self.editMode === "domain") {
@@ -255,12 +264,14 @@ let NomogramAxisController = function(listID) {
 
     }
 
-    /* reset the axes settings to defaul */
+    /* reset the axes settings to default */
     function resetAxes() {
         console.log("reset");
         // reset the axis domain and range
-        _.forEach(App.nomogramAxesRange, function(value, key) {
-            self.attributeRange[key] = value;
+        const axes = App.models.axesModel.getAxesData();
+
+        _.forEach(axes, function(value, key) {
+            self.attributeRange[key] = value["rangeShrink"];
         });
 
         _.forEach(self.attributeDomainDefault, function(value, key) {

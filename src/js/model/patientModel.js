@@ -7,7 +7,8 @@ let PatientModel = function() {
     /* Private variables */
     let self = {
         patients: {},
-        attributeDomains: {}
+        attributeDomains: {},
+        axes: {}
     };
 
     /* load data from two csv files, returning a promise that resolves upon completion */
@@ -51,7 +52,7 @@ let PatientModel = function() {
                     self.patients[i].Censor = +d.Censor;
 
                 });
-                calculatePatientAttributeDomains();
+                // calculatePatientAttributeDomains();
 
                 // resolve within await callback after data finished processing
                 resolve( /*self.patients*/ );
@@ -87,8 +88,8 @@ let PatientModel = function() {
             self.attributeDomains[attribute] = uniqueVals.sort();
         }
 
-        self.attributeDomains["AgeAtTx"] = [25, 90];
-        self.attributeDomains["Probability of Survival"] = [0, 1];
+        // self.attributeDomains["AgeAtTx"] = [25, 90];
+        // self.attributeDomains["Probability of Survival"] = [0, 1];
     }
 
     /* get the patient attribute domains */
@@ -101,7 +102,7 @@ let PatientModel = function() {
         let knnAttributeDomains = {};
 
         for (let attribute of App.patientKnnAttributes) {
-            knnAttributeDomains[attribute] = self.attributeDomains[attribute];
+            knnAttributeDomains[attribute] = self.axes[attribute].domain;
         }
 
         return knnAttributeDomains;
@@ -164,12 +165,17 @@ let PatientModel = function() {
         score += tieBreaker;
 
         for (let attribute of knnAttributes) {
-            if (self.patients[patientID][attribute] === self.patients[subjectID][attribute]) {
+            // console.log(patientID, self.patients[patientID][axes[attribute].name] === self.patients[subjectID][axes[attribute].name]);
+            if (self.patients[patientID][self.axes[attribute].name] === self.patients[subjectID][self.axes[attribute].name]) {
                 score += 1;
             }
         }
 
         return score;
+    }
+
+    function setAxes(axes) {
+        self.axes = axes;
     }
 
 
@@ -182,6 +188,7 @@ let PatientModel = function() {
         getPatientAttirbuteDomains,
         getPatientKnnAttributeDomains,
         filterPatients,
+        setAxes,
         getKnn: calculateKNN
     };
 }

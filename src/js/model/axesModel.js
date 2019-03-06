@@ -2,7 +2,11 @@
 
 var App = App || {};
 
-let NomogramModel = function() {
+let AxesModel = function() {
+
+    let self  = {
+        currentAxesType: "default"
+    };
 
     let axes = {
         aspiration: null,
@@ -43,13 +47,22 @@ let NomogramModel = function() {
 
                 _axes_names = Object.keys(axes);
 
+                const axesAttributes = Object.keys(defaultAxes);
+
+                // App.patientKnnAttributes = [];
+                // App.kiviatAttributes = [];
+                axesAttributes.forEach((d) => {
+                    if (defaultAxes[d].forKiviat)
+                        App.kiviatAttributes.push(d);
+                    if (defaultAxes[d].forKnn)
+                        App.patientKnnAttributes.push(d);
+                });
+
+                App.models.patients.setAxes(defaultAxes);
+
                 resolve();
             }
         })
-    }
-
-    function setAxes () {
-
     }
 
     let getAspirationAxes = () => axes.aspiration;
@@ -64,16 +77,23 @@ let NomogramModel = function() {
         "progression": getProgressionAxes
     };
 
-    let getAxesData = function(type="default") {
-        return axesfunctions[type]();
+    let getAxesData = function() {
+        return JSON.parse(JSON.stringify(axesfunctions[self.currentAxesType]()));
     };
 
+    let setCurrentAxes = (type="default") => {
+        self.currentAxesType = type;
+    };
+
+    let getCurrentAxesType = () => self.currentAxesType;
 
     let getAxesNames = () => _axes_names;
 
     return {
         loadAxes,
         getAxesData,
-        getAxesNames
+        getAxesNames,
+        setCurrentAxes,
+        getCurrentAxesType
     }
-}
+};

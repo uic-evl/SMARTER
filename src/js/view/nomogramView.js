@@ -35,21 +35,11 @@ let NomogramView = function(targetID) {
             .attr("viewBox", "0 0 200 100")
             .attr("preserveAspectRatio", "xMidYMid");
         
-        let axes = App.models.nomogramModel.getAxesData();
+        const axes = App.models.axesModel.getAxesData();
         self.axes = axes;
 
-        // Object.keys(axes).forEach((el) => {
-        //     self.axesLabel[el] = el;
-        //     self.axesRange[el] = axes[el]["rangeShrink"];
-        //     self.axesDomain[el] = axes[el]["domain"];
-        //     self.axesType[el] = axes[el]["type"];
-        // });
-        // self.axesLabel["Probability of Survival"] = "5-year Survival Pbty";
-
-        // self.axesRange = App.nomogramAxesRange;
-
         self.filteredAxes = Object.keys(axes);
-        console.log(self.filteredAxes);
+        // console.log(self.filteredAxes);
 
         let menuDiv = d3.select(self.targetID+"Header")
             .select(".viewTitleDiv").append("div")
@@ -73,7 +63,9 @@ let NomogramView = function(targetID) {
     }
 
     function updateNomogram(nomogramtype) {
-        self.axes = App.models.nomogramModel.getAxesData(nomogramtype);
+        App.models.axesModel.setCurrentAxes(nomogramtype);
+        self.axes = App.models.axesModel.getAxesData();
+        console.log(self.axes);
         self.filteredAxes = Object.keys(self.axes);
 
         updateAxes();
@@ -173,6 +165,7 @@ let NomogramView = function(targetID) {
         d3.selectAll(".nomogramLegend").remove();
 
         let attrVals = App.models.patients.getPatientKnnAttributeDomains()[attr];
+        console.log(attr, attrVals);
 
         for (let valInd in attrVals) {
             self.legendSVG.append("line")
@@ -195,7 +188,7 @@ let NomogramView = function(targetID) {
 
     /* update the nomogram with filtered axes */
     function updateAxes() {
-        console.log(self.filteredAxes);
+        // console.log(self.filteredAxes);
         self.nomogram
             .setAxes(self.filteredAxes.map(el => self.axes[el]), "reduce", "shrinkAxis");
     }
@@ -212,13 +205,13 @@ let NomogramView = function(targetID) {
     function updateAxisVisibility(axisStates) {
         // update self.filteredAxes
         self.filteredAxes = [];
-        self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[0]);
-        Object.keys(App.nomogramAxesRange).forEach((el) => {
+        self.filteredAxes.push(Object.keys(self.axes)[0]);
+        Object.keys(self.axes).forEach((el) => {
             if (axisStates[el]) {
                 self.filteredAxes.push(el);
             }
         });
-        self.filteredAxes.push(Object.keys(App.nomogramAxesRange)[App.patientKnnAttributes.length + 1]);
+        self.filteredAxes.push(Object.keys(self.axes)[App.patientKnnAttributes.length + 1]);
 
         // then updateAxes
         updateAxes();
@@ -227,7 +220,10 @@ let NomogramView = function(targetID) {
 
     /* update axes range */
     function updateAxesRange(newRange) {
-        self.axesRange = newRange;
+        console.log(newRange);
+        _.forEach(newRange, (value, key) => {
+            self.axes[key]["rangeShrink"] = value;
+        });
 
         updateAxes();
         updateView();
@@ -235,14 +231,16 @@ let NomogramView = function(targetID) {
 
     /* update axes domain */
     function updateAxesDomain(newDomain) {
-        self.axesDomain = newDomain;
+        _.forEach(newDomain, (value, key) => {
+            self.axes[key]["domain"] = value;
+        });
 
         updateAxes();
         updateView();
     }
 
     function setNomogramSelector(element, default_selected="default") {
-        let nomogramsTypes = App.models.nomogramModel.getAxesNames();
+        let nomogramsTypes = App.models.axesModel.getAxesNames();
 
         let nomogramSelector = d3.select(element)
             .on("change", function() {

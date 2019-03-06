@@ -42,6 +42,8 @@ let MosaicPatientModel = function() {
         self.patientGroupInfo = {};
 
         let attributeDomains = App.models.patients.getPatientKnnAttributeDomains();
+        console.log(attributeDomains);
+        console.log(self.nextTwoAttributes);
         let attr0_length = attributeDomains[self.nextTwoAttributes[0]].length;
         let attr1_length = attributeDomains[self.nextTwoAttributes[1]].length;
 

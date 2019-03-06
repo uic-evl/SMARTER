@@ -12,11 +12,8 @@ less.pageLoadFinished.then(function() {
     App.views = {};
 
     // hard code eight attributes for calculating knn and also eight axes in the kiviat diagram
-    App.patientKnnAttributes = ["Gender", "Race", "T-category", "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
-        // "Nodal_Disease", "ecog",
-        // "Chemotherapy",
-        // "Local_Therapy"
-    ];
+    App.patientKnnAttributes = [];
+    App.kiviatAttributes = [];
 
     // hard code default nomogram axes ranges
     App.nomogramAxesRange = {
@@ -33,10 +30,8 @@ less.pageLoadFinished.then(function() {
     };
 
     // hard code the order of attributes for drawing the mosaic viewBox
-    App.mosaicAttributeOrder = ["Race", "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)", "T-category", "Gender",
-        //"Nodal_Disease", "ecog",
-        // "Chemotherapy",
-        //"Local_Therapy"
+    App.mosaicAttributeOrder = ["Race", "T-category", "Gender",
+        "N-category"
     ];
 
     // need to find better colors
@@ -46,12 +41,17 @@ less.pageLoadFinished.then(function() {
     App.attributeColors = d3.scaleOrdinal(App.category10colors);
 
     App.createModels = function() {
-        // creat models
+
+        App.models.axesModel = new AxesModel();
+        App.models.axesModel.loadAxes()
+            .then(() => {
+                console.log("Axes loaded");
+            });
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
         App.models.mosaicPatient = new MosaicPatientModel();
-        App.models.nomogramModel = new NomogramModel();
+
     }
 
     App.createViews = function() {
@@ -93,7 +93,7 @@ less.pageLoadFinished.then(function() {
         App.controllers.nomogramAxis = new NomogramAxisController();
         App.controllers.nomogramAxis.attachToList("#nomogramVisibilityControl");
         App.controllers.nomogramAxis.attachToSelect("#nomogramAxisSelect");
-        App.controllers.nomogramAxis.attachToDomainRangeToggle("#nomogramAxisButton");
+        App.controllers.nomogramAxis.attachToDomainRangeToggle(".nomogramAxisButton");
 
         App.controllers.mosaicFilter = new MosaicFilterController();
 
@@ -106,11 +106,6 @@ less.pageLoadFinished.then(function() {
 
         // create views
         App.createModels();
-
-        App.models.nomogramModel.loadAxes()
-            .then(() => {
-                console.log("Axes loaded");
-            });
 
         // load patients
         App.models.patients.loadPatients()

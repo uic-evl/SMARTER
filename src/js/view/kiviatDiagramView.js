@@ -17,7 +17,8 @@ let KiviatDiagramView = function(targetID) {
         centerTip: null,
         dendrogramButton:null,
         lymphNodeButton: null,
-        camprtButton: null
+        camprtButton: null,
+        axes: {}
     };
 
     function init() {
@@ -47,11 +48,14 @@ let KiviatDiagramView = function(targetID) {
             .attr("viewBox", "0 0 100 200")
             .attr("preserveAspectRatio", "xMidYMid");
 
+
         // initialize the range of each attribute
-        for (let attribute of App.patientKnnAttributes) {
+        for (let attribute of App.kiviatAttributes) {
             self.attributeScales[attribute] = d3.scaleOrdinal()
                 .range([5, 35]);
         }
+
+        self.axes = App.models.axesModel.getAxesData();
 
         self.colorScale = d3.scaleLinear()
             .interpolate(d3.interpolateHcl)
@@ -132,12 +136,12 @@ let KiviatDiagramView = function(targetID) {
         }
 
         // axis labels
-        for (let attributeInd in App.patientKnnAttributes) {
+        for (let attributeInd in App.kiviatAttributes) {
             self.legendSvg.append("text")
                 .attr("x", 15)
                 .attr("y", 105 + attributeInd * 12)
                 .style("font-size", "8px")
-                .text(attributeInd + ": " + App.patientKnnAttributes[attributeInd]);
+                .text(attributeInd + ": " + App.kiviatAttributes[attributeInd]);
         }
     }
 
@@ -219,7 +223,7 @@ let KiviatDiagramView = function(targetID) {
             .on('mouseout', self.centerTip.hide);
 
         // draw axes
-        for (let j = 0; j < App.patientKnnAttributes.length; j++) {
+        for (let j = 0; j < App.kiviatAttributes.length; j++) {
             let axisEndpoint = rotatePointOntoAxis(40, j);
 
             axesGroup.append("line")
@@ -247,7 +251,7 @@ let KiviatDiagramView = function(targetID) {
                 .attr("r", 7)
                 .style("opacity", 0.25)
                 .datum({
-                    "attr": App.patientKnnAttributes[j]
+                    "attr": App.kiviatAttributes[j]
                     // "val": d[App.patientKnnAttributes[j]]
                 })
                 .on('mouseover', self.axisTip.show)
@@ -279,6 +283,7 @@ let KiviatDiagramView = function(targetID) {
 
     /* draw the kiviat diagram for each patient */
     function updateKiviatPatient(d, i) {
+
         let SVG = d3.select(this);
 
         SVG.select(".kiviatPath")
@@ -310,12 +315,11 @@ let KiviatDiagramView = function(targetID) {
     /* calculate the path */
     function calculatePath(d) {
         let pathCoord = [];
-        // console.log(d);
-        for (let attributeInd in App.patientKnnAttributes) {
-            let attribute = App.patientKnnAttributes[attributeInd];
-            // console.log(attribute, d[attribute]);
+        for (let attributeInd in App.kiviatAttributes) {
+            let attribute = App.kiviatAttributes[attributeInd];
+            // console.log(attribute, d[self.axes[attribute]["name"]]);
             let xPoint = self.attributeScales[attribute](d[attribute]);
-
+            // console.log(attribute, xPoint);
             let endpoint = rotatePointOntoAxis(xPoint, attributeInd);
 
             pathCoord.push(endpoint.x + " " + endpoint.y);
@@ -326,7 +330,7 @@ let KiviatDiagramView = function(targetID) {
 
     /* get the coordinates of the point on each axis */
     function rotatePointOntoAxis(pointX, axisIndex) {
-        let angle = Math.PI * 2 * axisIndex / App.patientKnnAttributes.length;
+        let angle = Math.PI * 2 * axisIndex / App.kiviatAttributes.length;
         return rotatePoint(pointX, angle);
     }
 
@@ -340,7 +344,7 @@ let KiviatDiagramView = function(targetID) {
     /* get the updated attribute domians */
     function updateAttributeDomains(newDomains) {
         // { name: domain, ... }
-        for (let attribute of App.patientKnnAttributes) {
+        for (let attribute of App.kiviatAttributes) {
             let attributeDomainLength = newDomains[attribute].length;
 
             self.attributeScales[attribute]

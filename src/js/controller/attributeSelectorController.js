@@ -13,17 +13,19 @@ let AttributeSelectorController = function() {
     function populateAttributeDropDown() {
         self.attributeDropDown
             .selectAll("option")
-            .data(App.patientKnnAttributes)
+            .data(App.mosaicAttributeOrder)
             .enter()
             .append("option")
             .attr("value", (d) => d)
             .text((d) => d);
+
+        updateSelectedAttribute(self.currentAttribute);
     }
 
     /* attach the event listener to the patient drop down list */
     function attachToSelect(element) {
         self.attributeDropDown = d3.select(element)
-            .on("change", function(d) {
+            .on("change", function() {
                 let selectedAttribute = d3.select(this).node().value;
                 self.currentAttribute = selectedAttribute;
                 updateSelectedAttribute(selectedAttribute);
