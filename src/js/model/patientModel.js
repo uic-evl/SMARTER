@@ -23,8 +23,6 @@ let PatientModel = function() {
             let dataLoadQueue = d3.queue();
 
             dataLoadQueue
-                // .defer(d3.csv, survivalProbabilityFile)
-                // .defer(d3.csv, kaplanMeierFile)
                 .defer(d3.csv, newDataFile)
                 .await(loadAllFiles);
 
