@@ -11,23 +11,9 @@ less.pageLoadFinished.then(function() {
     App.controllers = {};
     App.views = {};
 
-    // hard code eight attributes for calculating knn and also eight axes in the kiviat diagram
+    // Initialize attribute variables
     App.patientKnnAttributes = [];
     App.kiviatAttributes = [];
-
-    // hard code default nomogram axes ranges
-    App.nomogramAxesRange = {
-        "AgeAtTx": [1, 0],
-        "Gender": [0.1, 0],
-        "Race": [0.4, 0],
-        "T-category": [0.077, 0],
-        "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)": [0.4, 0],
-        // "Nodal_Disease": [0.15, 0],
-        // "ecog": [0.2, 0],
-        // "Chemotherapy": [0.3, 0],
-        // "Local_Therapy": [0.15, 0],
-        "Probability of Survival": [0, 1]
-    };
 
     // hard code the order of attributes for drawing the mosaic viewBox
     App.mosaicAttributeOrder = ["Race", "T-category", "Gender",
