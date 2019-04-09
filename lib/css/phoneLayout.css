@@ -6,7 +6,7 @@ body{
   background: #ECE9E6;
   color: #000000;
   font-family: 'Raleway', sans-serif;
-  align: center;
+  /*align: center;*/
   margin-left: auto;
   margin-right: auto;
 }
@@ -189,4 +189,4 @@ input[type="radio"] {
 .leftPart{
   width: 100%;
 }
-}
+

@@ -27,3 +27,13 @@
 #axisSlider{
   margin-top: 0px;
 }
+
+.pad {
+    padding: 5%;
+    margin: 5%;
+}
+
+
+.grey {
+    background: #ECE9E6;
+}

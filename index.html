@@ -85,11 +85,6 @@
                 <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
                 <label>HPV/P16</label>
                 <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
-                <!--<label>ECOG Value</label>-->
-                <!--<input type="radio" name="ecog" value="0" id="ecog-0-radio">0-->
-                <!--<input type="radio" name="ecog" value="1" id="ecog-1-radio">1-->
-                <!--<input type="radio" name="ecog" value="2" id="ecog-2-radio">2-->
-                <!--<input type="radio" name="ecog" value="3" id="ecog-3-radio">3-->
                 <label>Smoking Status</label>
                 <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
                 <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
@@ -184,11 +179,11 @@
                     <!-- <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                     </ul> -->
-                    <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#exploreModal">
+                    <button class="btn btn-basic navbar-btn" data-toggle="modal" data-target="#exploreModal">
                       <span class="glyphicon glyphicon-search"></span>
                       Explore
                     </button>
-                    <button class="btn btn-success navbar-btn" id="add-patient-button">
+                    <button class="btn btn-sbasic navbar-btn" id="add-patient-button">
                       <span class="glyphicon glyphicon-plus"></span>
                       Add Patient
                     </button>
@@ -223,7 +218,6 @@
         </div>
 
         <div class="row" id="allContent">
-
             <div class="col-md-3 contentWrapper kiviatDiv">
                 <div class="contentDiv">
                     <div class="infoDiv" id="infoDiv-kiviat">
@@ -387,13 +381,18 @@
                                     <!--<span class="glyphicon glyphicon-question-sign" id="HelpInfo-mosaic"></span>-->
                                 </div>
                             </div>
+
                             <div id="nomosaic" class="white-bg text-center">
-                                <div class="col-md-6">
-                                    <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-block btn-sm">Dendrogram</button></a>
-                                    <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-block btn-sm">Lymph-thingy</button></a>
-                                    <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-block btn-sm">Camprt</button></a>
+                                <div class="row dropdown-control-row">
+                                    <div class="col-md-12 pad">
+                                        <span class="">Total Patients: <span id="total-patient-span"></span></span>
+                                    </div>
+                                    <div class="col-md-12 pad">
+                                        <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-block grey btn-sm">Dendrogram</button></a>
+                                        <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-block grey btn-sm">Lymph node</button></a>
+                                        <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-block grey btn-sm">Camprt</button></a>
+                                    </div>
                                 </div>
-                                <span>Total Patients: <span id="total-patient-span"></span></span>
                             </div>
                         </div>
                     </div>
