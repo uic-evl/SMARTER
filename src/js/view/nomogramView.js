@@ -252,7 +252,13 @@ let NomogramView = function(targetID) {
             .property("selected", (d) => d === default_selected)
             .attr("value", (d) => d)
             .attr("id", (d) => d + "-nomogram-selector")
-            .text((d) => d);
+            .text((d) => {
+                if (d==="default") {
+                    return "feeding tube"
+                } else {
+                    return d;
+                }
+            });
 
     }
 

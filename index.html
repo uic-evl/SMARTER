@@ -35,7 +35,6 @@
     <script src="src/js/model/patientModel.js" charset="utf-8"></script>
     <script src="src/js/model/applicationStateModel.js" charset="utf-8"></script>
     <script src="src/js/model/kaplanMeierPatientModel.js" charset="utf-8"></script>
-    <script src="src/js/model/mosaicPatientModel.js" charset="utf-8"></script>
     <script src="src/js/model/axesModel.js" charset="utf-8"></script>
 
     <script src="src/js/controller/dataUpdateController.js" charset="utf-8"></script>
@@ -47,14 +46,13 @@
     <script src="src/js/controller/addPatientController.js" charset="utf-8"></script>
     <script src="src/js/controller/knnAttributeSelectionController.js" charset="utf-8"></script>
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
-    <script src="src/js/controller/mosaicFilterController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
     <script src="src/js/controller/LandingFormController.js" charset="utf-8"></script>
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
     <script src="src/js/view/kaplanMeierView.js" charset="utf-8"></script>
-    <script src="src/js/view/mosaicView.js" charset="utf-8"></script>
+    <script src="src/js/view/statsView.js" charset="utf-8"></script>
     <script src="src/js/view/helpInfoView.js" charset="utf-8"></script>
     <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
@@ -241,9 +239,6 @@
                                 <div class="form-group">
                                     <label for="patientSel">Patient:</label>
                                     <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
-                                    <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-success btn-sm">Dendrogram</button></a>
-                                    <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-info btn-sm">Lymph-thingy</button></a>
-                                    <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-warning btn-sm">Camprt</button></a>
                                 </div>
                             </div>
                         </div>
@@ -388,11 +383,17 @@
                             </div>
                             <div id="mosaicHeader">
                                 <div class="row viewTitleDiv">
-                                    Mosaic Context
-                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-mosaic"></span>
+                                    Statistics and External Links
+                                    <!--<span class="glyphicon glyphicon-question-sign" id="HelpInfo-mosaic"></span>-->
                                 </div>
                             </div>
-                            <div id="mosaic">
+                            <div id="nomosaic" class="white-bg text-center">
+                                <div class="col-md-6">
+                                    <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-block btn-sm">Dendrogram</button></a>
+                                    <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-block btn-sm">Lymph-thingy</button></a>
+                                    <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-block btn-sm">Camprt</button></a>
+                                </div>
+                                <span>Total Patients: <span id="total-patient-span"></span></span>
                             </div>
                         </div>
                     </div>

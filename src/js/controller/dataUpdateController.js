@@ -50,7 +50,7 @@ let DataUpdateController = function() {
 
         // update controllers
         App.controllers.patientSelector.updatePateintDropDown();
-        App.controllers.mosaicFilter.updateFilters({});
+        // App.controllers.mosaicFilter.updateFilters({});
         App.controllers.nomogramAxis.axisHeightSlider();
 
         // update views

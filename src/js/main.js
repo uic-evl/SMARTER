@@ -36,7 +36,6 @@ less.pageLoadFinished.then(function() {
         App.models.patients = new PatientModel();
         App.models.applicationState = new ApplicationStateModel();
         App.models.kaplanMeierPatient = new KaplanMeierPatientModel();
-        App.models.mosaicPatient = new MosaicPatientModel();
 
     }
 
@@ -45,7 +44,8 @@ less.pageLoadFinished.then(function() {
         App.views.nomogram = new NomogramView("#nomogram");
         App.views.nomogram.setMode("knn");
         App.views.kaplanMeier = new KaplanMeierView("#kaplanMeier");
-        App.views.mosaic = new MosaicView("#mosaic");
+        // App.views.mosaic = new MosaicView("#mosaic");
+        App.views.stats = new StatsView();
         App.views.helpInfo = new HelpInfoView("#HelpInfo");
 
         App.views.demographForm = new DemographicsFormView();
@@ -81,8 +81,6 @@ less.pageLoadFinished.then(function() {
         App.controllers.nomogramAxis.attachToSelect("#nomogramAxisSelect");
         App.controllers.nomogramAxis.attachToDomainRangeToggle(".nomogramAxisButton");
 
-        App.controllers.mosaicFilter = new MosaicFilterController();
-
     };
 
     App.init = function() {
@@ -107,6 +105,7 @@ less.pageLoadFinished.then(function() {
                 App.controllers.landingFormController.setSubmitButton(".submitButton");
                 App.controllers.landingFormController.setShowFormButton("#add-patient-button");
                 App.controllers.attributeSelector.attachToSelect(".attribute-dropdown");
+                App.views.stats.updatePatientsCount();
                 App.views.nomogram.setNomogramSelector("#nomogram-selector");
 
                 App.controllers.dataUpdate.updateApplication();
