@@ -166,9 +166,9 @@ let NomogramAxisController = function(listID) {
         // .style("background-color", "lightblue");
 
         let sliderBar = self.sliderSvg.append("rect")
-            .attr("x", sliderWidth / 4)
+            .attr("x", sliderWidth / 2.5)
             .attr("y", 0)
-            .attr("width", sliderWidth / 2)
+            .attr("width", sliderWidth / 6)
             .attr("height", sliderHeight)
             .style("fill", "#cccccc")
             .style("stroke", "none");

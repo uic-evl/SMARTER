@@ -45,14 +45,15 @@ let NomogramView = function(targetID) {
             .select(".viewTitleDiv").append("div")
             .attr("class", "pull-left")
             .append("button")
-            .attr("class", 'btn btn-secondary navbar-btn')
+            .attr("class", 'btn btn-default navbar-btn')
             .attr("id", "nomogram-menu-button")
             .on("click", function() {
-                $('#nomogramControls').toggle();
+                $('.nomogramControlsBox').toggle();
+                $('#unbelievable-fix').toggle();
             });
 
         d3.select("#nomogram-menu-button").append("span")
-            .attr("class", 'glyphicon glyphicon-cog');
+            .attr("class", 'glyphicon glyphicon-wrench');
 
         createNomogram();
     }
