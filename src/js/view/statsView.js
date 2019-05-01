@@ -8,7 +8,8 @@ let StatsView = function () {
         dendrogramButton: null,
         lymphNodeButton: null,
         camprtButton: null,
-        totalPatientsText: null
+        totalPatientsText: null,
+        commonAttributesTable: null
     };
 
     init();
@@ -17,6 +18,8 @@ let StatsView = function () {
         // Code to link the Tim's lymph repo
         self.dendrogramButton = d3.select("#dendrogramlinker");
         self.lymphNodeButton = d3.select("#lymphthingylinker");
+
+        self.commonAttributesTable = d3.select("#commonAttributesTable");
 
         // Code to link CAMP-RT
         self.camprtButton = d3.select("#camprtlinker");
@@ -49,11 +52,27 @@ let StatsView = function () {
             .text(Object.keys(patients).length);
     }
 
+    function populateCommonAttributeTable(commonAttributeValues){
+        $("table.order-list").empty();
+        for (let attr of Object.keys(commonAttributeValues)) {
+            var newRow = $("<tr>");
+            var cols = "";
+    
+            cols += `<td class="col-sm-6"><span class="">${attr}</span></td>`;
+            cols += `<td class="col-sm-6"><span class="">${commonAttributeValues[attr]}</span></td>`;
+    
+            newRow.append(cols);
+            $("table.order-list").append(newRow);
+        }
+    }
+
 
     function updateButtons(currentPatient) {
         setDendrogramButtons(currentPatient);
         setLymphButton(currentPatient);
         setCamprtButton(currentPatient);
+
+        populateCommonAttributeTable(App.models.patients.getCommonAttributeValues());
     }
 
     return {

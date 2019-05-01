@@ -97,7 +97,7 @@ let NomogramView = function (targetID) {
                 right: 60
             })
             .titlePosition("bottom")
-            .titleRotation(-10)
+            .titleRotation(-15)
             .titleFontSize(titlefontSize)
             .tickFontSize(tickfontSize)
             .color("black")
