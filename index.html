@@ -171,19 +171,24 @@
   </div>
     <div class="container-fluid dashboard align-top">
         <div class="row" id="title">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
+            <nav class="navbar">
+                <div class="container-fluid navbar-grey">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">SMARTer Therapy Explorer</a>
                     </div>
                     <!-- <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                     </ul> -->
-                    <button class="btn btn-basic navbar-btn" data-toggle="modal" data-target="#exploreModal">
-                      <span class="glyphicon glyphicon-search"></span>
-                      Explore
+
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        KNN Attributes Used
+                        <span class="caret"></span>
                     </button>
-                    <button class="btn btn-sbasic navbar-btn" id="add-patient-button">
+                    <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown" id="knnAttributesControl">
+                        <!-- populating list in controller -->
+                    </ul>
+
+                    <button class="btn btn-default navbar-btn" id="add-patient-button">
                       <span class="glyphicon glyphicon-plus"></span>
                       Add Patient
                     </button>
@@ -261,17 +266,17 @@
                     <div class="row dropdown-control-row">
                         <div class="col-md-12">
 
-                            <div class="row dropdown-row">
-                                <div class="dropdown">
-                                    <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">
-                            KNN Attributes Used
-                            <span class="caret"></span>
-                          </button>
-                                    <ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">
-                                        <!-- populating list in controller -->
-                                    </ul>
-                                </div>
-                            </div>
+                            <!--<div class="row dropdown-row">-->
+                                <!--<div class="dropdown">-->
+                                    <!--<button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">-->
+                            <!--KNN Attributes Used-->
+                            <!--<span class="caret"></span>-->
+                          <!--</button>-->
+                                    <!--<ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">-->
+                                        <!--&lt;!&ndash; populating list in controller &ndash;&gt;-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
                             <div class="row dropdown-row">
                                 <div class="dropdown">
