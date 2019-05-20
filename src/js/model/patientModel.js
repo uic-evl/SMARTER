@@ -8,7 +8,8 @@ let PatientModel = function() {
     let self = {
         patients: {},
         attributeDomains: {},
-        axes: {}
+        axes: {},
+        commonAttributeValues: {}
     };
 
     /* load data from two csv files, returning a promise that resolves upon completion */
@@ -95,6 +96,10 @@ let PatientModel = function() {
         return self.attributeDomains;
     }
 
+    function getCommonAttributeValues() {
+        return self.commonAttributeValues;
+    }
+
     /* get the patient knn attribute domains */
     function getPatientKnnAttributeDomains() {
         let knnAttributeDomains = {};
@@ -151,7 +156,26 @@ let PatientModel = function() {
             topKpatients.push(neighbor);
         }
 
+        computeCommonAttributeValues(topKpatients, knnAttributes, subjectID);
+
         return topKpatients;
+    }
+
+    /**
+     * Computes how many attributes the kn patients have in common with the subject, for each attribute used in the knn
+     * @param {array} knn 
+     */
+    function computeCommonAttributeValues(topKpatients, knnAttributes, subjectID){
+        self.commonAttributeValues = {};
+
+        for (let attribute of knnAttributes) {
+            self.commonAttributeValues[attribute] = 0;
+            for (let patient of topKpatients){
+                if (patient[self.axes[attribute].name] === self.patients[subjectID][self.axes[attribute].name]) {
+                    self.commonAttributeValues[attribute] += 1;
+                }
+            }
+        }
     }
 
     /* calculate the similarity between two patients based on the hamming distance
@@ -185,6 +209,7 @@ let PatientModel = function() {
         getPatientByID,
         getPatientAttirbuteDomains,
         getPatientKnnAttributeDomains,
+        getCommonAttributeValues,
         filterPatients,
         setAxes,
         getKnn: calculateKNN

@@ -2,7 +2,7 @@
 
 var App = App || {};
 
-let NomogramView = function(targetID) {
+let NomogramView = function (targetID) {
 
     let self = {
         targetID: null,
@@ -34,26 +34,30 @@ let NomogramView = function(targetID) {
             .attr("height", self.targetElement.node().clientHeight)
             .attr("viewBox", "0 0 200 100")
             .attr("preserveAspectRatio", "xMidYMid");
-        
+
         const axes = App.models.axesModel.getAxesData();
         self.axes = axes;
 
         self.filteredAxes = Object.keys(axes);
         // console.log(self.filteredAxes);
 
-        let menuDiv = d3.select(self.targetID+"Header")
+        let menuDiv = d3.select(self.targetID + "Header")
             .select(".viewTitleDiv").append("div")
             .attr("class", "pull-left")
             .append("button")
             .attr("class", 'btn btn-default navbar-btn')
             .attr("id", "nomogram-menu-button")
-            .on("click", function() {
+            .on("click", function () {
                 $('.nomogramControlsBox').toggle();
                 $('#unbelievable-fix').toggle();
             });
 
         d3.select("#nomogram-menu-button").append("span")
             .attr("class", 'glyphicon glyphicon-wrench');
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
         createNomogram();
     }
@@ -93,7 +97,7 @@ let NomogramView = function(targetID) {
                 right: 60
             })
             .titlePosition("bottom")
-            .titleRotation(-10)
+            .titleRotation(-15)
             .titleFontSize(titlefontSize)
             .tickFontSize(tickfontSize)
             .color("black")
@@ -111,7 +115,7 @@ let NomogramView = function(targetID) {
             // only draw if there already exists data
             self.nomogram
                 .data(self.data[self.mode])
-                .strokeWidth(function(d) {
+                .strokeWidth(function (d) {
                     // console.log(d);
                     if (d.ID === self.selectedPatientID) {
                         return self.strokewidth[self.mode] * 2;
@@ -146,7 +150,7 @@ let NomogramView = function(targetID) {
 
     /* update the attribute for coloring the polylines */
     function updateAttributeColor(attr) {
-        let colorFun = function(d) {
+        let colorFun = function (d) {
             if (d.ID === self.selectedPatientID) {
                 return "black";
             } else {
@@ -240,11 +244,11 @@ let NomogramView = function(targetID) {
         updateView();
     }
 
-    function setNomogramSelector(element, default_selected="default") {
+    function setNomogramSelector(element, default_selected = "default") {
         let nomogramsTypes = App.models.axesModel.getAxesNames();
 
         let nomogramSelector = d3.select(element)
-            .on("change", function() {
+            .on("change", function () {
                 updateNomogram(d3.select(this).property("value"));
             })
             .selectAll("option")
@@ -254,7 +258,7 @@ let NomogramView = function(targetID) {
             .attr("value", (d) => d)
             .attr("id", (d) => d + "-nomogram-selector")
             .text((d) => {
-                if (d==="default") {
+                if (d === "default") {
                     return "feeding tube"
                 } else {
                     return d;
