@@ -1,0 +1,634 @@
+AgeAtTx,Gender,Ethnicity,Tcategory,Site,Nodal_Disease,ecog,Chemotherapy,Local_Therapy,Probability of Survival
+65.94,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.37
+69.42,male,white,T3,supraglottic,N+,0,induction,PLRT,0.4
+68.14,female,white,T3,supraglottic,N0,3,no chemo,LP/RT alone,0.44
+40.3,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.51
+47.96,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.47
+70.34,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.32
+60.5,female,white,T3,supraglottic,N+,2,no chemo,LP/RT alone,0.32
+60.72,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.32
+59.37,male,white,T3,supraglottic,N0,1,induction,LP/chemoRT,0.65
+57.65,male,other,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.66
+62.94,male,asian,T3,glottic,N+,2,concurrent,LP/chemoRT,0.77
+60.57,male,white,T3,transglottic,N+,1,no chemo,PLRT,0.26
+70.15,male,white,T3,glottic,N0,0,no chemo,LP/RT alone,0.67
+57.9,male,african-american,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.44
+66.02,male,white,T3,transglottic,N+,0,no chemo,PLRT,0.3
+63.86,male,other,T3,glottic,N0,1,induction,LP/chemoRT,0.98
+37.35,male,white,T3,transglottic,N+,0,no chemo,PLRT,0.57
+72.32,male,african-american,T3,supraglottic,N0,1,induction,LP/chemoRT,0.43
+51.33,male,hispanic,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.49
+74.62,female,white,T3,supraglottic,N0,1,no chemo,PLRT,0.32
+60.45,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.61
+53.01,male,white,T3,supraglottic,N0,1,induction,LP/chemoRT,0.71
+48.32,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.63
+46.01,male,white,T3,glottic,N+,0,no chemo,LP/RT alone,0.71
+65.79,male,african-american,T3,supraglottic,N0,0,no chemo,PLRT,0.4
+43.96,male,white,T3,transglottic,N0,0,induction,PLRT,0.82
+58.3,male,african-american,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.53
+62.57,male,african-american,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.59
+40.91,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.6
+78.14,male,white,T3,supraglottic,N+,1,no chemo,PLRT,0.1
+51.61,male,african-american,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.5
+58.73,female,white,T3,supraglottic,N0,0,induction,LP/chemoRT,0.75
+61.1,male,white,T3,supraglottic,N+,2,no chemo,LP/RT alone,0.32
+60.61,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.51
+65.23,female,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.5
+70.3,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.26
+39.75,female,hispanic,T3,transglottic,N0,1,no chemo,LP/RT alone,0.78
+51.65,male,other,T3,glottic,N0,0,no chemo,LP/RT alone,1
+60.97,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.88
+58.92,male,white,T3,supraglottic,N+,2,concurrent,LP/chemoRT,0.43
+52.73,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.96
+33.17,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.8
+56.19,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.93
+51.66,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.44
+69.57,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.43
+65.25,male,hispanic,T3,supraglottic,N+,1,concurrent,PLRT,0.39
+75.58,male,white,T3,transglottic,N0,1,concurrent,LP/chemoRT,0.46
+37.78,male,hispanic,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.8
+62.35,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.87
+69.45,male,white,T3,supraglottic,N0,1,induction,LP/chemoRT,0.55
+69.34,male,white,T3,supraglottic,N+,1,concurrent,PLRT,0.27
+59.64,male,white,T3,transglottic,N+,1,concurrent,LP/chemoRT,0.43
+43.77,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.48
+63.96,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.57
+69.61,female,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.24
+49.7,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.46
+77.09,male,white,T3,transglottic,N+,1,no chemo,PLRT,0.11
+65.67,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.37
+34.31,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.57
+59.79,female,african-american,T3,glottic,N0,2,no chemo,LP/RT alone,0.58
+50.06,male,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.53
+52.29,male,african-american,T3,supraglottic,N0,0,no chemo,PLRT,0.53
+60.36,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.89
+66.64,male,hispanic,T3,glottic,N0,1,concurrent,LP/chemoRT,0.78
+68.67,male,white,T3,transglottic,N+,1,no chemo,LP/RT alone,0.25
+58.7,male,white,T3,transglottic,N0,1,induction,LP/chemoRT,0.65
+69.14,female,white,T3,supraglottic,N+,3,concurrent,LP/chemoRT,0.34
+57.07,female,other,T3,supraglottic,N+,0,induction,LP/chemoRT,0.79
+68.55,female,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.34
+69.23,male,white,T3,transglottic,N0,0,no chemo,PLRT,0.46
+61.29,male,african-american,T3,supraglottic,N+,1,no chemo,PLRT,0.16
+46.22,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.74
+62.01,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.34
+48.74,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.43
+65.7,male,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.37
+70.03,female,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.5
+45.93,male,white,T3,supraglottic,N0,0,no chemo,PLRT,0.68
+67.81,male,white,T3,transglottic,N0,0,induction,LP/chemoRT,0.66
+65.26,male,hispanic,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.64
+53.81,male,hispanic,T3,transglottic,N0,0,concurrent,LP/chemoRT,0.84
+65.42,female,white,T3,supraglottic,N+,0,induction,PLRT,0.43
+62.84,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.3
+53.17,male,hispanic,T3,supraglottic,N+,2,induction+chemoRT,LP/chemoRT,0.74
+59.98,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.52
+60.99,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.6
+67.84,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.54
+54.78,male,african-american,T3,glottic,N+,0,no chemo,PLRT,0.47
+59.02,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.43
+69.96,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.42
+59.45,male,white,T3,glottic,N0,1,no chemo,LP/RT alone,0.68
+54.32,male,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.49
+69.05,male,white,T3,glottic,N0,2,no chemo,LP/RT alone,0.59
+53.43,female,african-american,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.3
+73.27,male,white,T3,glottic,N0,0,no chemo,LP/RT alone,0.64
+65.59,male,white,T3,supraglottic,N0,0,induction,LP/chemoRT,0.68
+46.33,male,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.57
+61.75,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.34
+49.73,male,white,T3,transglottic,N0,1,induction,LP/chemoRT,0.74
+60.39,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.42
+62.24,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.49
+50.56,female,white,T3,supraglottic,N+,1,induction,LP/chemoRT,0.54
+50.76,male,white,T3,glottic,N+,0,concurrent,LP/chemoRT,0.76
+61.68,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.34
+74.24,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.48
+62.46,male,white,T3,supraglottic,N+,1,induction,LP/chemoRT,0.43
+81.44,male,hispanic,T3,glottic,N0,0,no chemo,LP/RT alone,0.64
+60.87,female,african-american,T3,supraglottic,N+,2,no chemo,PLRT,0.16
+67.17,female,white,T3,supraglottic,N+,1,no chemo,PLRT,0.2
+72.71,female,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.3
+71.63,male,white,T3,subglottic,N0,0,no chemo,PLRT,0.44
+51.55,female,white,T3,supraglottic,N+,1,induction,PLRT,0.47
+79.26,male,hispanic,T3,glottic,N0,1,concurrent,LP/chemoRT,0.66
+67.69,female,african-american,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.26
+61.39,female,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.6
+71.42,male,white,T3,supraglottic,N0,2,concurrent,LP/chemoRT,0.5
+70.55,male,hispanic,T3,supraglottic,N+,1,no chemo,PLRT,0.24
+57.47,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.38
+61.27,male,white,T3,glottic,N0,1,no chemo,LP/RT alone,0.66
+64.45,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.32
+88.43,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.34
+42.12,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.5
+57.16,female,african-american,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.35
+83.89,male,hispanic,T3,transglottic,N0,1,no chemo,LP/RT alone,0.37
+60.91,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.41
+82.92,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.39
+56.76,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.45
+61.46,male,white,T3,transglottic,N0,1,induction+chemoRT,LP/chemoRT,0.77
+57.46,female,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.63
+54.16,female,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.57
+60.72,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.35
+59.02,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.52
+53.58,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.61
+51.55,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.59
+51.66,male,white,T3,transglottic,N0,1,induction,LP/chemoRT,0.72
+63.78,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.57
+58.09,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.38
+60.02,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.33
+82.14,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.31
+69.52,male,african-american,T3,supraglottic,N0,3,no chemo,PLRT,0.27
+63.96,female,white,T3,transglottic,N0,0,no chemo,PLRT,0.51
+56.15,male,african-american,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.55
+74.93,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.28
+64.05,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.32
+63.87,female,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.29
+77.15,male,hispanic,T3,transglottic,N+,0,no chemo,PLRT,0.28
+58.42,male,white,T3,glottic,N+,1,induction+chemoRT,LP/chemoRT,0.76
+76.64,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.17
+66.7,female,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.27
+64.46,male,african-american,T3,supraglottic,N+,0,no chemo,PLRT,0.22
+35.1,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.84
+69.06,female,african-american,T3,transglottic,N+,1,no chemo,PLRT,0.09
+75.62,male,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.29
+66.92,male,african-american,T3,supraglottic,N+,1,no chemo,PLRT,0.11
+62.95,male,african-american,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.3
+57.96,male,white,T3,supraglottic,N+,1,no chemo,PLRT,0.28
+60.98,male,african-american,T3,glottic,N0,1,no chemo,LP/RT alone,0.57
+57.98,male,african-american,T3,glottic,N0,0,concurrent,LP/chemoRT,0.78
+69.56,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.43
+58.67,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.37
+68.15,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.44
+64.32,male,african-american,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.46
+55.67,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.4
+33.39,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.61
+68.76,male,hispanic,T3,transglottic,N0,0,concurrent,LP/chemoRT,0.7
+45.36,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.65
+68.31,female,white,T3,supraglottic,N+,3,no chemo,PLRT,0.19
+62.64,male,white,T3,supraglottic,N+,1,concurrent,PLRT,0.33
+77.28,male,hispanic,T3,glottic,N0,1,concurrent,LP/chemoRT,0.68
+61.6,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.53
+56.4,male,asian,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.77
+55.53,male,white,T3,supraglottic,N+,1,no chemo,PLRT,0.31
+67.08,male,african-american,T3,glottic,N0,1,no chemo,PLRT,0.45
+71.98,male,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.59
+52.14,male,african-american,T3,transglottic,N0,1,concurrent,LP/chemoRT,0.59
+61.25,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.35
+56.06,female,white,T3,supraglottic,N0,1,no chemo,PLRT,0.49
+54.53,male,white,T3,supraglottic,N+,2,induction+chemoRT,LP/chemoRT,0.65
+64.32,male,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.55
+57.32,male,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.63
+74.41,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.22
+53.99,male,hispanic,T3,glottic,N0,1,concurrent,LP/chemoRT,0.9
+57.34,male,white,T3,transglottic,N+,0,induction+chemoRT,LP/chemoRT,0.71
+67.96,female,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.44
+71.84,female,white,T3,supraglottic,N+,1,no chemo,PLRT,0.15
+62.37,male,hispanic,T3,glottic,N0,0,concurrent,LP/chemoRT,0.92
+64.18,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.57
+56.14,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.55
+60.69,male,hispanic,T3,supraglottic,N+,0,induction,LP/chemoRT,0.62
+62.94,female,white,T3,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.66
+68.69,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.43
+48.67,female,white,T3,supraglottic,N+,1,no chemo,PLRT,0.37
+71.48,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.44
+50.93,male,african-american,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.51
+58.39,male,white,T3,transglottic,N0,0,no chemo,PLRT,0.56
+68.79,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.43
+51.13,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.69
+68.38,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.53
+59.2,male,african-american,T3,transglottic,N0,1,induction+chemoRT,LP/chemoRT,0.7
+69.7,male,white,T3,supraglottic,N0,2,concurrent,LP/chemoRT,0.52
+71.36,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.25
+59.64,male,white,T3,glottic,N0,0,concurrent,LP/chemoRT,0.86
+74.67,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.28
+70.14,male,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.23
+63.51,male,white,T3,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.65
+58.33,female,african-american,T3,supraglottic,N0,1,no chemo,PLRT,0.38
+70.25,female,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.5
+61.74,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.5
+63.6,male,white,T3,glottic,N0,0,concurrent,LP/chemoRT,0.83
+58.18,male,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.63
+54.61,female,african-american,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.55
+74.81,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.47
+60.79,male,hispanic,T3,glottic,N+,0,induction+chemoRT,LP/chemoRT,0.91
+63.35,male,african-american,T3,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.56
+63.74,female,african-american,T3,supraglottic,N+,1,no chemo,PLRT,0.14
+44.59,female,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.85
+72.98,male,white,T3,supraglottic,N0,2,no chemo,LP/RT alone,0.39
+62.13,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.5
+64.53,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.32
+64.66,male,white,T3,supraglottic,N+,2,induction+chemoRT,LP/chemoRT,0.55
+71.01,female,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.22
+47.02,female,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.72
+69.59,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.52
+48.44,female,white,T3,supraglottic,N0,0,no chemo,PLRT,0.66
+53.79,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.48
+73.55,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.23
+69.13,male,african-american,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.34
+50.4,male,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.68
+52.41,male,white,T3,supraglottic,N0,0,no chemo,PLRT,0.62
+55.13,male,white,T3,transglottic,N+,1,no chemo,PLRT,0.31
+69.72,male,african-american,T3,supraglottic,N+,2,concurrent,LP/chemoRT,0.24
+65.85,male,white,T3,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.63
+69.56,male,white,T3,transglottic,N+,1,induction,LP/chemoRT,0.36
+76.84,male,hispanic,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.51
+46.96,male,african-american,T3,supraglottic,N+,0,no chemo,PLRT,0.39
+64.97,female,white,T3,supraglottic,N+,1,no chemo,PLRT,0.22
+63.87,male,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.57
+56.16,male,african-american,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.46
+49.43,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.52
+81.48,female,white,T3,glottic,N0,2,concurrent,LP/chemoRT,0.56
+62.72,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.58
+55.25,male,african-american,T3,supraglottic,N+,1,no chemo,PLRT,0.22
+58.26,male,white,T3,supraglottic,N0,1,no chemo,PLRT,0.47
+59.84,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.55
+55.44,male,hispanic,T3,glottic,N0,0,no chemo,LP/RT alone,0.89
+64.8,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.31
+46.75,male,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.55
+62.22,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.49
+70.31,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.26
+53,male,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.77
+68.87,female,white,T3,transglottic,N0,2,no chemo,PLRT,0.37
+70.96,male,hispanic,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.49
+69.88,male,african-american,T3,glottic,N0,3,no chemo,LP/RT alone,0.49
+68.42,male,african-american,T3,supraglottic,N+,2,induction+chemoRT,LP/chemoRT,0.42
+59.28,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.62
+58.83,female,white,T3,supraglottic,N+,0,concurrent,PLRT,0.46
+68.78,male,white,T3,supraglottic,N0,1,concurrent,PLRT,0.46
+61.75,female,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.5
+53.3,male,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.48
+72.51,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.49
+66.78,male,white,T3,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.62
+68,male,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.35
+87.35,male,african-american,T3,glottic,N0,1,concurrent,LP/chemoRT,0.42
+56.66,female,white,T3,supraglottic,N0,0,no chemo,PLRT,0.58
+43.1,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.58
+67.72,male,other,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.66
+48.15,male,white,T3,transglottic,N0,0,induction,LP/chemoRT,0.85
+68.71,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.43
+53.17,male,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.5
+66.36,female,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.36
+65.07,male,white,T3,transglottic,N0,0,concurrent,LP/chemoRT,0.66
+69.48,male,other,T3,glottic,N+,1,concurrent,LP/chemoRT,0.71
+51.68,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.59
+48.28,male,african-american,T3,transglottic,N0,0,no chemo,PLRT,0.56
+59.3,female,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.62
+52.75,male,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.49
+60.24,male,white,T3,glottic,N0,1,concurrent,LP/chemoRT,0.76
+64.1,male,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.66
+46.55,male,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.55
+77.07,male,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.45
+29.84,female,white,T3,transglottic,N0,0,no chemo,PLRT,0.83
+59.99,male,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.59
+51.1,male,white,T3,supraglottic,N0,1,no chemo,PLRT,0.54
+45.32,male,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.75
+58.56,male,african-american,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.34
+45.72,female,white,T3,glottic,N0,0,concurrent,LP/chemoRT,0.99
+76.08,male,hispanic,T3,transglottic,N0,0,concurrent,LP/chemoRT,0.63
+48.97,male,hispanic,T3,glottic,N0,1,concurrent,LP/chemoRT,0.95
+57.23,male,white,T3,glottic,N0,0,concurrent,LP/chemoRT,0.89
+46.55,male,white,T3,supraglottic,N0,2,no chemo,LP/RT alone,0.64
+62.36,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.34
+74.15,male,hispanic,T3,supraglottic,N+,1,induction,LP/chemoRT,0.4
+65.68,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.31
+52.13,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.59
+62.06,female,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.68
+54.17,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.57
+63.02,male,white,T3,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.66
+53.47,male,asian,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.61
+63.62,female,white,T3,supraglottic,N0,2,no chemo,LP/RT alone,0.48
+56.81,male,white,T3,glottic,N+,1,concurrent,LP/chemoRT,0.61
+56.56,female,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.74
+48.58,male,other,T3,supraglottic,N+,0,induction,LP/chemoRT,0.87
+58.94,male,white,T3,supraglottic,N0,0,induction+chemoRT,LP/chemoRT,0.88
+64.24,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.57
+63.49,male,white,T3,supraglottic,N+,1,concurrent,LP/chemoRT,0.39
+69.85,male,white,T3,supraglottic,N+,1,no chemo,PLRT,0.17
+52.56,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.68
+60.34,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.61
+52.3,male,white,T3,supraglottic,N+,1,no chemo,PLRT,0.34
+62.78,female,white,T3,glottic,N+,0,no chemo,PLRT,0.49
+66.64,male,white,T3,glottic,N0,0,concurrent,LP/chemoRT,0.8
+62.6,male,african-american,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.49
+46.04,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.55
+60,male,african-american,T3,glottic,N0,0,induction,PLRT,0.73
+60.82,female,white,T3,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.59
+69.09,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.81
+42.11,male,hispanic,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.95
+44.11,male,african-american,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.57
+72.92,male,white,T3,transglottic,N0,1,induction,LP/chemoRT,0.52
+70.28,male,african-american,T3,supraglottic,N0,0,induction,LP/chemoRT,0.54
+57.96,male,african-american,T3,supraglottic,N+,0,no chemo,PLRT,0.28
+58,male,white,T3,supraglottic,N0,0,no chemo,PLRT,0.57
+51.98,female,white,T3,supraglottic,N+,1,no chemo,LP/RT alone,0.4
+56.51,male,white,T3,supraglottic,N+,0,concurrent,LP/chemoRT,0.55
+59.22,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.62
+66.1,male,hispanic,T3,glottic,N0,0,concurrent,LP/chemoRT,0.88
+51.48,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.5
+59.57,female,african-american,T3,supraglottic,N0,1,induction,LP/chemoRT,0.55
+79.77,male,white,T3,glottic,N0,0,concurrent,LP/chemoRT,0.67
+47.07,female,white,T3,supraglottic,N+,0,no chemo,PLRT,0.48
+46.99,male,white,T3,transglottic,N+,0,concurrent,LP/chemoRT,0.64
+67.58,male,white,T3,transglottic,N0,0,no chemo,LP/RT alone,0.54
+56.43,male,white,T3,glottic,N+,1,no chemo,PLRT,0.46
+51.29,female,white,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.69
+43.25,female,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.59
+60.84,male,african-american,T3,supraglottic,N0,1,concurrent,LP/chemoRT,0.51
+74.25,female,white,T3,supraglottic,N0,1,induction,LP/chemoRT,0.51
+51.7,male,white,T3,transglottic,N0,1,concurrent,LP/chemoRT,0.69
+50.9,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.51
+58.73,male,white,T3,glottic,N0,0,induction,LP/chemoRT,0.9
+64.75,male,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.39
+62.66,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.4
+40.1,female,hispanic,T3,supraglottic,N+,0,no chemo,PLRT,0.62
+59.98,female,white,T3,supraglottic,N+,1,no chemo,PLRT,0.27
+61.2,male,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.69
+45.47,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.68
+67.15,male,hispanic,T3,glottic,N0,0,no chemo,PLRT,0.71
+52.1,female,white,T3,glottic,N0,1,no chemo,LP/RT alone,0.75
+53.82,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.67
+72.32,male,white,T3,glottic,N+,0,induction,LP/chemoRT,0.59
+65.9,female,white,T3,glottic,N0,1,no chemo,LP/RT alone,0.62
+60.69,male,white,T3,glottic,N0,1,no chemo,PLRT,0.6
+47.07,female,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.67
+62.92,male,white,T3,transglottic,N0,0,no chemo,PLRT,0.52
+64.31,female,white,T3,supraglottic,N+,0,no chemo,LP/RT alone,0.38
+63.73,male,white,T3,transglottic,N0,0,no chemo,PLRT,0.51
+56.56,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.55
+57.35,male,white,T3,supraglottic,N0,1,no chemo,PLRT,0.48
+45.7,male,white,T3,glottic,N+,0,concurrent,LP/chemoRT,0.81
+46.47,male,white,T3,supraglottic,N0,0,no chemo,PLRT,0.67
+56.74,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.39
+54.79,male,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.56
+46.08,female,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.68
+62.98,female,white,T3,supraglottic,N0,0,no chemo,PLRT,0.52
+58.2,male,hispanic,T3,transglottic,N0,0,no chemo,PLRT,0.64
+62.2,male,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.68
+63.63,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.33
+59.47,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.36
+52.89,male,white,T3,supraglottic,N+,1,no chemo,PLRT,0.33
+65.98,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.49
+50.48,female,white,T3,supraglottic,N+,1,no chemo,PLRT,0.35
+50.93,female,white,T3,supraglottic,N+,1,induction,PLRT,0.48
+57.53,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.63
+62.77,male,white,T3,transglottic,N+,0,induction,LP/chemoRT,0.52
+63.51,male,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.58
+66.91,male,white,T3,glottic,N0,1,no chemo,LP/RT alone,0.61
+63.11,male,hispanic,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.56
+49.98,female,white,T3,supraglottic,N0,0,no chemo,PLRT,0.64
+57.96,female,white,T3,supraglottic,N+,1,induction,LP/chemoRT,0.47
+68.04,male,white,T3,supraglottic,N+,0,induction,LP/chemoRT,0.47
+59.33,male,white,T3,supraglottic,N0,0,induction,LP/chemoRT,0.74
+52.59,male,white,T3,glottic,N0,1,induction,LP/chemoRT,0.87
+61.95,female,white,T3,transglottic,N0,1,induction,LP/chemoRT,0.62
+69.71,male,white,T3,glottic,N0,2,no chemo,LP/RT alone,0.58
+64.33,female,white,T3,glottic,N0,1,no chemo,PLRT,0.57
+46.78,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.48
+43.6,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.51
+50.09,female,african-american,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.61
+49.97,female,african-american,T3,supraglottic,N0,0,no chemo,PLRT,0.55
+61.99,female,african-american,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.5
+48.32,female,white,T3,supraglottic,N0,0,induction,LP/chemoRT,0.84
+58.87,female,white,T3,supraglottic,N0,0,induction,LP/chemoRT,0.74
+55.96,male,white,T3,transglottic,N0,0,no chemo,LP/RT alone,0.65
+53.48,female,white,T3,glottic,N+,0,no chemo,PLRT,0.58
+66.9,male,white,T3,transglottic,N0,0,no chemo,PLRT,0.48
+38.68,female,white,T3,transglottic,N+,0,no chemo,LP/RT alone,0.62
+56.81,male,hispanic,T3,supraglottic,N0,0,no chemo,PLRT,0.65
+68.41,male,white,T3,supraglottic,N0,0,concurrent,LP/chemoRT,0.62
+57.38,male,white,T3,supraglottic,N0,1,no chemo,PLRT,0.48
+69.15,female,white,T3,supraglottic,N0,1,no chemo,LP/RT alone,0.43
+51.62,male,white,T3,supraglottic,N+,1,induction,LP/chemoRT,0.53
+70.33,female,hispanic,T3,supraglottic,N0,0,no chemo,PLRT,0.53
+51.66,male,white,T3,supraglottic,N+,0,no chemo,PLRT,0.44
+46.45,male,hispanic,T3,glottic,N0,0,induction,LP/chemoRT,1
+40.61,male,hispanic,T3,transglottic,N0,1,no chemo,PLRT,0.71
+59.47,male,white,T3,transglottic,N0,0,induction,LP/chemoRT,0.74
+53.08,female,hispanic,T3,glottic,N+,0,induction,LP/chemoRT,0.85
+42.18,female,white,T3,supraglottic,N0,0,no chemo,LP/RT alone,0.78
+50.25,female,african-american,T3,transglottic,N+,0,induction,PLRT,0.48
+59.65,male,white,T3,glottic,N0,0,no chemo,PLRT,0.71
+58.99,male,white,T3,transglottic,N+,1,no chemo,PLRT,0.28
+56.48,male,other,T3,supraglottic,N0,1,no chemo,PLRT,0.7
+54.86,male,other,T3,glottic,N+,0,no chemo,PLRT,0.78
+57.41,male,african-american,T4,transglottic,N+,1,no chemo,PLRT,0.16
+57.76,male,african-american,T4,supraglottic,N+,2,no chemo,PLRT,0.16
+42.94,male,african-american,T4,transglottic,N+,1,no chemo,PLRT,0.3
+57.39,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.32
+55.08,female,white,T4,supraglottic,N+,1,concurrent,PLRT,0.37
+63.86,male,other,T4,glottic,N0,1,induction,LP/chemoRT,0.95
+47.11,male,white,T4,glottic,N0,1,no chemo,PLRT,0.7
+72.18,male,white,T4,transglottic,N+,0,no chemo,PLRT,0.18
+75.5,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.09
+61.59,male,african-american,T4,transglottic,N0,0,no chemo,LP/RT alone,0.38
+59.08,male,white,T4,transglottic,N+,0,no chemo,PLRT,0.31
+65.41,male,hispanic,T4,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.32
+46.84,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.36
+65.46,male,hispanic,T4,transglottic,N+,0,no chemo,PLRT,0.32
+50.47,male,white,T4,subglottic,N+,0,concurrent,LP/chemoRT,0.39
+44.61,male,hispanic,T4,supraglottic,N+,0,concurrent,PLRT,0.52
+52.27,female,african-american,T4,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.54
+60.58,male,white,T4,supraglottic,N+,1,induction,LP/chemoRT,0.42
+73.93,male,hispanic,T4,supraglottic,N0,0,no chemo,LP/RT alone,0.43
+54.58,male,hispanic,T4,transglottic,N+,0,no chemo,PLRT,0.43
+69.62,female,white,T4,supraglottic,N+,0,no chemo,PLRT,0.21
+38.38,male,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.59
+58.73,male,white,T4,transglottic,N+,1,no chemo,PLRT,0.25
+69.73,female,hispanic,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.38
+57.72,male,white,T4,transglottic,N+,2,no chemo,LP/RT alone,0.32
+59.29,male,hispanic,T4,glottic,N+,0,no chemo,PLRT,0.54
+53.5,female,african-american,T4,supraglottic,N+,0,induction+chemoRT,PLRT,0.26
+56.01,male,hispanic,T4,glottic,N0,0,induction,LP/chemoRT,0.76
+57.43,male,african-american,T4,glottic,N0,1,no chemo,PLRT,0.51
+57.1,female,white,T4,supraglottic,N+,1,no chemo,PLRT,0.26
+58.46,male,african-american,T4,glottic,N0,0,no chemo,PLRT,0.56
+56.35,male,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.42
+54.75,female,white,T4,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.61
+71.28,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.19
+54.31,male,african-american,T4,transglottic,N+,1,no chemo,LP/RT alone,0.26
+47.85,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.35
+50.61,male,white,T4,supraglottic,N+,2,induction+chemoRT,PLRT,0.59
+55.62,male,african-american,T4,supraglottic,N+,2,no chemo,PLRT,0.18
+53.1,male,african-american,T4,supraglottic,N+,1,no chemo,PLRT,0.21
+57.01,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.26
+65.33,male,african-american,T4,supraglottic,N+,1,no chemo,PLRT,0.09
+52.3,male,white,T4,glottic,N0,1,no chemo,PLRT,0.65
+64.67,female,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.35
+42.66,male,white,T4,glottic,N+,1,concurrent,PLRT,0.65
+51.82,male,white,T4,glottic,N+,0,concurrent,PLRT,0.53
+59.5,male,hispanic,T4,supraglottic,N+,0,no chemo,PLRT,0.38
+54.49,male,white,T4,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.61
+49.35,male,white,T4,transglottic,N+,0,no chemo,PLRT,0.4
+67.95,male,asian,T4,supraglottic,N+,0,no chemo,PLRT,0.44
+50.05,male,white,T4,supraglottic,N0,2,concurrent,PLRT,0.61
+50.73,male,african-american,T4,transglottic,N+,2,induction+chemoRT,LP/chemoRT,0.56
+56.54,male,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.42
+62.95,male,hispanic,T4,glottic,N0,0,induction,LP/chemoRT,0.69
+50.02,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.33
+58.96,male,white,T4,glottic,N+,2,concurrent,PLRT,0.49
+59.7,female,african-american,T4,supraglottic,N+,1,no chemo,PLRT,0.14
+54.33,male,other,T4,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.83
+57.97,male,white,T4,supraglottic,N0,1,no chemo,PLRT,0.44
+72.12,male,hispanic,T4,transglottic,N+,2,no chemo,PLRT,0.2
+49.11,male,african-american,T4,supraglottic,N+,3,no chemo,PLRT,0.31
+55.92,female,white,T4,supraglottic,N0,0,induction,LP/chemoRT,0.52
+65.6,female,african-american,T4,glottic,N+,0,induction+chemoRT,PLRT,0.31
+64.85,male,white,T4,glottic,N+,0,no chemo,PLRT,0.41
+51.15,male,african-american,T4,transglottic,N+,0,no chemo,PLRT,0.29
+63.55,male,hispanic,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.44
+67.48,male,hispanic,T4,supraglottic,N+,1,no chemo,PLRT,0.24
+60.39,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.23
+58.83,female,white,T4,subglottic,N0,2,concurrent,PLRT,0.53
+49.41,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.4
+53.34,male,white,T4,supraglottic,N+,1,induction,PLRT,0.42
+36.89,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.51
+79.13,male,hispanic,T4,supraglottic,N+,2,no chemo,PLRT,0.13
+47.07,male,hispanic,T4,glottic,N+,1,no chemo,PLRT,0.59
+60.91,male,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.38
+49.67,male,hispanic,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.57
+61.81,male,white,T4,transglottic,N0,0,no chemo,PLRT,0.47
+52.64,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.3
+72.35,male,white,T4,transglottic,N0,1,induction,LP/chemoRT,0.49
+60.65,female,white,T4,supraglottic,N+,0,no chemo,PLRT,0.29
+57.91,female,white,T4,supraglottic,N+,0,no chemo,PLRT,0.32
+69.41,male,white,T4,supraglottic,N0,0,induction,PLRT,0.4
+53.36,male,white,T4,supraglottic,N0,1,no chemo,PLRT,0.48
+50.53,male,white,T4,supraglottic,N+,2,concurrent,LP/chemoRT,0.48
+66.63,female,white,T4,supraglottic,N+,1,induction,LP/chemoRT,0.36
+53.07,male,white,T4,glottic,N0,1,concurrent,LP/chemoRT,0.8
+57.73,male,african-american,T4,glottic,N0,0,concurrent,LP/chemoRT,0.57
+48.34,female,white,T4,supraglottic,N+,0,no chemo,PLRT,0.41
+59.42,female,white,T4,glottic,N+,2,no chemo,PLRT,0.4
+61.04,male,african-american,T4,supraglottic,N+,1,no chemo,PLRT,0.13
+62.94,male,white,T4,supraglottic,N+,3,induction+chemoRT,LP/chemoRT,0.27
+91,male,white,T4,glottic,N0,2,no chemo,PLRT,0.29
+68.01,male,african-american,T4,transglottic,N+,2,concurrent,PLRT,0.16
+47.58,female,white,T4,supraglottic,N+,2,induction,LP/chemoRT,0.54
+64.32,male,african-american,T4,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.43
+58.9,male,white,T4,transglottic,N+,1,no chemo,PLRT,0.24
+63.95,male,hispanic,T4,glottic,N0,0,no chemo,LP/RT alone,0.68
+42.8,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.4
+70.24,male,african-american,T4,glottic,N+,1,induction+chemoRT,PLRT,0.47
+72.97,male,white,T4,transglottic,N+,1,concurrent,PLRT,0.21
+60.1,male,african-american,T4,glottic,N+,1,no chemo,PLRT,0.3
+48.93,female,hispanic,T4,transglottic,N+,0,concurrent,LP/chemoRT,0.48
+57.58,male,white,T4,transglottic,N+,1,concurrent,PLRT,0.35
+70.5,male,white,T4,glottic,N0,1,no chemo,PLRT,0.48
+79.63,female,african-american,T4,transglottic,N+,1,no chemo,LP/RT alone,0.02
+57.33,male,hispanic,T4,supraglottic,N+,0,no chemo,PLRT,0.4
+70.47,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.14
+64.82,female,white,T4,supraglottic,N+,0,induction,LP/chemoRT,0.25
+47.14,male,hispanic,T4,glottic,N0,1,no chemo,PLRT,0.78
+50.86,male,african-american,T4,supraglottic,N+,1,concurrent,PLRT,0.32
+62.56,male,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.37
+51.19,male,white,T4,transglottic,N0,1,concurrent,LP/chemoRT,0.66
+62.53,male,african-american,T4,supraglottic,N+,2,concurrent,PLRT,0.21
+68.45,male,white,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.31
+51.35,male,white,T4,glottic,N0,0,induction+chemoRT,LP/chemoRT,0.72
+75.75,male,african-american,T4,glottic,N0,1,concurrent,LP/chemoRT,0.49
+62.29,female,white,T4,supraglottic,N0,1,no chemo,PLRT,0.4
+48.32,male,white,T4,transglottic,N0,1,no chemo,PLRT,0.53
+66.94,male,white,T4,supraglottic,N+,2,induction+chemoRT,LP/chemoRT,0.5
+65.12,male,african-american,T4,glottic,N0,0,no chemo,PLRT,0.5
+59.39,male,white,T4,supraglottic,N+,0,induction+chemoRT,LP/chemoRT,0.3
+61.6,male,hispanic,T4,supraglottic,N+,1,no chemo,PLRT,0.3
+65.21,male,white,T4,transglottic,N0,0,induction+chemoRT,LP/chemoRT,0.44
+60.1,female,white,T4,supraglottic,N+,2,concurrent,PLRT,0.33
+48.5,male,white,T4,supraglottic,N+,1,concurrent,PLRT,0.44
+65.05,male,white,T4,supraglottic,N+,2,induction+chemoRT,LP/chemoRT,0.52
+47.86,male,hispanic,T4,glottic,N+,1,no chemo,PLRT,0.58
+62.17,male,white,T4,glottic,N0,1,no chemo,PLRT,0.56
+75.17,male,white,T4,glottic,N0,1,no chemo,PLRT,0.44
+48.55,female,african-american,T4,glottic,N+,0,no chemo,PLRT,0.47
+66.88,female,white,T4,supraglottic,N+,0,concurrent,PLRT,0.23
+65.48,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.43
+46.92,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.36
+58.94,female,african-american,T4,supraglottic,N+,1,concurrent,LP/chemoRT,0.31
+53.26,male,african-american,T4,transglottic,N0,0,no chemo,PLRT,0.45
+50.71,male,hispanic,T4,supraglottic,N+,0,concurrent,PLRT,0.46
+54.91,male,white,T4,supraglottic,N0,1,no chemo,PLRT,0.47
+36.92,male,african-american,T4,transglottic,N+,1,concurrent,PLRT,0.45
+70.39,male,white,T4,transglottic,N0,1,concurrent,LP/chemoRT,0.48
+55.32,male,white,T4,transglottic,N0,0,no chemo,PLRT,0.53
+47.66,male,african-american,T4,supraglottic,N+,0,induction,LP/chemoRT,0.32
+63.65,male,white,T4,transglottic,N+,0,no chemo,PLRT,0.26
+64.76,male,white,T4,glottic,N0,1,no chemo,PLRT,0.53
+66.26,male,african-american,T4,transglottic,N0,2,no chemo,PLRT,0.27
+50.98,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.57
+43.93,male,white,T4,glottic,N+,1,concurrent,LP/chemoRT,0.7
+78.81,male,hispanic,T4,glottic,N0,2,concurrent,PLRT,0.57
+63.25,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.2
+75.39,female,white,T4,supraglottic,N0,1,no chemo,PLRT,0.28
+64.67,male,white,T4,supraglottic,N+,2,no chemo,PLRT,0.19
+51.65,male,white,T4,glottic,N+,1,no chemo,PLRT,0.47
+66.32,female,white,T4,supraglottic,N+,1,no chemo,PLRT,0.18
+65.74,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.43
+69.97,male,hispanic,T4,transglottic,N0,1,no chemo,PLRT,0.41
+47.17,female,white,T4,supraglottic,N0,0,concurrent,LP/chemoRT,0.6
+40.67,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.67
+61.6,male,white,T4,glottic,N0,1,concurrent,LP/chemoRT,0.72
+69.43,male,white,T4,transglottic,N0,2,no chemo,PLRT,0.33
+66.36,female,white,T4,supraglottic,N0,0,concurrent,LP/chemoRT,0.42
+54.64,male,white,T4,glottic,N0,1,no chemo,PLRT,0.63
+63.54,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.2
+67.56,male,white,T4,transglottic,N+,1,concurrent,PLRT,0.26
+72.91,female,white,T4,supraglottic,N0,1,no chemo,LP/RT alone,0.36
+51.83,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.31
+56.39,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.27
+65.4,male,white,T4,supraglottic,N0,2,no chemo,PLRT,0.37
+54.05,female,white,T4,supraglottic,N+,0,no chemo,PLRT,0.35
+43.71,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.39
+58.02,male,african-american,T4,supraglottic,N+,1,concurrent,PLRT,0.25
+54.25,male,hispanic,T4,transglottic,N0,1,concurrent,LP/chemoRT,0.71
+77.145,female,african-american,T4,glottic,N0,1,concurrent,PLRT,1
+60.61,male,white,T4,supraglottic,N+,0,no chemo,LP/RT alone,0.29
+43.52,female,white,T4,transglottic,N0,1,no chemo,PLRT,0.58
+61.24,male,white,T4,glottic,N0,0,no chemo,PLRT,0.63
+53.48,male,white,T4,glottic,N+,0,induction,LP/chemoRT,0.51
+69.73,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.14
+45.43,male,white,T4,supraglottic,N0,1,no chemo,PLRT,0.56
+45.4,male,white,T4,supraglottic,N+,0,concurrent,PLRT,0.43
+49.48,male,white,T4,transglottic,N+,1,no chemo,PLRT,0.33
+72.3,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.37
+54.96,female,african-american,T4,supraglottic,N+,0,no chemo,PLRT,0.25
+61.79,male,african-american,T4,supraglottic,N+,0,concurrent,PLRT,0.19
+53.95,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.29
+51.97,male,hispanic,T4,supraglottic,N+,1,no chemo,PLRT,0.39
+60.19,male,hispanic,T4,transglottic,N+,0,no chemo,PLRT,0.37
+49.83,female,white,T4,supraglottic,N+,1,concurrent,PLRT,0.42
+32.08,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.75
+49.89,male,white,T4,transglottic,N+,1,no chemo,PLRT,0.33
+60.31,male,white,T4,supraglottic,N+,1,induction+chemoRT,LP/chemoRT,0.56
+67.27,male,hispanic,T4,transglottic,N+,0,no chemo,PLRT,0.31
+56.6,male,white,T4,supraglottic,N+,1,no chemo,PLRT,0.27
+56.91,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.33
+62.52,male,hispanic,T4,supraglottic,N+,0,no chemo,PLRT,0.35
+41.96,male,african-american,T4,transglottic,N0,2,no chemo,PLRT,0.5
+63.43,male,white,T4,transglottic,N+,0,no chemo,PLRT,0.26
+57.62,male,white,T4,transglottic,N+,0,no chemo,PLRT,0.32
+55.51,male,hispanic,T4,subglottic,N0,1,no chemo,PLRT,0.54
+46.97,male,hispanic,T4,supraglottic,N0,0,no chemo,PLRT,0.68
+60.75,male,african-american,T4,transglottic,N+,0,no chemo,PLRT,0.2
+60.87,female,white,T4,supraglottic,N+,0,no chemo,PLRT,0.29
+70.83,male,hispanic,T4,supraglottic,N+,0,no chemo,PLRT,0.27
+61.93,male,white,T4,supraglottic,N0,1,no chemo,PLRT,0.4
+65.76,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.24
+54.45,female,white,T4,supraglottic,N0,1,concurrent,LP/chemoRT,0.63
+55.23,male,african-american,T4,supraglottic,N+,1,no chemo,PLRT,0.19
+63.68,male,hispanic,T4,supraglottic,N+,0,no chemo,PLRT,0.34
+52.07,female,white,T4,supraglottic,N0,1,no chemo,PLRT,0.5
+52.01,male,white,T4,supraglottic,N+,0,no chemo,PLRT,0.37
+31.67,male,african-american,T4,transglottic,N0,2,no chemo,PLRT,0.59
+56.33,male,white,T4,supraglottic,N+,1,no chemo,LP/RT alone,0.33
+37.27,male,hispanic,T4,glottic,N0,0,no chemo,PLRT,0.93
+51.02,female,white,T4,supraglottic,N+,0,concurrent,LP/chemoRT,0.38
+75.99,male,hispanic,T4,transglottic,N0,1,no chemo,PLRT,0.35
+61.22,male,white,T4,transglottic,N0,1,no chemo,PLRT,0.41
+56.07,male,hispanic,T4,transglottic,N0,0,no chemo,PLRT,0.6
+50.79,male,white,T4,supraglottic,N0,0,no chemo,PLRT,0.57
+53.15,male,white,T4,transglottic,N+,1,no chemo,PLRT,0.3
+38.48,female,african-american,T4,supraglottic,N+,0,no chemo,PLRT,0.4
+53.52,male,african-american,T4,glottic,N0,1,no chemo,PLRT,0.55
+54.14,male,white,T4,glottic,N+,0,no chemo,PLRT,0.51
+41.82,male,white,T4,transglottic,N0,0,no chemo,PLRT,0.65
+61.49,male,hispanic,T4,glottic,N0,0,no chemo,PLRT,0.7

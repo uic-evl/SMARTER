@@ -1,0 +1,204 @@
+{
+  "AgeAtTx": {
+    "name": "Age at Diagnosis (Calculated)",
+    "rangeShrink": [
+      0,
+      1
+    ],
+    "domain": [
+      25,
+      90
+    ],
+    "label": "AgeAtTx",
+    "type": "linear",
+    "forKiviat": true,
+    "forKnn": false
+  },
+  "Gender": {
+    "name": "Gender",
+    "domain": [
+      "Male",
+      "Female"
+    ],
+    "rangeShrink": [
+      0,
+      0.058
+    ],
+    "label": "Gender",
+    "type": "ordinal",
+    "forKiviat": true,
+    "forKnn": true
+  },
+  "HPV/P16": {
+    "name": "HPV/P16 status",
+    "rangeShrink": [
+      0,
+      0.386
+    ],
+    "domain": [
+      "Negative",
+      "Positive",
+      "Unknown"
+    ],
+    "label": "HPV/P16",
+    "type": "ordinal",
+    "forKiviat": false,
+    "forKnn": true
+  },
+  "N-category": {
+    "name": "N-category",
+    "rangeShrink": [
+      0,
+      0.386
+    ],
+    "domain": [
+      "N0",
+      "N3",
+      "N1",
+      "N2"
+    ],
+    "label": "N-category",
+    "type": "ordinal",
+    "forKiviat": true,
+    "forKnn": true
+  },
+  "Neck boost": {
+    "name": "Neck boost (Y/N)",
+    "forKiviat": false,
+    "rangeShrink": [
+      0.08,
+      0
+    ],
+    "domain": [
+      "N",
+      "Y"
+    ],
+    "label": "Neck boost",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Neck dissection": {
+    "name": "Neck Disssection after IMRT (Y/N)",
+    "forKiviat": false,
+    "rangeShrink": [
+      0,
+      0.1499
+    ],
+    "domain": [
+      "N",
+      "Y"
+    ],
+    "label": "Neck dissection",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Packs/Year": {
+    "name": "Smoking status (Packs/Year)",
+    "forKiviat": false,
+    "rangeShrink": [
+      0,
+      0.285
+    ],
+    "domain": [0,1],
+    "tickValues": [
+      0,
+      30,
+      60,
+      90,
+      120
+    ],
+    "label": "Packs/Year",
+    "type": "linear",
+    "forKnn": true
+  },
+  "Smoking Status": {
+    "name": "Smoking status at Diagnosis (Never/Former/Current)",
+    "forKiviat": false,
+    "forKnn": true,
+    "rangeShrink": [
+      0,
+      0.093
+    ],
+    "domain": [
+      "Former",
+      "Never",
+      "Current"
+    ],
+    "label": "Smoking Status",
+    "type": "ordinal"
+  },
+  "T-category": {
+    "name": "T-category",
+    "rangeShrink": [
+      0,
+      0.7484
+    ],
+    "domain": [
+      "Tis",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "Tx"
+    ],
+    "label": "T-category",
+    "type": "ordinal",
+    "forKiviat": true,
+    "forKnn": true
+  },
+  "Therapeutic combination": {
+    "name":"Therapeutic combination",
+    "rangeShrink": [0,0.15211864],
+    "domain": ["IC+Radiation Alone","CC","IC+CC","Radiation Alone"],
+    "label": "Therapeutic combination",
+    "type": "ordinal",
+    "forKiviat": false,
+    "forKnn": true
+  },
+  "Tumor Subsite": {
+    "name": "Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
+    "rangeShrink": [
+      0,
+      0.1715
+    ],
+    "domain": [
+      "Tonsil",
+      "BOT",
+      "Other"
+    ],
+    "label": "Tumor Subsite",
+    "type": "ordinal",
+    "forKiviat": false,
+    "forKnn": true
+  },
+  "Race": {
+    "name": "Race",
+    "rangeShrink": [
+      0,
+      0.14
+    ],
+    "domain": [
+      "White/Caucasion",
+      "Other"
+    ],
+    "label": "Race",
+    "type": "ordinal",
+    "forKiviat": true,
+    "forKnn": true
+  },
+  "Predictive Probability": {
+    "name": "feeding_tube_prob",
+    "label": "Predictive Probability",
+    "type": "linear",
+    "domain": [
+      0,
+      1
+    ],
+    "rangeShrink": [
+      0,
+      1
+    ],
+    "forKiviat": false,
+    "forKnn": false
+  }
+}

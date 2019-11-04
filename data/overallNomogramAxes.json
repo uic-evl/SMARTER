@@ -1,0 +1,108 @@
+{
+  "AgeAtTx": {
+    "name":"Age at Diagnosis (Calculated)",
+    "rangeShrink": [0,1],
+    "domain": [25,90],
+    "label": "AgeAtTx",
+    "type": "linear",
+    "forKnn": false
+  },
+  "Gender": {
+    "name":"Gender",
+    "domain": ["Male","Female"],
+    "rangeShrink": [0.301,0],
+    "label": "Gender",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "HPV/P16": {
+    "name":"HPV/P16 status",
+    "rangeShrink": [0,0.163],
+    "domain": ["Unknown","Positive","Negative"],
+    "label": "HPV/P16",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "N-category": {
+    "name":"N-category",
+    "rangeShrink": [0,0.288],
+    "domain": ["N2","N1","N0","N3"],
+    "label": "N-category",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Neck boost": {
+    "name":"Neck boost (Y/N)",
+    "rangeShrink": [0.102,0],
+    "domain": ["N","Y"],
+    "label": "Neck boost",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Neck dissection": {
+    "name":"Neck Disssection after IMRT (Y/N)",
+    "rangeShrink": [0,0.0935],
+    "domain": ["N","Y"],
+    "label": "Neck dissection",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Packs/Year": {
+    "name":"Smoking status (Packs/Year)",
+    "rangeShrink": [0,0.1564],
+    "domain": [0, 1],
+    "tickValues": [0,30,60,90,120],
+    "label": "Packs/Year",
+    "type": "linear",
+    "forKnn": false
+  },
+  "Smoking Status": {
+    "name":"Smoking status at Diagnosis (Never/Former/Current)",
+    "rangeShrink": [0,0.3439],
+    "domain": ["Never","Former","Current"],
+    "label": "Smoking Status",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "T-category": {
+    "name":"T-category",
+    "rangeShrink": [0,0.6725],
+    "domain": ["Tis","T1","T2","T3","T4","Tx"],
+    "label": "T-category",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Therapeutic combination": {
+    "name":"Therapeutic combination",
+    "rangeShrink": [0,0.42002699],
+    "domain": ["IC+Radiation Alone","IC+CC","CC","Radiation Alone"],
+    "label": "Therapeutic combination",
+    "type": "ordinal",
+    "forKiviat": false,
+    "forKnn": true
+  },
+  "Tumor Subsite": {
+    "name":"Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)",
+    "rangeShrink": [0,0.0877],
+    "domain":["BOT","Other","Tonsil"],
+    "label": "Tumor Subsite",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Race": {
+    "name":"Race",
+    "rangeShrink": [0,0.2159],
+    "domain":["White/Caucasion","Other"],
+    "label": "Race",
+    "type": "ordinal",
+    "forKnn": true
+  },
+  "Predictive Probability": {
+    "name": "feeding_tube_prob",
+    "label": "Predictive Probability",
+    "domain":[0,1],
+    "rangeShrink": [0,1],
+    "type": "linear",
+    "forKnn": false
+  }
+}
