@@ -37,6 +37,7 @@ let AttributeSelectorController = function() {
     /* if the selected attribute exists in the attribute list, stays with it,
        if not, rest to the first attribute in the list */
     function updateAttributeDropDown() {
+		
         let stateSelectedAttribute = App.models.applicationState.getSelectedAttribute();
 
         if (stateSelectedAttribute) {
