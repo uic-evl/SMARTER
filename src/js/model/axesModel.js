@@ -5,14 +5,14 @@ var App = App || {};
 let AxesModel = function() {
 
     let self  = {
-        currentAxesType: "default"
+        currentAxesType: "overall"
     };
 
     let axes = {
-        aspiration: null,
-        default: null,
         overall: null,
-        progression: null
+        progression: null,
+        default: null,
+        aspiration: null       
     };
 
     let _constants = {
@@ -51,11 +51,16 @@ let AxesModel = function() {
 
                 // App.patientKnnAttributes = [];
                 // App.kiviatAttributes = [];
+                // console.log(axesAttributes)
                 axesAttributes.forEach((d) => {
+                    // console.log(d)
                     if (defaultAxes[d].forKiviat)
                         App.kiviatAttributes.push(d);
                     if (defaultAxes[d].forKnn)
                         App.patientKnnAttributes.push(d);
+                    if(defaultAxes[d].forNomogram)
+                        App.nomogramAttributes.push(d);
+                        // console.log(App.patientKnnAttributes, 'knn')
                 });
 
                 App.models.patients.setAxes(defaultAxes);
@@ -70,11 +75,13 @@ let AxesModel = function() {
     let getOverallAxes = () => axes.overall;
     let getProgressionAxes = () => axes.progression;
 
+    //  console.log(getAspirationAxes())
+
     let axesfunctions = {
-        "aspiration": getAspirationAxes,
-        "default": getDefaultAxes,
         "overall": getOverallAxes,
-        "progression": getProgressionAxes
+        "progression": getProgressionAxes,
+        "default": getDefaultAxes,
+        "aspiration": getAspirationAxes        
     };
 
     let getAxesData = function() {

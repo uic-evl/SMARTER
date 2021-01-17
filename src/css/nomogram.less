@@ -1,3 +1,6 @@
+#nomogram{
+    min-height: 100px;
+}
 .nomogramDiv
 {
     box-sizing: border-box;
@@ -20,11 +23,38 @@
 
 #nomogram
 {
-    height: 80%;
+    height: 100%;
 
     background-color: white;
 }
 
-.pull-left {
-    margin-left: 2%;
+.pull-right {
+    margin-right: 5%;
 }
+// .nomogram-axis{
+//     opacity: 0.7;
+// }
+#opaqued{
+    opacity: 0.3;
+}
+#notOpaqued{
+    opacity: 0.7;
+}
+
+@media screen and (max-width : 1500px){
+    #polylineLegend{
+        // left: 10.3%;
+    }
+    #subjectPrediction{
+        // right: 12%;
+    }
+  }
+
+  @media screen and (min-width: 1501px) and (max-width : 1824px){
+      #polylineLegend{
+        //   left: 13%;
+      }
+      #subjectPrediction{
+        //   right: 3%;
+      }
+  }

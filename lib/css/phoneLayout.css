@@ -16,7 +16,7 @@ body{
   	font-weight: bold;
   	font-family: 'Ultra', sans-serif;
   	font-size: 25px;
-  	line-height: 42px;
+  	line-height: 2.625em;
   	text-align: center;
 
 }
@@ -30,7 +30,7 @@ body{
   margin-top: 25px;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 1.125em;
   transition: 0.5s;
   box-shadow: 0 0 10px rgba(72, 94, 116, 1);
   border-radius: 30px;
@@ -49,7 +49,7 @@ body{
   border: none;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 1.125em;
   transition: 0.5s;
   box-shadow: 0 0 10px rgba(72, 94, 116, 1);
   border-radius: 30px;
@@ -73,7 +73,7 @@ body{
   border: none;
   text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 1.125em;
   transition: 0.5s;
   box-shadow: 0 0 10px rgba(72, 94, 116, 1);
   margin-top: 25px;
@@ -88,7 +88,9 @@ body{
   grid-template-columns: 1fr;
   grid-column: 1/ span 2;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.625em;
+  margin-top: 7px;
+  margin-bottom: 0px;
 
 }
 #demographics{
@@ -104,7 +106,7 @@ body{
   border-radius: 100px;
   border: 1px solid grey;
 
-  color: 	#A9A9A9;
+  color: 	black;
   text-align: center;
 }
 #demographics input:hover {
@@ -115,7 +117,9 @@ body{
   grid-template-columns: 1fr;
   grid-column: 1/ span 2;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.625em;
+  margin-top: 7px;
+  margin-bottom: 0px;
 }
 #cancerDescriptors input:hover{
   border: 1.5px solid purple;
@@ -133,7 +137,7 @@ body{
   border-radius: 100px;
   border: 1px solid grey;
 
-  color: 	#A9A9A9;
+  color: 	black;
   text-align: center;
 
 }
@@ -142,7 +146,9 @@ body{
   grid-template-columns: 1fr;
   grid-column: 1/ span 2;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.7625em;
+  margin-top: 7px;
+  margin-bottom: 0px;
 }
 #treatment{
   text-align: center;
@@ -155,7 +161,7 @@ body{
 #treatment input{
   border-radius: 50px;
   border: 1px solid grey;
-  color: 	#A9A9A9;
+  color: 	black;
   text-align: center;
 }
 #treatment input:hover{
@@ -178,7 +184,7 @@ input[type="radio"] {
   border: 0px;
   margin-right: 40%;
   margin-left: 35%;
-  margin-bottom: 10%;
+  /* margin-bottom: 10%; */
 }
 .submitButton:hover{
   background: grey;
@@ -188,5 +194,88 @@ input[type="radio"] {
 }
 .leftPart{
   width: 100%;
+}
+
+
+#add-demographics label{
+  /* display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 1; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 2;
+  font-weight: bold;
+  font-size: 10px;
+
+}
+#add-demographics{
+  text-align: center;
+    border: 2px solid #ffffff;
+  background: #ffffff;
+  padding: 3%;
+  box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  /* margin-bottom: 30px; */
+}
+#add-demographics input{
+
+  border-radius: 100px;
+  border: 1px solid grey;
+
+  color: 	#A9A9A9;
+  text-align: center;
+}
+#add-demographics input:hover {
+  border: 1px solid #f0027f;
+}
+#add-cancerDescriptors label{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 2;
+  font-weight: bold;
+  font-size: 10px;
+}
+#add-cancerDescriptors input:hover{
+  border: 1.5px solid purple;
+}
+#add-cancerDescriptors{
+  text-align: center;
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  padding: 3%;
+  box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  /* margin-bottom: 30px; */
+
+}
+#add-cancerDescriptors input{
+  border-radius: 100px;
+  border: 1px solid grey;
+
+  color: 	#A9A9A9;
+  text-align: center;
+
+}
+#add-treatment label{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1/ span 2;
+  font-weight: bold;
+  font-size: 10px;
+}
+#add-treatment{
+  text-align: center;
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  padding: 3%;
+  box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  margin-bottom: 30px;
+}
+#add-treatment input{
+  border-radius: 50px;
+  border: 1px solid grey;
+  color: 	#A9A9A9;
+  text-align: center;
+}
+#add-treatment input:hover{
+  border: 1px solid #163f7f;
 }
 

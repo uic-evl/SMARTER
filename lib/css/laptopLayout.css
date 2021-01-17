@@ -71,6 +71,34 @@
   #treatment input:hover{
     border: 1px solid blue;
   }
+
+
+  #add-demographics{
+    text-align: center;
+  }
+  #add-treatment label{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1/ span 2;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  #add-treatment{
+      border: 2px solid #ffffff;
+    background: #ffffff;
+    padding: 3%;
+    box-shadow: 0 0 20px rgba(72, 94, 116, 0.7);
+  }
+  #add-treatment input{
+    border-radius: 50px;
+    border: 1px solid grey;
+    /* margin-left: 1em; */
+  }
+  #add-treatment input:hover{
+    border: 1px solid blue;
+  }
+
+
 .left{
   display: inline-block;
   width:100%;

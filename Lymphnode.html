@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+        <script src="lib/js/jquery.min.js" charset="utf-8"></script>
+        <script src="lib/js/bootstrap.min.js" charset="utf-8"></script>
+        <!-- <script src="lib/js/d3.v4.min.js" charset="utf-8"></script> -->
+        <!-- <script src="src/js/view/statsView.js" charset="utf-8"></script> -->
+
+    </header>
+    <body>
+      <div class="container-fluid text-center"> 
+        <!-- navigation bar on the top -->
+        <div class="row">
+          <!-- <nav class="navbar"> -->
+              <div class="container-fluid navbar-grey">
+                  <div class="col-md-6"> <!--  navbar-header"> -->  
+
+                    <a  class="btn btn-default navbar-btn" onclick="closeWindows()"> <!-- href="index.html" -->
+                      <span class="glyphicon glyphicon-arrow-left"></span>
+                      Back to home
+                    </a>
+                    <a href="#">Lymph Node Clusters</a>  <!-- class="navbar-brand"-->
+                  </div>
+              </div>
+          <!-- </nav> -->
+        </div>
+        <!-- nav bar ends -->
+        <div class="row">
+          <h2>Lymph Node Clusters</h2>
+        </div>  
+        <div class="row content">
+            <div class="col"> 
+              <img src="imgs/LN/neck_heatmaps_with_outcome_radar_v5.png" class="img-thumbnail" alt="Spatial-Metric Dendrogram" style="max-width: 120vh; max-height: 100vh;">            
+            </div>
+        </div>
+        <div class="row" style="margin-right: 1%; margin-left: 1%; margin-top: 1%; text-align: justify;">
+          <strong>Interpreting the Clusters:</strong>
+            Cluster 1 corresponds to patients who have a low risk of radiation-associated dysphagia toxicity (20% RAD). 
+            This cluster includes all patients with nodal stage N0-N1 and all patients with no bilaterally involved nodes.  
+            Members of this cluster also have low spread beyond levels 2A-2B, and no spread to lymph node level 4. <br>
+            Cluster 2 represents the moderate risk (39% RAD), with bilaterally involved nodes at level 2A-2B but limited 
+            spread beyond levels 2A-2B, and no bilateral involvement beyond levels 1A-2A-2B.  The majority, but not all 
+            of the patients are in N-stage 3. <br>
+            Cluster 3 and Cluster 4 are high-risk clusters (52-55% RAD) and include patients in N-stage 2-3 with a high 
+            degree spread (at least 4+ nodes).  Cluster 3 includes all patients with unilateral involvement at levels 1B-2-3, 
+            bilateral involvement at level 3, or those with several involved nodes in the lower levels of the neck (3-4-5).  
+            Cluster 4 includes all patients with a large number (3+) of bilaterally affected nodes. <br>
+          <strong>Description:</strong> 
+          Clusters of patterns of involved lymph nodes, taking into account left-right symmetry.  
+          The top row shows a heat map of the % of patients who have affected lymph nodes at each level on either left or right 
+          (left half of map, unilateral) or both (right half of the map, bilateral) sides of the head.  Regions outlined in black 
+          are the most informative for determining membership in each cluster.  The bottom row shows the % of patients in each cluster 
+          with a given TNM stage or with given toxicity. <br>
+          <strong>Legend:</strong>
+          FT: Feeding Tube, AS: Aspiration, RAD: Radiation-associated dysphagia, T1-2: T-category 1 or 2, T3-T4: T-category 3 or 4, 
+          N0-N1: N-category 0 or 1, N2a-N2b: N-category 2a or 2b, N2c-N3: N-category 2c or 3. <br>
+          <strong>Methodology:</strong>
+          <ol>
+            <li>Luciani, Timothy, et al. "A spatial neighborhood methodology for computing and analyzing lymph node carcinoma similarity 
+              in precision medicine." <em>Journal of Biomedical Informatics:</em> X 5 (2020): 100067.</li>
+            <li>Wentzel, Andrew, et al. "Precision association of lymphatic disease spread with radiation-associated toxicity in oropharyngeal squamous carcinomas." <em>medRxiv</em> (2020).</li>
+          </ol>
+
+      </div>
+
+      </div>
+
+
+        
+    </body>
+
+    <script>
+      function closeWindows(){
+          window.close()
+      }
+    </script>
+</html>

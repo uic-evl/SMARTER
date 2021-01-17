@@ -2,7 +2,10 @@
 {
     box-sizing: border-box;
     height: 100%;
+    padding-top: 20px;
 }
+
+
 
 .patient-dropdown-wrapper
 {
@@ -13,14 +16,14 @@
 
 #kiviatHeader
 {
-    height: 10%;
+    height: 20%;
 
     background-color: white;
 }
 
 #kiviatDiagram
 {
-    height: 90%;
+    height: 80%;
 }
 
 .kiviatLeft
@@ -30,14 +33,14 @@
 
 #kiviatDiagram-subject
 {
-    height: 30%;
+    height: 100%;
 
     background-color: white;
 }
 
 #kiviatDiagram-legend
 {
-    height: 70%;
+    height: 100%;
 
     background-color: white;
 }
@@ -58,7 +61,7 @@
 .patientNeighborSVG
 {
     margin-top: -3px;
-    margin-bottom: -3px;
+    margin-bottom: -5px;
 }
 
 svg > text
@@ -70,6 +73,7 @@ svg > text
 .similarityScore {
   fill: #838383;
   font-weight: bold;
+  margin-top: 0px;
 }
 
 .stop-bottom
@@ -108,3 +112,35 @@ svg > text
 {
     pointer-events: none;
 }
+.scrollCollapse{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+@media screen and (min-width: 1200px){
+    #kiviatDropdown{
+        left: -100px;
+    }
+    #knnAttributesControl{
+        left: 650px
+    }
+    #kiviatAttributesControl{
+        left: 320px
+    }
+    
+  
+  }
+
+  @media screen and (max-width: 1200px){
+    #kiviatDropdown{
+        left: -155px;
+    }
+    #knnAttributesControl{
+        left: 435px
+    }
+    #kiviatAttributesControl{
+        left: 225px
+    }
+    
+  
+  }

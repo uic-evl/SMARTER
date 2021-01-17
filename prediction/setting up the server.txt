@@ -1,0 +1,38 @@
+1. use anaconda for better and easy creation of environment
+2. open anaconda navigator -> environment -> create -> check python and R
+3. Now open anaconda prompt
+4. change to your newly created env
+conda activate youEnvName
+4. install the packages you need 
+     a. rpy2
+conda install -c r rpy2
+     b. flask
+conda install -c anaconda flask
+     c. flask-cors
+conda install -c anaconda flask-cors
+     d. pandas
+conda install -c anaconda pandas
+ 	e. numpy
+conda install -c anaconda numpy
+	f. add pacman
+	g. add survminer
+	h. add broom
+	
+
+
+maybe ... pacman, survminer. broom
+https://anaconda.org/r/r-pacman
+https://anaconda.org/conda-forge/r-survminer
+https://anaconda.org/conda-forge/r-broom
+
+run this server
+
+1. go to anaconda prompt
+2. conda activate EnvName
+3. go to the directory where you have the file
+4. run 
+	python filename.py
+
+
+
+

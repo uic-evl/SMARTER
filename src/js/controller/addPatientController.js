@@ -31,6 +31,7 @@ let AddPatientController = function(formID) {
     let form = self.addPatientForm;
 
     let attributes = App.patientKnnAttributes;
+    // console.log(attributes)
 
     // add the patient age input
     form.append("div")

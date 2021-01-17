@@ -1,5 +1,5 @@
 "use strict"
-
+// change the height in the d3.nomogram.js
 var App = App || {};
 
 let NomogramView = function (targetID) {
@@ -20,7 +20,11 @@ let NomogramView = function (targetID) {
             "filter": []
         },
         selectedPatientID: -1,
-        mode: null
+        mode: null,
+        legendSvgHeight : 40,
+        polylineSvg: null
+        // navigationBarHeight : document.getElementById("title").clientHeight,
+        
     };
 
     init();
@@ -29,23 +33,41 @@ let NomogramView = function (targetID) {
         self.targetID = targetID;
         self.targetElement = d3.select(targetID);
 
+        // let navigationBarWidth = self.targetElement.node().clientWidth;        
+
+        // console.log(document.getElementById("title").clientHeight)
+        //  console.log(self.targetElement.node().clientWidth)
+        //  console.log(self.targetElement.node().clientHeight)
+        // console.log(nomogramWidth)
+
+        self.polylineSvg = d3.select(self.targetID + "Header").append("svg")
+            .attr("id", "polyLineSVG")
+            .attr("width", self.targetElement.node().clientWidth)
+            .attr("height", self.legendSvgHeight)
+            .attr("preserveAspectRatio", "none");
+        
         self.legendSVG = d3.select(self.targetID + "Header").append("svg")
             .attr("width", self.targetElement.node().clientWidth)
-            .attr("height", self.targetElement.node().clientHeight)
-            .attr("viewBox", "0 0 200 100")
-            .attr("preserveAspectRatio", "xMidYMid");
+            .attr("height", self.legendSvgHeight)
+            .style("position", "relative")
+            .style("bottom", "25px")
+            // .attr("width", self.navigationBarWidth)
+            // .attr("height", self.navigationBarHeight)
+            // .attr("viewBox", "0 0 140 100")
+            // .attr("preserveAspectRatio", "none");
 
         const axes = App.models.axesModel.getAxesData();
         self.axes = axes;
+        // console.log(self.axes)
 
         self.filteredAxes = Object.keys(axes);
-        // console.log(self.filteredAxes);
+        // console.log("first time filtered axes", self.filteredAxes);
 
         let menuDiv = d3.select(self.targetID + "Header")
             .select(".viewTitleDiv").append("div")
-            .attr("class", "pull-left")
+            .attr("class", "pull-right")
             .append("button")
-            .attr("class", 'btn btn-default navbar-btn')
+            .attr("class", 'btn btn-default navbar-btn btn-sm')
             .attr("id", "nomogram-menu-button")
             .on("click", function () {
                 $('.nomogramControlsBox').toggle();
@@ -53,7 +75,8 @@ let NomogramView = function (targetID) {
             });
 
         d3.select("#nomogram-menu-button").append("span")
-            .attr("class", 'glyphicon glyphicon-wrench');
+            .attr("class", 'glyphicon glyphicon-wrench')
+            .attr("font-size", "10px");
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -70,8 +93,9 @@ let NomogramView = function (targetID) {
     function updateNomogram(nomogramtype) {
         App.models.axesModel.setCurrentAxes(nomogramtype);
         self.axes = App.models.axesModel.getAxesData();
-        console.log(self.axes);
+        // console.log(self.axes);
         self.filteredAxes = Object.keys(self.axes);
+        // console.log(self.filteredAxes)
 
         updateAxes();
         updateView();
@@ -81,10 +105,16 @@ let NomogramView = function (targetID) {
     /* initialize the nomoggram */
     function createNomogram() {
         // self.targetElement.selectAll("*").remove();
+        // console.log(window.innerHeight)
         let minSize = Math.min(self.targetElement.node().clientWidth, self.targetElement.node().clientHeight);
-        let titlefontSize = 0.045 * minSize;
+
+        // let nomogramHeigth =  (window.innerHeight / 2) - (2 * self.navigationBarHeight);
+        // let nomogramWidth = self.targetElement.node().clientWidth;
+        
+        // let minSize = Math.min(nomogramWidth, nomogramHeigth);
+        let titlefontSize = 0.1 * minSize;
         let tickfontSize = titlefontSize * 0.9;
-        self.strokewidth.filter = 0.006 * minSize;
+        self.strokewidth.filter = 0.008 * minSize;
         self.strokewidth.knn = 0.008 * minSize;
 
         self.nomogram = new Nomogram()
@@ -107,6 +137,19 @@ let NomogramView = function (targetID) {
             .brushable(true)
             .onMouseOver("hide-other")
             .onMouseOut("reset-paths");
+
+        // <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#nomogramModal" id="HelpInfo-nomogram"></span>
+        // <button type="button" id="attributeModal" class="btn btn-default btn-sm" data-toggle="modal" data-target="#featureModels">
+        //                                   Prediction Attributes
+        //  </button>
+        d3.select("#nomogram")/*.append("div").style("padding-left", "95%")*/
+            .append("span")
+            .attr("class", "glyphicon glyphicon-question-sign")
+            .attr("id", "attributeModal")
+            .attr("data-toggle", "modal")
+            .attr("data-target" , "#featureModels")
+            .style("padding-left", "93%")
+            .attr("title", "Prediction Attributes")
     }
 
     /* update the nomogram based on the mode: knn or filter */
@@ -167,28 +210,69 @@ let NomogramView = function (targetID) {
 
     /* update the legend based on the selected attribute for coloring */
     function updateLegend(attr) {
+        // console.log("called")
         d3.selectAll(".nomogramLegend").remove();
+        d3.selectAll("#polyLine").remove();
 
         let attrVals = App.models.patients.getPatientKnnAttributeDomains()[attr];
-        console.log(attr, attrVals);
+        let polyline = ["Current", "Most Similar"]
+        // console.log(attr, attrVals);
 
         for (let valInd in attrVals) {
-            self.legendSVG.append("line")
+            self.legendSVG.append("rect")
                 .attr("class", "nomogramLegend")
-                .attr("x1", 150)
-                .attr("y1", 9 + 5 * valInd)
-                .attr("x2", 155)
-                .attr("y2", 9 + 5 * valInd)
-                .style("stroke", App.attributeColors(attrVals[valInd]))
-                .style("stroke-width", "0.6px");
+                .attr("x", 100 + 110 * valInd)
+                .attr("y", self.legendSvgHeight / 2)
+                .attr("width", 8)
+                .attr("height", 8)
+                .style("fill", App.attributeColors(attrVals[valInd]))
+                .style("opacity", "0.5");
 
             self.legendSVG.append("text")
                 .attr("class", "nomogramLegend")
-                .attr("x", 160)
-                .attr("y", 10 + 5 * valInd)
-                .style("font-size", "4px")
+                .attr("x", 110 + 110 * valInd)
+                .attr("y", 8 + (self.legendSvgHeight / 2))
+                .style("font-size", "0.8em")
                 .text(attrVals[valInd]);
         }
+
+        // current patient black
+        self.polylineSvg.append("rect")
+            .attr("id", "polyLine")
+            .attr("x", 100)
+            .attr("y", 5)
+            .attr("width", 8)
+            .attr("height", 8)
+            .style("fill", "black")
+            // .style("opacity", "0.5");
+
+        //text for current 
+        self.polylineSvg.append("text")
+            .attr("class", "nomogramLegend")
+            .attr("x", 115)
+            .attr("y", 5 + 8)
+            .style("font-size", "0.8em")
+            .text("Current Patient");
+
+        // similar patients
+        for (let valInd in attrVals) {
+            self.polylineSvg.append("rect")
+                .attr("id", "polyLine")
+                .attr("x", 100 + 10 * valInd)
+                .attr("y", 15)
+                .attr("width", 8)
+                .attr("height", 8)
+                .style("fill", App.attributeColors(attrVals[valInd]))
+                .style("opacity", "0.5");
+        }
+
+        //text
+        self.polylineSvg.append("text")
+                .attr("class", "nomogramLegend")
+                .attr("x", 100 + 11 * attrVals.length)
+                .attr("y", 23)
+                .style("font-size", "0.8em")
+                .text("Most Similar Patients");
     }
 
     /* update the nomogram with filtered axes */
@@ -211,13 +295,15 @@ let NomogramView = function (targetID) {
         // update self.filteredAxes
         self.filteredAxes = [];
         self.filteredAxes.push(Object.keys(self.axes)[0]);
+        // console.log(self.filteredAxes)
         Object.keys(self.axes).forEach((el) => {
             if (axisStates[el]) {
                 self.filteredAxes.push(el);
             }
         });
-        self.filteredAxes.push(Object.keys(self.axes)[App.patientKnnAttributes.length + 1]);
-
+        // console.log(self.filteredAxes)
+        self.filteredAxes.push(Object.keys(self.axes)[App.nomogramAttributes.length + 1]);
+        // console.log(self.filteredAxes)
         // then updateAxes
         updateAxes();
         updateView();
@@ -225,7 +311,7 @@ let NomogramView = function (targetID) {
 
     /* update axes range */
     function updateAxesRange(newRange) {
-        console.log(newRange);
+        // console.log(newRange);
         _.forEach(newRange, (value, key) => {
             self.axes[key]["rangeShrink"] = value;
         });
@@ -250,18 +336,31 @@ let NomogramView = function (targetID) {
         let nomogramSelector = d3.select(element)
             .on("change", function () {
                 updateNomogram(d3.select(this).property("value"));
+                // let updatedPatients = {};
+                //update the color of the kiviat diagrams 
+                let patientID = $('.idSelect').val();
+                let kiviatPatients = App.controllers.patientSelector.getUpdatedData(patientID);
+                // console.log(kiviatPatients)
+                //change the color
+                //subject
+                App.views.kiviatDiagram.updateColor(kiviatPatients)
+
             })
             .selectAll("option")
             .data(nomogramsTypes)
             .enter().append('option')
-            .property("selected", (d) => d === default_selected)
+            // .property("selected", (d) => d === default_selected)
             .attr("value", (d) => d)
             .attr("id", (d) => d + "-nomogram-selector")
             .text((d) => {
                 if (d === "default") {
-                    return "feeding tube"
-                } else {
-                    return d;
+                    return "feeding tube (FDT)"
+                } else if(d === "aspiration") {
+                    return "aspiration (ASP)";
+                }else if(d === "overall") {
+                    return "overall survival (OS) 5 years";
+                }else if(d === "progression") {
+                    return "progression (RMS) 5 years";
                 }
             });
 

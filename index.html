@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="lib/css/laptopLayout.css">
     <link rel="stylesheet" href="lib/css/controls.css">
     <!-- <link rel="stylesheet" href="https://rawgithub.com/Caged/d3-tip/master/examples/example-styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- bootstrap select -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="lib/css/bootstrap-select.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    
 
     <link rel="stylesheet/less" href="src/css/style.less">
     <link rel="stylesheet/less" href="src/css/kiviat.less">
@@ -19,12 +28,22 @@
     <link rel="stylesheet/less" href="src/css/kaplanMeier.less">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js" charset="utf-8"></script>
+    <!-- MATH  library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.0.0/math.min.js"></script>
 
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="lib/js/d3.v4.min.js" charset="utf-8"></script>
 
     <script src="lib/js/jquery.min.js" charset="utf-8"></script>
     <script src="lib/js/bootstrap.min.js" charset="utf-8"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    
+
+    <!-- bootsrap select -->
+    <script src="lib/js/bootstrap-select.js"></script>
 
     <script src="lib/js/lodash.min.js" charset="utf-8"></script>
 
@@ -32,254 +51,391 @@
 
     <script src="lib/js/d3-tip.js" charset="utf-8"></script>
 
+    <!-- regression libraries -->
+    <!-- <script src="lib/js/jsregression.js"></script>    -->
+    <!-- <script src="lib/js/regression.js"></script> -->
+    <!-- <script src="https://www.lactame.com/lib/ml/2.2.0/ml.min.js"></script> -->
+
+
     <script src="src/js/model/patientModel.js" charset="utf-8"></script>
     <script src="src/js/model/applicationStateModel.js" charset="utf-8"></script>
     <script src="src/js/model/kaplanMeierPatientModel.js" charset="utf-8"></script>
     <script src="src/js/model/axesModel.js" charset="utf-8"></script>
+    <script src="src/js/model/attributeModel.js" charset="utf-8"></script>
+    <!-- for predictive analysis -->
+    <!-- <script src="src/js/model/logisticRegression.js" charset="utf-8"></script> -->
+    <!-- <script src="src/js/model/predictiveAnalysis.js"></script> -->
+    <!-- <script src="src/js/model/R_predictive_data.js"></script> -->
 
     <script src="src/js/controller/dataUpdateController.js" charset="utf-8"></script>
     <script src="src/js/controller/patientSelectorController.js" charset="utf-8"></script>
     <script src="src/js/controller/attributeSelectorController.js" charset="utf-8"></script>
+    <!-- <script src="src/js/controller/attributeSelectorControllerUpdated.js"></script> -->
     <script src="src/js/controller/nomogramKnnController.js" charset="utf-8"></script>
     <script src="src/js/controller/filterController.js" charset="utf-8"></script>
     <script src="src/js/controller/exploreFormController.js" charset="utf-8"></script>
     <script src="src/js/controller/addPatientController.js" charset="utf-8"></script>
     <script src="src/js/controller/knnAttributeSelectionController.js" charset="utf-8"></script>
+    <script src="src/js/controller/kiviatAttributeSelectionController.js" charset="utf-8"></script>
     <script src="src/js/controller/nomogramAxisController.js" charset="utf-8"></script>
     <script src="src/js/controller/settingsController.js" charset="utf-8"></script>
     <script src="src/js/controller/LandingFormController.js" charset="utf-8"></script>
+    <script src="src/js/controller/kaplanMeierCheckboxController.js" charset="utf-8"></script>
+    <script src="src/js/controller/nomogramPredictInfoController.js" charset="utf-8"></script>
+
+
+    <!-- add new patient -->
+    <script src="src/js/controller/addNewPatient.js" charset="utf-8"></script>
 
     <script src="src/js/view/kiviatDiagramView.js" charset="utf-8"></script>
     <script src="src/js/view/nomogramView.js" charset="utf-8"></script>
     <script src="src/js/view/kaplanMeierView.js" charset="utf-8"></script>
     <script src="src/js/view/statsView.js" charset="utf-8"></script>
-    <script src="src/js/view/helpInfoView.js" charset="utf-8"></script>
+    <!-- <script src="src/js/view/helpInfoView.js" charset="utf-8"></script> -->
     <script src="src/js/view/demographicsFormView.js" charset="utf-8"></script>
     <script src="src/js/view/treatmentFormView.js" charset="utf-8"></script>
     <script src="src/js/view/cancerDescriptorsFormView.js" charset="utf-8"></script>
+    <script src="src/js/view/statisticsModalView.js" charset="utf-8"></script>
+    <!-- <script src="src/js/view/predictiveProbabilityView.js" charset="utf-8"></script> -->
+    <script src="src/js/view/predictionAttributeModal.js" charset="utf-8"></script>
+    <script src="src/js/view/radiomicView.js" charset="utf-8"></script>
+
 
     <script src="src/js/main.js" charset="utf-8"></script>
 
 </head>
 
 <body>
-<div class="container-fluid landing-form align-top">
-    <h3 class=title>SMART Therapy Explorer</h3>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-            <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics</button>
-            <div id="demographics" class="collapse">
-                <label>Patient ID</label>
-                <select class="idSelect">
-                    <option>N/A</option>
-                </select>
-                <label>Age</label>
-                <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
-                <label>Gender</label>
-                <input type="radio" name="Gender" value="Male" id="male-radio">Male
-                <input type="radio" name="Gender" value="Female" id="female-radio">Female
-                <label>Race</label>
-                <input type="text" name="Race" placeholder="Race" id="race-element">
-                <label>Aspiration</label>
-                <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
-                <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
-                <label>HPV/P16</label>
-                <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element">
-                <label>Smoking Status</label>
-                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
-                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
-                <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
-                <label>Packs/Year</label>
-                <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
-                <div>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors</button>
-            <div id="cancerDescriptors" class="collapse">
-                <label>Tumor Site</label>
-                <input type="text" name="Site" placeholder="Tumor Site" id="tumor-site">
-                <label>Tumor Subsite</label>
-                <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite">
-                <label>AJCC 7th Edition</label>
-                <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
-                <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
-                <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
-                <input type="radio" name="AJCC 7th edition" value="IV" id="ajcc7-4">IV
-                <label>AJCC 8th Edition</label>
-                <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
-                <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
-                <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
-                <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV
-                <label>T-category</label>
-                <input type="radio" name="T-category" value="T1" id="tcat1">T1
-                <input type="radio" name="T-category" value="T2" id="tcat2">T2
-                <input type="radio" name="T-category" value="T3" id="tcat3">T3
-                <input type="radio" name="T-category" value="T4" id="tcat4">T4
-                <label>N-Category</label>
-                <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A
-                <input type="radio" name="N-category" value="N0" id="ncat-0">N0
-                <input type="radio" name="N-category" value="N1" id="ncat-1">N1
-                <input type="radio" name="N-category" value="N2" id="ncat-2">N2
-                <input type="radio" name="N-category" value="N3" id="ncat-3">N3
-                <label>Pathological Grade</label>
-                <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
-                <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
-                <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
-                <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
-                <label>Affected Lymph Nodes</label>
-                <input type="text" name="Affected Lymph node cleaned" placeholder="Affected Lymph Node" id="affected-lymph">
-                <div>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment</button>
-            <div id="treatment" class="collapse">
-                <div class="left">
-                    <label>Chemotherapy</label>
-                    <input type="text" name="Therapeutic combination" placeholder="Chemotherapy" id="chemo-element">
-                    <label>Local Therapy</label>
-                    <input type="text" name="Local_Therapy" placeholder="Local Therapy" id="local-therapy-element">
-                    <label>Treatment Duration</label>
-                    <input type="text" name="Treatment duration (Days)" placeholder="Duration" id="duration-element">
-                    <label>Total Dose</label>
-                    <input type="text" name="Total dose" placeholder="Total Dose" id="total-dose-element">
-                </div>
-                <div class="right">
-                    <label>Total Fraction</label>
-                    <input type="text" name="Total fractions" placeholder="Total Fraction" id="total-fraction-element">
-                    <label>Dose/Day</label>
-                    <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="dose-element">
-                    <label>Neck Dissection after IMRT</label>
-                    <input type="text" name="Neck Dissection after IMRT (Y / levels)" placeholder="Neck Dissection" id="neck-dissection-element">
-                    <label>Neck Boost</label>
-                    <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
-                    <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No
-                </div>
-            </div>
-        </div>
+
+    <div id="loading">
+        <img id="loading-image" src="imgs/loading.gif" alt="Loading..." />
+      </div>
+
+        <!-- home page starts -->
+        <div class="container-fluid landing-form align-top">
+          <h3 class=title>SMART Therapy Explorer</h3>
+          <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                  <button type="button" class="demoButton" data-toggle="collapse" data-target="#demographics">Demographics <sup><i class="fa fa-asterisk" style="color: whites;"></i></sup></button>
+                  <div id="demographics" class="collapse">
+                      <label>Patient ID</label>
+                      <select class="idSelect">
+                          <option>N/A</option>
+                      </select>
+                      <label id="age-label"><span>Age<sup><i class="fa fa-asterisk" id="age-validation"></i></sup></span></label>
+                      <input type="text" name="Age at Diagnosis (Calculated)" id="age-element" placeholder="Age">
+                      <!-- <div id="age-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Age</div> -->
+                      <label id="gender-label"><span>Gender<sup><i class="fa fa-asterisk" id="gender-validation"></i></sup></span></label>
+                      <input type="radio" name="Gender" value="Male" id="male-radio">Male
+                      <input type="radio" name="Gender" value="Female" id="female-radio">Female
+                      <!-- <div id="gender-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Gender</div> -->
+                      <label>Race</label>
+                      <select id="race-element" name="Race">
+                        <!-- <option value="" disabled selected>Race </option> -->
+                        <option value="White/Caucasion">White/Caucasion</option>
+                        <option value="Other">Other</option>
+                        <option value="N/A" selected>N/A</option>
+                      </select>
+                      <!-- <div id="race-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Race</div> -->
+                      <!-- <input type="text" name="Race" placeholder="Race" id="race-element"> -->
+                      <label>Aspiration</label>
+                      <input type="radio" name="Aspiration rate Pre-therapy" value="Y" id="aspiration-y-radio">Yes
+                      <input type="radio" name="Aspiration rate Pre-therapy" value="N" id="aspiration-n-radio">No
+                      <input type="radio" name="Aspiration rate Pre-therapy" value="N/A" id="aspiration-na-radio" checked>N/A
+                      <!-- <div id="aspiration-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Aspiration</div> -->
+                      <!-- <input type="text" name="HPV/P16 status" placeholder="HPV/P16" id="hpvp16-element"> -->
+                      <label id="smoking-label"><span>Smoking Status<sup><i class="fa fa-asterisk" id="smoking-validation"></i></sup></span></label>
+                      <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Never" id="smoking-never-radio">Never
+                      <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Former" id="smoking-former-radio">Former
+                      <input type="radio" name="Smoking status at Diagnosis (Never/Former/Current)" value="Current" id="smoking-current-radio">Current
+                      <!-- <div id="smoking-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Smoking Status</div> -->
+                      <label>Packs/Year</label>
+                      <input type="text" name="Smoking status (Packs/Year)" placeholder="Packs Per Year" id="packs-per-year-element">
+                      <!-- <div id="packs-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Packs/Year</div> -->
+                      <div>
+                          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demographics">Next</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <button type="button" id="cancer" class="cancerButton" data-toggle="collapse" data-target="#cancerDescriptors">Cancer Descriptors <sup><i class="fa fa-asterisk" style="color: white;"></i></sup></button>
+                  <div id="cancerDescriptors" class="collapse">
+                      <label>Tm Laterality (R/L)</label>
+                      <select id="tumor-site" name="Tm Laterality (R/L)">
+                        <option value="" disabled selected>R/L/Bilateral</option>
+                        <option value="R">R</option>
+                        <option value="L">L</option>
+                        <option value="Bilateral">Bilateral</option>
+                        <option value="N/A" selected>N/A</option>
+                      </select>
+                      <!-- <div id="site-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Tm Laterality</div> -->
+                      <!-- <input type="text" name="Tm Laterality (R/L)" placeholder="R/L/Bilateral" id="tumor-site"> -->
+                      <label>Tumor Subsite</label>
+                      <select id="tumor-subsite" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)">
+                        <option value="" disabled selected>Tumor Subsite</option>
+                        <option value="BOT">BOT</option>
+                        <option value="Tonsil">Tonsil</option>
+                        <option value="Other" selected>Other</option>
+                      </select>
+                      <!-- <div id="subsite-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Tumor Subsite</div> -->
+                      <label>HPV/P16</label>
+                      <select id="hpvp16-element" name="HPV/P16 status">
+                        <option value="" disabled selected>HPV/P16</option>
+                        <option value="Positive">Positive</option>
+                        <option value="Negative">Negative</option>
+                        <option value="Unknown" selected>Unknown</option>
+                      </select>
+                      <!-- <div id="hpvp16-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide HPV/P16</div> -->
+
+                      <!-- <input type="text" name="Tumor subsite (BOT/Tonsil/Soft Palate/Pharyngeal wall/GPS/NOS)" placeholder="Tumor Subsite" id="tumor-subsite"> -->
+                      <!-- <label>AJCC 7th Edition</label>
+                      <input type="radio" name="AJCC 7th edition" value="I" id="ajcc7-1">I
+                      <input type="radio" name="AJCC 7th edition" value="II" id="ajcc7-2">II
+                      <input type="radio" name="AJCC 7th edition" value="III" id="ajcc7-3">III
+                      <input type="radio" name="AJCC 7th edition" value="IV" id="ajcc7-4">IV
+                      <label>AJCC 8th Edition</label>
+                      <input type="radio" name="AJCC 8th edition" value="I" id="ajcc8-1">I
+                      <input type="radio" name="AJCC 8th edition" value="II" id="ajcc8-2">II
+                      <input type="radio" name="AJCC 8th edition" value="III" id="ajcc8-3">III
+                      <input type="radio" name="AJCC 8th edition" value="IV" id="ajcc8-4">IV -->
+
+
+                      <label id="tcat-label"><span>T-category<sup><i class="fa fa-asterisk" id="t-validation"></i></sup></span></label>
+                      <input type="radio" name="T-category" value="T1" id="tcat1">T1
+                      <input type="radio" name="T-category" value="T2" id="tcat2">T2
+                      <input type="radio" name="T-category" value="T3" id="tcat3">T3
+                      <input type="radio" name="T-category" value="T4" id="tcat4">T4
+                      <!-- <div id="t-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide T-Category</div> -->
+                      <label id="ncat-label"><span>N-Category<sup><i class="fa fa-asterisk" id="n-validation"></i></sup></span></label>
+                      <!-- <input type="radio" name="N-category" value="N/A" id="ncat-na">N/A -->
+                      <input type="radio" name="N-category" value="N0" id="ncat-0">N0
+                      <input type="radio" name="N-category" value="N1" id="ncat-1">N1
+                      <input type="radio" name="N-category" value="N2" id="ncat-2">N2
+                      <input type="radio" name="N-category" value="N3" id="ncat-3">N3
+                      <!-- <div id="n-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide N-Category</div> -->
+                      <label>Pathological Grade</label>
+                      <input type="radio" name="Pathological Grade" value="I" id="pgrade1">I
+                      <input type="radio" name="Pathological Grade" value="II" id="pgrade2">II
+                      <input type="radio" name="Pathological Grade" value="III" id="pgrade3">III
+                      <input type="radio" name="Pathological Grade" value="IV" id="pgrade4">IV
+                      <input type="radio" name="Pathological Grade" value="N/A" id="pgradeNA" checked>N/A
+                      <!-- <div id="pathological-validation" style="color: red;"><sup><i class="fa fa-asterisk"></i></sup>Please, Provide Pathological Grade</div> -->
+                      <label>Affected Lymph Nodes</label>
+                      <input type="text" name="Affected Lymph node" placeholder="Affected Lymph Node" id="affected-lymph">
+                      <div>
+                          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cancerDescriptors">Next</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <button type="button" class="treatmentButton" data-toggle="collapse" data-target="#treatment">Treatment (If Any)</button>
+                  <div id="treatment" class="collapse">
+                      <div class="left">
+                          <label>Chemotherapy</label>
+                          <select id="chemo-element" name="Therapeutic combination">
+                            <!-- <option value="" disabled selected>Therapeutic combination</option> -->
+                            <option value="CC">CC</option>
+                            <option value="IC+CC">IC+CC</option>
+                            <option value="IC+Radiation alone">IC+Radiation alone</option>
+                            <option value="Radiation alone">Radiation alone</option>
+                            <option value="N/A" selected>N/A</option>
+                          </select>
+                          <!-- <input type="text" name="Therapeutic combination" placeholder="Therapeutic combination" id="chemo-element"> -->
+                          <!-- <label>Censor</label> -->
+                          <!-- <input type="text" name="Censor" placeholder="0/1" id="local-therapy-element"> -->
+                          <label>Treatment Duration</label>
+                          <input type="text" name="Treatment duration (Days)" placeholder="Duration" id="duration-element">
+                          <label>Total Dose</label>
+                          <input type="text" name="Total dose" placeholder="Total Dose" id="total-dose-element">
+                      </div>
+                      <div class="right">
+                          <label>Total Fraction</label>
+                          <input type="text" name="Total fractions" placeholder="Total Fraction" id="total-fraction-element">
+                          <label>Dose/Day</label>
+                          <input type="text" name="Dose/fraction (Gy)" placeholder="Dose Per Day" id="dose-element">
+                          <label>Neck Dissection after IMRT</label>
+                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="Y" id="neck-dissect-y-radio">Yes
+                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="N" id="neck-dissect-n-radio">No
+                          <input type="radio" name="Neck Disssection after IMRT (Y/N)" value="N/A" id="neck-dissect-n/a-radio" checked>N/A
+                          <!-- <input type="text" name="Neck Disssection after IMRT (Y/N)" placeholder="Neck Dissection" id="neck-dissection-element"> -->
+                          <label>Neck Boost</label>
+                          <input type="radio" name="Neck boost (Y/N)" value="Y" id="neck-boost-y-radio">Yes
+                          <input type="radio" name="Neck boost (Y/N)" value="N" id="neck-boost-n-radio">No
+                          <input type="radio" name="Neck boost (Y/N)" value="N/A" id="neck-boost-n/a-radio" checked>N/A
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <button class="btn btn-primary submitButton" type="submit" value="Submit">Submit</button>
+      </div>
+      <!-- home page ends -->
+
+    <!-- help menu i suppose -->
+    <div class="info-overlay dashboard-help">
+        <img id="helpImg" src="imgs/help.png">
     </div>
-    <button class="btn btn-primary submitButton" type="submit" value="Submit">Submit</button>
 
-</div>
-  <div class="info-overlay dashboard-help">
-    <img id="helpImg" src="imgs/help.png">
-  </div>
-    <div class="container-fluid dashboard align-top">
-        <div class="row" id="title">
-            <nav class="navbar">
-                <div class="container-fluid navbar-grey">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">SMARTer Therapy Explorer</a>
-                    </div>
-                    <!-- <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                    </ul> -->
 
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        KNN Attributes Used
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu col-sm-12 col-md-3 optionDropdown" id="knnAttributesControl">
-                        <!-- populating list in controller -->
-                    </ul>
-
+  <div class="container-fluid dashboard align-top">
+    <!-- navigation bar on the top -->
+    <div class="row" id="title">
+        <!-- <nav class="navbar"> -->
+            <div class="container-fluid navbar-grey">
+                <div class="col-md-5"> <!--  navbar-header"> -->  
+                    <a href="#">SMARTer Therapy Explorer</a>  <!-- class="navbar-brand"-->
+                    
+                    <button type="button" class="btn btn-default btn-sm" id= "statButton" data-toggle="modal" data-target="#exampleModal">
+                          Statistics
+                        </button>
+                      <button type="button" class="btn btn-default btn-sm" id= "cohortButton" data-toggle="modal" data-target="#cohortModal">
+                      Cohort
+                      </button>  
                     <button class="btn btn-default navbar-btn" id="add-patient-button">
                       <span class="glyphicon glyphicon-plus"></span>
-                      Add Patient
+                      Update Patient
                     </button>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <button class="btn btn-link navbar-btn" data-toggle="modal" data-target="#aboutModal">
-                          <span class="glyphicon glyphicon-info-sign"></span>
-                          About
-                        </button>
-                        <button class="btn btn-link navbar-btn" id="HelpInfo">
-                          <span class="glyphicon glyphicon-question-sign"></span>
-                          Help
-                        </button>
-
-                        <!-- <div class="dropdown"> -->
-                        <!--<button class="btn btn-basic navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">-->
-                              <!--<span class="glyphicon glyphicon-wrench"></span>-->
-                              <!--&lt;!&ndash; Options &ndash;&gt;-->
-                        <!--</button>-->
-                        <!--<ul class="dropdown-menu">-->
-                            <!--<li class="checkbox-li">-->
-                                <!--<input type="checkbox" id="cookieCheckbox" checked>-->
-                                <!--<label for="cookieCheckbox">Save Options Between Sessions</label>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                        <!-- </div> -->
-
-
-                    </ul>
                 </div>
-            </nav>
-        </div>
+                <!-- patient dropdown menu -->
+                <div class="col-md-4 patient-dropdown-wrapper" id="similarPatientList" style="text-align: left; padding-left: 3%;">
+                  <div class="col-md-6 form-inline" style="padding-right: 0; padding-left: 6%;">
+                      <div class="form-group">
+                          <label for="patientSel">Patient ID:</label>
+                          <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
+                      </div>
+                  </div>
+                  <div class="col-md-6" id="subjectPrediction" style="padding-left: 0; padding-right: 0;"></div>
+              </div>
 
-        <div class="row" id="allContent">
-            <div class="col-md-3 contentWrapper kiviatDiv">
-                <div class="contentDiv">
-                    <div class="infoDiv" id="infoDiv-kiviat">
+              <div class="col-md-3">
+                <ul class="nav navbar-nav navbar-right">
+                    <button class="btn btn-link navbar-btn" data-toggle="modal" data-target="#aboutModal">
+                      <span class="glyphicon glyphicon-info-sign"></span>
+                      About
+                    </button>
+                    <button type="button" class="btn btn-link navbar-btn" id="HelpInfo" data-toggle="modal" data-target="#OverallHelpInfo">
+                      <span class="glyphicon glyphicon-question-sign"></span>
+                      Help
+                    </button>
+                </ul>
+              </div>
+            </div>
+        <!-- </nav> -->
+    </div>
+    <!-- nav bar ends -->
 
-                    </div>
-                    <div id="kiviatHeader">
-                        <div class="row viewTitleDiv">
-                            Most Similar Patients
-                            <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kiviat"></span>
+    <div class="row" id="allContent">
+        <div class="row" id="top">
+            <div class="col-md-3">
+                <!-- kaplan meier plot -->
+            <!-- <div class="row" id="kaplanTop"> -->
+                <div class="col contentWrapper kaplanDiv">
+                    <div class="contentDiv">
+                        <div class="infoDiv" id="infoDiv-kaplanMeier">
+
                         </div>
-                        <div class="row patient-dropdown-wrapper">
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label for="patientSel">Patient:</label>
-                                    <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
+                        <div id="kaplanMeierHeader">
+                            <div class="row viewTitleDiv">
+                                Survival Over Time
+                                <!-- Button trigger modal -->
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kaplanmeierModal"> -->
+                                    <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kaplanmeierModal" id="HelpInfo-kaplanMeier"></span>
+                                <!-- </button> -->
+                            </div>
+                            <div class="row patient-dropdown-wrapper">
+
+                                <div class="col-md-8" id="updated_dropdown">
                                 </div>
+
+                                <!-- <div class="col-md-4" style="font-size: 12px;">
+                                  <input id="kmcheckbox" type="checkbox" style="display:inline" checked> KM Estimator
+                                </div> -->
+
                             </div>
+                        </div>
+                        <div id="kaplanMeier">
                         </div>
                     </div>
-                    <div id="kiviatDiagram">
-                        <div class="col-md-6 kiviatLeft">
-                            <div class="row" id="kiviatDiagram-subject">
+
+                </div>
+            <!-- </div> -->
+            
+
+            </div>
+
+            <!-- right divided int nomogram on top 
+            and kaplan meier and the table on botom -->
+            <div class="col-md-7" id="right">
+
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-12 contentWrapper nomogramDiv"> -->
+                        <div class="contentDiv">
+                            <!-- <div class="infoDiv" id="infoDiv-nomogram">
+
+                            </div> -->
+                            <!-- just the title and stuffs -->
+                            <div id="nomogramHeader">
+                                <div class="row viewTitleDiv">
+                                  Survival and Toxicity Risk Prediction
+                                    <!-- Button trigger modal -->
+                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nomogramModal"> -->
+                                        <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#nomogramModal" id="HelpInfo-nomogram"></span>
+                                    <!-- </button> -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4" id="polylineLegend" style="top: 30px;"> 
+                                    </div>
+                                    <div class="col-md-4 col-md-4" style="bottom: 10px;width: 28%;">
+                                        <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>                                        
+                                    </div>
+                                    <div class="col-md-4 knnCheckBox" style="bottom: 10px; left: 16%;">
+                                        <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
+                                    </div>
+                                </div>
+                                <!-- <div class="row knnCheckBox">
+                                    <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
+                                </div> -->
                             </div>
-                            <div class="row" id="kiviatDiagram-legend">
+                            <div id="nomogram">
                             </div>
                         </div>
-                        <div class="col-md-6 kiviatRight" id="kiviatDiagram-neighbors">
-                        </div>
-                    </div>
-                </div>
+                    <!-- </div> -->
+                <!-- </div> -->
+
             </div>
-            <div class="col-md-2 contentWrapper controlDiv" style="display: none" id="unbelievable-fix">
-                <div class="infoDiv" id="">
+
+            <div class="col-md-2 contentWrapper controlDiv" style="display: block" id="unbelievable-fix">
+              <div class="row">
+                <div class="col-md-4" style="padding-top: 30%;">
+                  <!-- <div class= "row" id="subjectPrediction"></div> -->
+                  <div class="row">
+                    <label style="text-align: center;">Prediction With Radiomics
+                      <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#WithRadiomics"></span>
+                    </label>
+                    <div id="radiomicLegend"></div>
+                    <!-- <select id="radiomic_dropdown" name="radiomic"> -->
+                      <!-- <option value="" disabled selected>Race </option> -->
+                      <!-- <option value="Cluster1">Cluster 1</option>
+                      <option value="Cluster2">Cluster 2</option>
+                      <option value="Cluster3">Cluster 3</option> -->
+                    <!-- </select> -->
+                  </div>
+                  <div class="row" id="withLymphnode"></div>
                 </div>
-            </div>
+                <div class="col-md-8" id="radiomics"></div>
+              </div>
+          </div>
+            <!-- nomogram control box -->
             <div class="col-md-2 contentWrapper controlDiv nomogramControlsBox">
               <div class="infoDiv" id="infoDiv-nomogramControls">
 
               </div>
                 <div class="contentDiv" id="nomogramControls">
                     <div class="row dropdown-control-row">
-                            <h4>
+                            <h5>
                                     Nomogram Controls
-                            </h4>
+                            </h5>
+                        <!-- first dropdown menu -->
                         <div class="col-md-12">
-
-                            <!--<div class="row dropdown-row">-->
-                                <!--<div class="dropdown">-->
-                                    <!--<button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">-->
-                            <!--KNN Attributes Used-->
-                            <!--<span class="caret"></span>-->
-                          <!--</button>-->
-                                    <!--<ul class="dropdown-menu col-sm-12 optionDropdown" id="knnAttributesControl">-->
-                                        <!--&lt;!&ndash; populating list in controller &ndash;&gt;-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-                            <!--</div>-->
 
                             <div class="row dropdown-row">
                                 <div class="dropdown">
@@ -299,7 +455,7 @@
                     <div class="row axis-control-row">
                         <div class="col-md-10">
                             <div class="row">
-                                <h4>Edit Axes:</h4>
+                                <h5>Edit Axes:</h5>
                                 <div class="form-group">
                                     <label for="nomogramAxisSelect">Selected Axis:</label>
                                     <select id="nomogramAxisSelect" class="form-control">
@@ -329,121 +485,470 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-7" id="right">
-
-                <div class="row" id="top">
-                    <div class="col-md-12 contentWrapper nomogramDiv">
-                        <div class="contentDiv">
-                            <div class="infoDiv" id="infoDiv-nomogram">
-
-                            </div>
-                            <div id="nomogramHeader">
-                                <div class="row viewTitleDiv">
-                                    Nomogram Risk Prediction
-                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-nomogram"></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-lg-offset-4">
-                                        <select class="btn btn-outline btn-grey btn-block dropdown-toggle" id="nomogram-selector"></select>
-                                    </div>
-                                </div>
-                                <div class="row knnCheckBox">
-                                    <input id="knnCheckBox" type="checkbox" style="display:inline" checked> Show K-Nearest Neighbors</input>
-                                </div>
-                            </div>
-                            <div id="nomogram">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row" id="bottom">
-                    <div class="col-md-6 contentWrapper kaplanDiv">
-                        <div class="contentDiv">
-                            <div class="infoDiv" id="infoDiv-kaplanMeier">
-
-                            </div>
-                            <div id="kaplanMeierHeader">
-                                <div class="row viewTitleDiv">
-                                    Survival Over Time
-                                    <span class="glyphicon glyphicon-question-sign" id="HelpInfo-kaplanMeier"></span>
-                                </div>
-                                <div class="row patient-dropdown-wrapper">
-                                    <div class="form-inline">
-                                        <div class="form-group">
-                                            <select class="attribute-dropdown form-control input-sm" id="attributeSel">
-                                    </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="kaplanMeier">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 contentWrapper mosaicDiv">
-                        <div class="contentDiv">
-                            <div class="infoDiv" id="infoDiv-mosaic">
-
-                            </div>
-                            <div id="mosaicHeader">
-                                <div class="row viewTitleDiv">
-                                    Statistics and Cohort
-                                    <!--<span class="glyphicon glyphicon-question-sign" id="HelpInfo-mosaic"></span>-->
-                                </div>
-                            </div>
-
-                            <div id="nomosaic" class="white-bg text-center">
-                                <div class="row dropdown-control-row">
-                                    <!--<div class="col-md-12 pad">-->
-                                        <!--<span class="">Total Patients: <span id="total-patient-span"></span></span>-->
-                                    <!--</div>-->
-                                    <div class="">
-                                        <a href="#" target="_blank" id="dendrogramlinker"><button class="btn btn-default btn-sm">Dendrogram</button></a>
-                                        <a href="#" target="_blank" id="lymphthingylinker"><button class="btn btn-default btn-sm">Lymph node</button></a>
-                                        <a href="#" target="_blank" id="camprtlinker"><button class="btn btn-default btn-sm">Camprt</button></a>
-                                    </div>
-                                    <div class="col-md-12">
-                                            <table id="commonAttributesTable" class=" table order-list">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Attribute</td>
-                                                            <td>Same value knn patients</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="col-sm-6">
-                                                                    <span class="">Gender</span>
-                                                            </td>
-                                                            <td class="col-sm-6">
-                                                                    <span class="">5</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <!-- <tr>
-                                                            <td colspan="5" style="text-align: left;">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                        </tr> -->
-                                                    </tfoot>
-                                                </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
 
+
+        <!-- <div class="row"> -->
+            <div class="row" id="bottom">
+                <div class="contentWrapper kiviatDiv">
+                    <div class="contentDiv">
+                        <!-- kiviat header - title and dropdown -->
+                        <div class="viewTitleDiv" id="kiviatHeader">
+                            <div class="col-md-4" style="padding-left: 18%;">
+                              Current Patient
+                          <!-- Button trigger modal -->
+                              <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kiviatModal"> -->
+                                  <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kiviatModal" id="HelpInfo-kiviat"></span>                            
+                              <!-- </button>                             -->
+                          </div>
+                            <!-- kiviat title  -->
+                            <div class="col-md-6" style="padding-left: 12%;">
+                                Most Similar Patients
+                            <!-- Button trigger modal -->
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kiviatModal"> -->
+                                    <span class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#kiviatModal" id="HelpInfo-kiviat"></span>                            
+                                <!-- </button>                             -->
+                            </div>
+                            <div class="col-md-2 dropdown">
+                              <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" style="font-size: 12px;"></span>
+                              </button>
+                              <div class="dropdown-menu" id="kiviatDropdown" aria-labelledby="dropdownMenuButton" style="height: 55px; width: 345px;">
+                                <!-- KNN controller -->
+                                <button class="btn btn-default dropdown-toggle " type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                  KNN Attributes Used
+                                  <span class="caret"></span>
+                                </button>
+                                 <!-- kiviat axes controller -->
+                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                  Patient Axes Control
+                                  <span class="caret"></span>
+                                </button>
+                              </div>
+                            </div> 
+                        </div>
+                        <!-- kiviat diagram itself -->
+                        <div id="kiviatDiagram">
+                            <!-- divided into two
+                            left one contains the subject's kiviat and legend
+                            right one contains the matching kiviats -->
+                            <div class="col-md-4 kiviatLeft">
+                                <!-- patient dropdown menu -->
+                                <!-- <div class="row patient-dropdown-wrapper" id="similarPatientList">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <label for="patientSel">Patient:</label>
+                                            <select class="patient-dropdown form-control input-sm" id="patientSel"></select>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div>
+                                    <!-- kiviat diagram legend -->
+                                    <div class="col-md-5" id="kiviatDiagram-legend">
+                                    </div>
+
+                                    <!-- subject's kiviat diagram -->
+                                    <div class="col-md-7" id="kiviatDiagram-subject">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- neghbors kiviat diagram -->
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- KNN controller -->
+                                        <!-- <button class="btn btn-default dropdown-toggle " type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                            KNN Attributes Used
+                                            <span class="caret"></span>
+                                        </button> -->
+                                        <!-- <div class="col-md-3" style="height: 100%;"> -->
+                                            <ul class="dropdown-menu col-sm-12 col-md-4 optionDropdown scrollCollapse" id="knnAttributesControl">
+                                                <!-- populating list in controller -->
+                                                <!-- <div class="modal-footer">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#knnAttributesControl">
+                                                        Close
+                                                    </button>
+                                                </div> -->
+                                            </ul>
+                                        <!-- </div> -->
+                                    </div>
+                                
+                                <div class="col-md-6">
+                                     <!-- kiviat axes controller -->
+                                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                        Patient Axes Control
+                                        <span class="caret"></span>
+                                    </button> -->
+
+                                    <ul class="dropdown-menu col-sm-12 col-md-4 scrollCollapse" id="kiviatAttributesControl">
+                                        <!-- populating list in controller -->
+                                        <!-- <div class="modal-footer">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="collapse" data-target="#kiviatAttributesControl" >
+                                                Close
+                                            </button>
+                                        </div> -->
+                                    </ul>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-md-12 kiviatRight" id="kiviatDiagram-neighbors"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        <!-- </div> -->
+
     </div>
+
+</div>
+
+
+<!-- cohort view modal -->
+<div class="modal fade" id="cohortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Statistics Of All Patients</h5> -->
+          <h3 class="modal-title">Cohort Distribution</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table id="commonAttributesTable" class=" table order-list">
+                <thead>
+                    <tr>
+                        <td>Attribute</td>
+                        <td>Same value knn patients</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-sm-6">
+                                <span class="">Gender</span>
+                        </td>
+                        <td class="col-sm-6">
+                                <span class="">5</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <!-- <tr>
+                        <td colspan="5" style="text-align: left;">
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr> -->
+                </tfoot>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <!-- statistics modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Statistics Of All Patients</h5> -->
+          <h3 class="modal-title">Statistics of All Patients</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="statisticsModalBody">
+            <table class="table table-bordered statsTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Attribute Name</th>
+                    <th scope="col">Count/Mean</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                  </tr>
+                  <tr>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Larry the Bird</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- help information modals -->
+
+  <!-- overall help modal -->  
+  <!-- Modal -->
+  <div class="modal fade" id="OverallHelpInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">The SMART Therapy Explorer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+              <li><strong>About</strong> describes the project</li>
+              <li>Using the <strong>Update Patients</strong> button, patient’s info can be updated or new patient can be added</li>
+              <li>Clicking the <strong>Statistics</strong> button will show detailed statistics of all patients</li>
+              <li>Clicking the <strong>Cohort</strong> button will show the subgroup analysis of the selected patients</li>
+              <li><strong>Survival Over Time</strong> view in the left shows the probability of survival over time</li>
+              <li><strong>Survival and Toxicity Risk Prediction</strong> shows a graphical calculating device for Probability fo Survival</li>
+              <li><strong>Lymph Nodes Clusters</strong> button will show the Lymph Node Clusters Page</li>
+              <li>The Bottom Part shows patient attributes. The <strong>Current Patient</strong> view shows the attributes of the selected
+                 patient and the <strong>Most Similar Patients</strong> view shows the attributes of patients that are most similar to the 
+                 selected patient</li>
+              <li>Clicking on the Question Marks (?) beside each view will show help information for that view</li>            
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- kiviat diagram help modal -->  
+  <!-- Modal -->
+  <div class="modal fade" id="kiviatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Current Patient and Most Similar Patients</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>Select desired patient from the dropdown list <br> <br>
+                    <img src="imgs/kiviat/select-dropdown.png"  style="width: 50%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
+                <li><strong>Current Patient</strong> view shows the current selected patient</li>
+                <li><strong>Most Similar Patients</strong> view shows five most similar patients for the selected patient</li>
+                <li>The views shows nine characteristics of the patient
+                    <ul>
+                        <li>Age</li>
+                        <li>Gender</li>
+                        <li>Race</li>
+                        <li>T-Category</li>
+                        <li>N-Category</li>
+                        <li>Tumor Subsite</li>
+                        <li>Therapeutic Combination</li>
+                        <li>Smoking Status</li>
+                        <li>HPV/P16</li>
+                    </ul>
+                </li>
+                <li>The Color indicates probabilty of survival</li>
+                <li>Mouse Over to see details <br><br>
+                    <div style="display:flex;">
+                        <div style="flex: 50%; padding: 5px;">
+                          <img src="imgs/kiviat/mouseOver.png" alt="mouse over" style="width:100%">
+                        </div>
+                        <div style="flex: 50%; padding: 5px;">
+                          <img src="imgs/kiviat/mouseOverAxis.png" alt="mouse over axis" style="width:100%">
+                        </div>
+                    </div>
+                    <!-- <img src="imgs/kiviat/mouseOver.png" style="width: 50%; display: inline-block; margin-left: auto; margin-right: auto;">
+                    <img src="imgs/kiviat/mouseOverAxis.png" style="width: 50%; display: inline-block; margin-left: auto; margin-right: auto;"> -->
+                </li>
+                <li>For each similar patient, similarity score and different survival probability are shown beneath each view</li>
+                <li>Use the controll settings to select Attributes for calculating most similar patients (KNN Attributes Used)</li>
+                <li>Use the controll settings to see less or more patient axes (Patient Axes Control)</li>
+
+              </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- nomogram help modal -->  
+  <!-- Modal -->
+  <div class="modal fade" id="nomogramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Survival and Toxicity Risk Prediction</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>Choose the desired prediction from the drop down menu <br><br>
+                    <img src="imgs/nomogram/nomogram-dropdown.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
+                <li>Use the controller setting to control which scales and scale-intervals are shown. <br> <br>
+                    <img src="imgs/nomogram/controller settings.PNG" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
+                <li>Use the controller setting to resize and reposition each axis <br><br>
+                    <img src="imgs/nomogram/resize.PNG" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+                    <br><br>
+                </li>
+                <li>In the view, the thick dark polyline corresonds to the patient that the user selected.<br>
+                    The remaining polylines correspond to the five most similar patients.</li>
+                <li>Mouse over a poly line to view that poly line only</li>
+                <li>Uncheck "Show K-Nearest Neighbors" to see all of the patients information</li>
+                <li>Click on the question mark (?) over "Predictive Probability" to view "Attributes Used in Predicting The Outcomes"</li>
+              </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- kaplan meier help modal --> 
+  <!-- Modal -->
+  <div class="modal fade" id="kaplanmeierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Survival Over Time</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Survival Over Time view showing survival over time per patient group,
+              depending on the selected attribute</li>
+            <li>From the dropdown, attributes can be selected <br><br>
+              <img src="imgs/kaplan/dropdown.jpg" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+            </li>
+            <li>User can select to view all values or any particular value from the dropdown</li>
+            <li>By default, selected patient's (from patient ID dropdown) cohort color is more opaqued than the other cohorts</li>
+            <li>Mouse Over to the legends to view the cohort <br><br>
+              <img src="imgs/kaplan/legend.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+             </li>
+             <li>Mouse Over the view to see details <br><br>
+              <img src="imgs/kaplan/mouseover.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+             </li>
+          </ul> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- statistics and cohort help modal --> 
+  <!-- Modal -->
+  <div class="modal fade" id="statHelpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Statisctics and Cohort</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>The first row of the table shows how many similar patients are in the repository from the subgroup (kaplan meier groups) of the patient selected in Similar Patients view</li>
+                <li>Rest of the rows show the kaplan meier groups' values for the selected patient and the similar patients to that particula group in the repository </li>
+                <li>Clicking on the <b>Statistics</b> button will show a popup providing the information of the repository</li>
+                </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Prediction Model Modal -->
+<div class="modal fade" id="featureModels" tabindex="-1" role="dialog" aria-labelledby="featureModelsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="featureModelsLabel">Attributes Used in Predicting The Outcomes</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="featureModelsBody">
+        <div class="row">
+          <select class="btn btn-outline btn-grey btn-block dropdown-toggle" style="width: 50%;" id="featureModelSelect">
+            <!-- <option value="OS">Overall Survival (5 year)</option>
+            <option value="PRG">Progression (5 Year)</option> -->
+          </select>
+        </div>
+        <div class="row" id="featurePicture"></div>
+        <!-- <img src="imgs/CoxForest_OS_default.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;"> -->
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- With Radiomics Modal -->
+<div class="modal fade" id="WithRadiomics" tabindex="-1" role="dialog" aria-labelledby="WithRadiomicsLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="WithRadiomicsLabel">Radiomic Clusters</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="WithRadiomicsBody">
+        <!-- <div class="row">
+          With Radiomics
+        </div> -->
+        <div class="row" id="WithRadiomicsPicture"></div>
+        <img src="imgs/rad_clusters.png" style="width: 100%; display: block; margin-left: auto; margin-right: auto;">
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
     <!-- Modal -->
     <div id="exploreModal" class="modal fade" role="dialog">
@@ -528,7 +1033,7 @@
                         The SMART Therapy Explorer is developed by a group of researchers at the Electronic Visualization Laboratory, University of Illinois at Chicago under the direction of G.Elisabeta Marai.
                     </p>
                     <p>
-                        Team members include: Chihua Ma, Andrew Burks and Filippo Pellolio
+                        Team members include: Md Nafiul Nipu, Chihua Ma, Andrew Burks and Filippo Pellolio
                     </p>
                     <p>
                         Please send all feedback and questions to marai@uic.edu
@@ -542,6 +1047,15 @@
 
         </div>
     </div>
+
+
+    <script>
+        $(window).load(function() {
+          $('#loading').hide();
+        });
+      </script>
+
+
 </body>
 
 </html>

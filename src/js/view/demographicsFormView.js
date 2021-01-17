@@ -11,9 +11,11 @@ let DemographicsFormView = function () {
         self.genderMaleElement = d3.select("#male-radio");
         self.genderFemaleElement = d3.select("#female-radio");
         self.raceElement = d3.select("#race-element");
+        // self.raceSelect = d3.select("#race-element")
         self.aspirationYesRadio = d3.select('#aspiration-y-radio');
         self.aspirationNoRadio = d3.select('#aspiration-n-radio');
-        self.hpvp16Element = d3.select("#hpvp16-element");
+        self.aspirationNARadio = d3.select('#aspiration-na-radio');
+        // self.hpvp16Element = d3.select("#hpvp16-element");
         // self.ecog0Element = d3.select("#ecog-0-radio");
         // self.ecog1Element = d3.select("#ecog-1-radio");
         // self.ecog2Element = d3.select("#ecog-2-radio");
@@ -26,41 +28,72 @@ let DemographicsFormView = function () {
 
     function updateForm(data) {
         // Update attributes
-        let {AgeAtTx: age, Race: eth, Gender: gender, ID: id, "Smoking status at Diagnosis (Never/Former/Current)":smoking_stat,
-        "HPV/P16 status":hpv_stat, "Aspiration rate(Y/N)":aspiration, "Smoking status (Packs/Year)":packsperyear} = data;
+        let age, eth, /*race_select,*/ gender, id, smoking_stat, hpv_stat, aspiration, packsperyear = "";
+        // console.log(data)
+        if(data === undefined){ //then the values will be the previous value
+            // console.log(getGenderElement())
+            age = $('#age-element').val();
+            eth = $('#race-element').val();
+            // race_select = $('#race').val();
+            gender = $("input:radio[name=Gender]:checked").val();
+            // id = data["ID"];
+            smoking_stat = $("input:radio[name='Smoking status at Diagnosis (Never/Former/Current)']:checked").val();
+            // hpv_stat = $('#hpvp16-element').val();
+            aspiration = $("input:radio[name='Aspiration rate Pre-therapy']:checked").val();
+            packsperyear = $('#packs-per-year-element').val();
+            
+        }else{
+            age = data["AgeAtTx"];
+            eth = data["Race"];
+            // race_select = data["Race"]
+            gender = data["Gender"];
+            id = data["ID"];
+            smoking_stat = data["Smoking status at Diagnosis (Never/Former/Current)"];
+            // hpv_stat = data["HPV/P16 status"];
+            aspiration = data["Aspiration rate(Y/N)"];
+            packsperyear = data["Smoking status (Packs/Year)"];
+        //     let {AgeAtTx: age, Race: eth, Gender: gender, ID: id, "Smoking status at Diagnosis (Never/Former/Current)":smoking_stat,
+        // "HPV/P16 status":hpv_stat, "Aspiration rate(Y/N)":aspiration, "Smoking status (Packs/Year)":packsperyear} = data;
+                        
+        }
         setAgeElement(age);
         setRaceElement(eth);
+        // setRaceSelect(race_select);
         setGenderElement(gender);
         // setEcogValue(ecog);
         setSmokingStatus(smoking_stat);
-        setHpvp16Element(hpv_stat);
+        // setHpvp16Element(hpv_stat);
         setAspirationElement(aspiration);
         setPacksPerYearElement(packsperyear);
-        console.log(data);
+        // console.log(data);
     }
 
     function consolidateData() {
         return {
             age: getAgeElement(),
             race: getRaceElement(),
+            // race_t : getRaceSelect(),
             gender: getGenderElement(),
             // ecog: getEcogValue(),
             aspiration: getAspirationElement(),
-            hpvp16: getHpvp16Element(),
+            // hpvp16: getHpvp16Element(),
             smokingStatus: getSmokingStatus(),
             packsPerYear: getPacksPerYearElement()
         }
     }
 
     function getAgeElement() {
+        // console.log(self.ageElement.attr('text'))
         return self.ageElement.attr("value");
     }
 
     function setAgeElement(age) {
+        // console.log(Math.round(age))
         if (age !== undefined) {
-            self.ageElement
-                .attr("value", age)
-                .text(age);
+            // self.ageElement
+            //     .attr("value", Math.round(age))
+            //     .text(Math.round(age));
+            document.getElementById("age-element").value = Math.round(age);
         }
     }
 
@@ -103,23 +136,45 @@ let DemographicsFormView = function () {
 
     function setRaceElement(race) {
         if (race !== undefined) {
-            self.raceElement
-                .attr("value", race)
-                .text(race);
+            // console.log(race)
+            // $('form :input').val('');
+            // document.getElementById("race-element").value = race;
+            $('#race-element').val(race)
+            // self.raceElement
+            //     .attr("value", race)
+            //     .text(race);
         }
     }
 
-    function getHpvp16Element() {
-        return self.hpvp16Element.attr("value");
+    /*
+    function getRaceSelect() {
+        return self.raceSelect.attr("value");
     }
 
-    function setHpvp16Element(data) {
-        if (data !== undefined) {
-            self.hpvp16Element
-                .attr("value", data)
-                .text(data);
+    function setRaceSelect(race_select) {
+        if (race !== undefined) {
+            // console.log(race)
+            // $('form :input').val('');
+            $('#race').val(race_select);;
+            // self.raceElement
+            //     .attr("value", race)
+            //     .text(race);
         }
     }
+    */
+
+    // function getHpvp16Element() {
+    //     return self.hpvp16Element.attr("value");
+    // }
+
+    // function setHpvp16Element(data) {
+    //     if (data !== undefined) {
+    //         // self.hpvp16Element
+    //         //     .attr("value", data)
+    //         //     .text(data);
+    //         document.getElementById("hpvp16-element").value = data;
+    //     }
+    // }
 
     function getEcogValue() {
         let ecog0 = self.ecog0Element.property("checked");
@@ -230,9 +285,7 @@ let DemographicsFormView = function () {
 
     function setPacksPerYearElement(data) {
         if (data !== undefined) {
-            self.packsPerYearElement
-                .attr("value", data)
-                .text(data);
+            document.getElementById("packs-per-year-element").value = data;
         }
     }
 
@@ -244,10 +297,21 @@ let DemographicsFormView = function () {
                     .property("checked", true);
                 self.aspirationNoRadio
                     .property("checked", false);
+                self.aspirationNARadio
+                    .property("checked", false);
             } else if (data === "n" || data === "no") {
                 self.aspirationYesRadio
                     .property("checked", false);
                 self.aspirationNoRadio
+                    .property("checked", true);
+                self.aspirationNARadio
+                    .property("checked", false);
+            } else if(data === "n/a"){
+                self.aspirationYesRadio
+                    .property("checked", false);
+                self.aspirationNoRadio
+                    .property("checked", false);
+                self.aspirationNARadio
                     .property("checked", true);
             }
         }
@@ -256,6 +320,7 @@ let DemographicsFormView = function () {
     function getAspirationElement() {
         let yes = self.aspirationYesRadio.property("checked");
         let no = self.aspirationNoRadio.property("checked");
+        let na = self.aspirationNARadio.property("checked");
 
         if (yes) {
             return "Yes";
@@ -263,6 +328,10 @@ let DemographicsFormView = function () {
 
         if (no) {
             return "No";
+        }
+
+        if(na){
+            return "N/A";
         }
 
         return undefined;

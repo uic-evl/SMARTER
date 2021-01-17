@@ -6,12 +6,14 @@ let PatientSelectorController = function() {
 
     let self = {
         patientDropDown: null,
-        currentPatient: null
+        currentPatient: null,
+        patientWithGroup: {}
     };
 
     /* display the patient drop down list */
     function populatePateintDropDown() {
         let patients = App.models.patients.filterPatients();
+        // console.log(patients)
 
         let patientList = self.patientDropDown
             .selectAll("option")
@@ -55,7 +57,16 @@ let PatientSelectorController = function() {
             .on("change", function(d) {
                 let selectedID = d3.select(this).node().value;
                 self.currentPatient = selectedID;
-                console.log(selectedID);
+                // console.log(self.currentPatient);
+                // updatePateintDropDown()
+                //update the landing form as well
+                //change the dropdown value to the changed patient id
+                $(".idSelect").val(self.currentPatient);
+                // update the patient's information
+                let index = App.models.patients.getPatientIDFromDummyID(self.currentPatient)
+                $('#index-text').html('Patient Index: ' + index);
+                let patient = App.models.patients.getPatientByID(index)
+                App.controllers.landingFormController.updateLandingForms(patient)
                 updateSelectedPatients(selectedID);
             })
     }
@@ -79,22 +90,45 @@ let PatientSelectorController = function() {
 
         let updatedPatients = getUpdatedData(subjectID);
 
+        self.patientWithGroup = updatedPatients;
+        // console.log(self.patientWithGroup)
+
         updateViews(updatedPatients);
     }
 
     /* get the updated selected patient and knn */
     function getUpdatedData(subjectID) {
+        // console.log("called me")
+        let subjectIndex = App.models.patients.getPatientIDFromDummyID(subjectID);
         let updatedPatients = {};
-        updatedPatients.subject = App.models.patients.getPatientByID(subjectID);
+        updatedPatients.subject = App.models.patients.getPatientByID(subjectIndex);
         updatedPatients.neighbors = App.models.patients.getKnn();
+        App.controllers.nomoPredictionInfo.subjectPredictions(updatedPatients.subject);
+        App.controllers.kiviatAttrSelector.init();
+        App.controllers.knnAttrSelector.init();
 
+        // console.log(updatedPatients)
         return updatedPatients;
     }
 
     /* update relative views */
     function updateViews(updatedPatients) {
+        // console.log(updatedPatients.subject["Dummy ID"])
         App.views.kiviatDiagram.update(updatedPatients);
         App.views.nomogram.updateKnnData(updatedPatients);
+        //update the kaplan meier
+        // App.models.kaplanMeierPatient.updateData()
+        let KMData = App.models.kaplanMeierPatient.getKaplanMeierPatients();      
+        App.views.kaplanMeier.update(KMData);
+        // console.log("i am called")
+    }
+
+    function getPatientWithGroup(){
+        return self.patientWithGroup;
+    }
+
+    function setPatientWithGroup(patients){
+        self.patientWithGroup = patients;
     }
 
 
@@ -103,6 +137,9 @@ let PatientSelectorController = function() {
         attachToSelect,
         updatePateintDropDown: populatePateintDropDown,
         setPatient,
-        getCurrentPatient // used in kiviatDiagramView for setting dendrogram links.
+        getCurrentPatient, // used in kiviatDiagramView for setting dendrogram links.
+        getPatientWithGroup,
+        setPatientWithGroup,
+        getUpdatedData
     };
 }
